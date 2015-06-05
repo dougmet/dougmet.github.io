@@ -1,0 +1,840 @@
+
+\documentclass[aps, prl, twocolumn,superscriptaddress,amsmath,amssymb,floatfix]{revtex4-1} 
+
+%\newif\ifpdf\ifx\pdfoutput\undefined\pdffalse\else\pdfoutput=1\pdftrue\fi
+%\newcommand{\pdfgraphics}{\ifpdf\DeclareGraphicsExtensions{.pdf,.jpg,.eps}\else\fi}
+\newcommand{\figurewidth}{0.95\textwidth}
+\newcommand{\effe}{{\mathcal{E}}} \newcommand{\effee}{{\mathcal{E}}_e}
+
+\setcounter{totalnumber}{6}
+\usepackage{graphicx}
+\usepackage[usenames]{color} 
+\usepackage{comment} 
+\usepackage{bm}
+%\usepackage{subfig}
+\usepackage{amsmath}
+%\usepackage{epsfig} 
+%\usepackage{multicol} 
+\newcounter{abc}
+\renewcommand{\theequation}{\arabic{equation}\alph{abc}}
+
+\newcommand{\br}{{\bf r}} 
+\newcommand{\bu}{{\bf u}} 
+
+\newcommand{\be}{\begin{equation}} 
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bea}{\begin{eqnarray}} 
+\newcommand{\eea}{\end{eqnarray}}
+
+\begin{document}
+
+\title{Quantifying the effects of neglecting many-body interactions in coarse-grained models of complex fluids}
+
+\author{Douglas J. Ashton}  
+\author{Nigel B. Wilding} 
+\affiliation{Department of Physics, University of Bath, Bath BA2 7AY,
+United Kingdom} 
+
+\begin{abstract}
+
+We describe a general simulation scheme for assessing the
+thermodynamic consequences of neglecting many-body effects in
+coarse-grained models of complex fluids.  The method exploits the fact
+that the asymptote of a simple-to-measure structural function provides
+direct estimates of virial coefficients.  Comparing the virial
+coefficients of an atomistically detailed system with those of a coarse-grained
+version described by pair potentials, permits the role of many-body
+effects to be quantified. The approach is applied to two models: (i) a
+size-asymmetrical colloid-polymer mixture, and (ii) a solution of star
+polymers. In the latter case, coarse-graining to an effective fluid
+described by pair potentials is found to neglect important aspects of the true
+behaviour.
+
+\end{abstract}
+
+\maketitle
+
+
+Many-body forces occur when the net interaction between two particles
+is not simply pairwise additive, but depends on the presence of other
+particles. They appear in a wide range of physical systems including
+dense phases of noble gases~\cite{Egelstaff:1987kl}, molecular
+systems~\cite{Elrod:1994qa}, nuclear matter~\cite{Zuo:2013fu},
+superconductors ~\cite{Carlstrom:2011dz} and complex fluids such as
+polymers~\cite{DAdamo:2012sf}, lipid
+membranes~\cite{Schmid:2006,Lyubartsev:2011xy} and colloidal
+dispersions~\cite{Brunner:2004kx,Merrill:2010vn,Forsman:2012uq,Mattos:2013fk}.
+In seeking to make theoretical and computational progress with such
+systems one often attempts to simplify matters by ``coarse-graining''
+ie. integrating over the degrees of freedom on small length or times
+scales.  This leads to a description of the system in term of an
+effective Hamiltonian describing the interactions among the remaining
+degrees of freedom.  These interactions are inherently many-body in
+character, even if the original system involves only pairwise
+interactions.
+
+To appreciate how many-body interactions arise in coarse-grained (CG)
+representations of complex fluids, consider the case of colloids
+dispersed in a sea of much smaller polymers. This system is commonly
+modelled as a highly size-asymmetrical mixture of spheres as shown in
+the simulation snapshot of Fig.~\ref{fig:illustr}(a). However, since 
+dealing with components of disparate sizes is theoretically and
+computationally problematic, one typically seeks to integrate out the
+polymer degrees of freedom to yield an effective one-component
+model. But the colloidal interactions arise from the modulation
+of the polymer density distribution by {\em all} the colloids, and
+consequently, the effective one-component description is many-body in
+form.  A second example is shown in Fig.~\ref{fig:illustr}(b) which
+depicts three star polymers in solution.  A common CG model replaces
+each star by a single effective particle. However, the net
+interaction between two polymers depends on the proximity of a third,
+and hence the effective Hamiltonian has a many-body
+character~\cite{Ferber:2000fk}.
+
+\begin{figure}[h]
+%\includegraphics[type=pdf,ext=.pdf,read=.pdf,width=0.45\columnwidth,clip=true]{frame}\hspace*{5mm}\includegraphics[type=pdf,ext=.pdf,read=.pdf,width=0.45\columnwidth,clip=true]{frame}
+\includegraphics[type=pdf,ext=.pdf,read=.pdf,width=0.8\columnwidth,clip=true]{fig1}
+%
+\caption{(Color online). {\bf (a)} Snapshot of a highly size-asymmetrical mixture of
+ spheres. The effective one-component model is realized by
+ integrating out the small sphere degrees of freedom. {\bf (b)} A
+ snapshot of three star polymers.
+The big spheres represent a coarse grained model in which each polymer
+is replaced by a single effective particle. In both (a) and (b) simulation measurements are also shown for
+the structural quantity $g_3^\prime(r_{\rm min})$ discussed in the text, whose asymptote (dashed) yields information on the third virial coefficient.}
+%
+ \label{fig:illustr}
+ \end{figure}
+
+Computer simulation is a powerful route for designing CG
+models for complex fluids, which is currently receiving considerable
+attention. Indeed, in principle it can be used to determine a many-body
+potential for the CG coordinates which is consistent with the
+underlying atomistic model~\cite{Noid:2008ai,Noid:2008hc}. But
+implementing such approaches is far from trivial and it is still the
+norm that CG descriptions neglect some or all many-body effects~\cite{Muller-Plathe:2002qv,Nielsen:2004jk,Voth:2008,Rudzinski:2012fk}. Thus
+for polymers one might replace each chain by a set of one or more
+`blobs' which interact via a pair potential such as the potential of
+mean force~\cite{Capone2008}. Similarly for a colloid-polymer mixture one typically
+describes the colloidal interactions via the depletion pair
+potential~\cite{Lekkerkerker:2011}. In view of this, it is patently important to be able to
+assess the likely implications of the pair potential approximation for
+the thermodynamics of the CG system. To date, though, there has been
+little in the way of systematic methods for doing so.
+
+In this Letter we introduce a widely applicable tool for comparing
+some basic thermodynamic properties of an atomistically detailed
+system with those of its CG representation.  Our approach is based on
+calculations of the virial coefficients $B_n$. These are pertinent
+because they provide a systematic expansion of the properties of a
+system in terms of many-body interactions: $B_2$ depends only on pair
+interactions, while $B_3$ depends on two- and three-body interactions,
+etc. Comparison of virial coefficients for the atomistically detailed
+and CG models provide a measure of the extent to which the
+thermodynamics of the models agree.
+
+Previously there has been no method capable of directly determining
+virial coefficients for complex fluids.  The novel feature of our 
+approach is that it is based on exploiting {\em finite-size
+  effects}. Consider a simulation box of volume $V$ containing $N$
+interacting molecules in thermal equilibrium at inverse temperature
+$\beta=(k_BT)^{-1}$. For each of the $N$ molecules we tag an arbitrary atomic
+site and label its position vector $\br_i$, with $i=1\ldots N$.  The
+position vectors of the remaining $m$ atoms in each molecule we write
+as $\br_{i,j}=\br_i+\bu_{i,j}, j=1\ldots m$, with $\bu_{i,j}$ the
+displacement of atom $j$ on molecule $i$ from the tagged atom
+$\br_i$. Accordingly a molecular configuration can be specified via a
+list of the $N$ tagged and the $M=Nm$ non-tagged coordinates,
+$\br^N,\bu^M$. The corresponding Boltzmann probability is
+%
+\be
+P_N(\br^N,\bu^M)=\frac{ e^{-\beta U(\br^N,\bu^M)}} {Z_N} \:,
+\label{eq:boltzmann}
+\ee
+where $U(\br^N,\bu^M)$ is the full interaction potential containing both intra and intermolecular terms and
+\be
+Z_N=\int e^{-\beta U(\br^N,\bu^M)}d\br^Nd\bu^M
+\ee
+is the $N$-molecule configurational integral.
+
+Now define 
+\be
+\tilde{g}_N(\br^N,\bu^M) \equiv \frac{P_N(\br^N,\bu^M)}{P_N^{\rm ig}(\br^N)}= V^N \frac{ e^{-\beta U(\br^N,\bu^M)}}{Z_N}\:,
+\label{eq:main}
+\ee
+where $P_N^{\rm ig}(\br^N)=V^{-N}$ is the probability of finding (within the same volume) a set of $N$ structureless ideal gas particles
+in the same configuration as the tagged sites. We shall focus on the low density limit of
+$\tilde{g}_N(\br^N,\bu^N)$, corresponding to $|\br_k-\br_l|\to\infty,
+\:\;\forall\: k,l$. In this regime the molecules are non-interacting, so we
+can integrate out the internal molecular degrees of freedom
+(associated with the $\bu_{i,j}$) to obtain the asymptotic value
+
+\be
+f_N(V)\equiv\lim_{|\br_k-\br_l|\to\infty}\tilde{g}_N(\br^N)=\frac{(\Omega V)^N}{Z_N}=\frac{Z_1^N}{Z_N}\:,
+\label{eq:limit}
+\ee
+where $\Omega$ is the integral over the internal degrees of freedom of
+a single molecule and
+$Z_1$ is the corresponding configurational integral.
+
+The quantity $f_N(V)=Z_1^N/Z_N$ is central because it permits a direct
+calculation of molecular virial coefficients as will be shown below. A
+key feature is its dependence on the system volume. Specifically,
+although it has the limiting behaviour $\lim_{V\to\infty} f_N(V)=1$,
+\begin{comment}
+(because $Z_N$ is dominated by configurations in which the molecules are well separated)
+\end{comment}
+for finite system volume $f_N(V)$ deviates from unity.  However, on the
+face of it, determining $f_N(V)$ by simulation via eq.~\ref{eq:limit}
+is not a feasible proposition since it entails populating a
+$3N$-dimensional histogram for $P_N(\br^N)$ with sufficient
+statistics to yield precise probabilities. Fortunately, though, it
+turns out to be possible to determine $f_N(V)$ using only
+one-dimensional histograms. To see this, consider the quantity
+%
+\be
+g^\prime_N(r_{\rm min})\equiv\frac{P_N(r_{\rm min})}{P_N^{\rm ig}(r_{\rm min})}\:.
+\label{eq:gNrmin}
+\ee
+Here $r_{\rm min}$ is, for some configuration, the smallest, ie. the {\em minimum} 
+separation among the $N$ tagged sites. In the course of a simulation, one
+can accumulate histograms for $P_N(r_{\rm min})$ and $P_N^{\rm ig}(r_{\rm
+  min})$ and thus form $g^\prime_N(r_{\rm min})$. Clearly, though,
+the limit $r_{\rm min}\to\infty$ is none other than the
+limit $|\br_k-\br_l|\to\infty, \:\;\forall\; k,l$. Moreover, since in
+this limit the microstates of the tagged particles are visited with
+constant probability $\Omega^N Z_N^{-1}$, while those of the ideal gas are
+visited with probability $V^{-N}$, it follows that the
+limiting value of $g^\prime_N(r_{\rm min})$ is the same as that of
+$\tilde{g}_N(\br^N)$, i.e.
+%
+\be
+\lim_{r_{\rm min}\to \infty}g^\prime_N(r_{\rm min})= f_N(V)\:.
+\label{eq:gNrminlim}
+\ee
+
+Eq.~\ref{eq:gNrminlim} provides a straightforward computational prescription for
+determining $f_N(V)$, which in turn permits the calculation of the
+virial coefficients for the molecular system. Specifically, 
+from the virial cluster expansion \cite{Hill:1988ye} one finds that for $N=2$ particles
+%
+\be
+B_2= \frac{V}{2}\left(1-\frac{Z_2}{Z_1^2}\right)    = \frac{V}{2}\left( 1-\frac{1}{f_2(V)} \right )\:.
+\label{eq:B2}
+\ee
+Similarly for three particles one finds 
+\bea
+B_3 &=& \frac{V^2(Z_1^4-3Z_2Z_1^2-Z_3Z_1+3Z_2^2)}{3Z_1^4}\nonumber\\
+    &=& 4B_2^2-2B_2V+V^2\frac{(f_3(V)-1)}{3f_3(V)}\:.
+\label{eq:B3}
+\eea
+More generally, knowledge of $f_\gamma(V), \gamma=2,\ldots, n$ permits the
+calculation of the virial coefficient $B_n$.  
+
+Thus measurements (for a small number of molecules) of the asymptotic value of a simple-to-measure structural
+quantity, $g^\prime_N(r_{\rm min})$, provide direct access to
+molecular virial coefficients. The utility of the approach is wide
+because it can be used in conjunction with any simulation method
+capable of producing equilibrium configurations, for example Molecular
+Dynamics (MD), Monte Carlo (MC) or Langevin Dynamics.  Furthermore it
+can deal with much more complex systems than is possible with an
+existing method~\cite{Singh:2004zr}.
+
+In general one can estimate $f$ visually, or from a
+fit. However, we have found that a particularly accurate measure
+results from the ratio of integrals
+%
+\be
+f_N(V)=\frac{\int_{r_l}^{r_u} P_N(r_{\rm min}){\rm d}r_{\rm min}}{\int_{r_l}^{r_u} P^{\rm ig}_N(r_{\rm min}){\rm d}r_{\rm min}}\:,
+\label{eq:findf}
+\ee where $r_l$ is some value of $r_{\rm min}$ for which
+$g^\prime(r_{\rm min})$ can be considered to have first reached its
+limiting value, and $r_u$ is the largest value of $r_{\rm min}$ for
+which data has been accumulated, which will typically be half the
+simulation box diagonal length. It should be emphasized that in
+practice eq.~(\ref{eq:findf}) is evaluated simply from a count of
+entries in the respective histograms for $P_N(r_{\rm min})$ and
+$P_N^{\rm ig}(r_{\rm min})$--no numerical quadrature is necessary.  
+
+\begin{table}[h]
+\begin{tabular}{cccc}
+$N$ & $V$ & $B_N$ & $B_N^{\rm exact}$\protect\cite{Clisby:2004lh}\\\hline
+2 & $(2.5\sigma)^3$ & $2.09441(6)\sigma^3$ & $2.0943951\ldots\sigma^3$\\
+3 & $(3.5\sigma)^3$ & $2.7418(4)\sigma^6$ &  $2.7415567\ldots\sigma^6$ \\
+4 & $(3.5\sigma)^3$ & $2.629(22)\sigma^9$ &    $2.6362180\ldots\sigma^9$ \\\hline
+\end{tabular}
+\caption{Estimates of the first four virial coefficients of hard spheres, compared with exact values.}
+\label{tab:HS}
+\end{table}
+
+To test the method we have used it to estimate the first few virial
+coefficients of a single component system of hard spheres of diameter
+$\sigma$, finding excellent agreement with exact values (see
+Tab.~\ref{tab:HS}).  Having validated the method on a simple system,
+we turn to a more challenging problem, namely that of quantifying the
+scale of many-body effects in CG models for colloid-polymer
+mixtures. In such systems the polymers mediate effective colloidal
+interactions~\cite{Lekkerkerker:2011}. A commonly studied model treats
+the colloids as big hard spheres of diameter $\sigma_b$, and the
+polymers as small hard spheres of diameter $\sigma_s$, so that the
+size ratio is $q\equiv\sigma_s/\sigma_b$.  The effective Hamiltonian
+then provides a CG description of the colloidal interactions in which
+the polymer degrees of freedom have been integrated out. Quite
+generally it takes the form $H^{\rm eff}=H^0+\Theta$ where $H^0$ is
+the bare colloid-colloid interaction, while $\Theta$ is a many-body
+contribution arising from the polymers, which can in turn be written
+as a sum over $n$-body terms
+$\Theta=\sum_{n=1}^\infty\theta_n$~\cite{Dijkstra1999}.  Common
+practice is to approximate this Hamiltonian in terms of a sum over
+pair interactions, i.e.  $H^{\rm
+  eff}\approx\sum_{i,j}[\phi(r_{ij})+W(r_{ij})]$ where $\phi(r_{ij})$
+is the hard sphere interaction between a pair of colloids whose
+centers are separated by a distance $r_{ij}$, while $W(r_{ij})$ is the
+depletion pair potential, whose form depends on the small particle
+volume fraction and model details such as the degree of additivity of
+the big-small interaction.  Usually one assumes that the small
+particles occupy an open ensemble, so that $W(r)$ is parameterized in
+terms of the reservoir volume fraction $\eta_s^r$.
+
+Since the depletion pair potential plays a central role in theories and
+simulations of colloid-polymer mixtures, it is desirable to
+quantify the effects of neglecting higher order terms in $H^{\rm eff}$, the most
+prominent of which is triplet interactions. Our strategy for doing so
+estimates the third virial coefficient $B_3^{\rm eff}$ for the full
+effective fluid and compares it with the corresponding value $B_3^{\rm
+  dep}$ for three particles interacting via the depletion pair
+potential. This comparison directly probes the extent to which the
+interaction between a pair of big particles is influenced by the proximity of a third one.
+
+To obtain estimates for $B_3^{\rm eff}$ we deploy the geometrical
+cluster algorithm (GCA)~\cite{Dress1995,Liu2004}. This efficient
+rejection-free Monte Carlo scheme can generate equilibrium
+configurations at practically any value of $q$.
+We have used it to study systems of
+$N=2$ and $N=3$ big particles in a sea of small ones at
+various $\eta_s^r$. The procedure is as follows:
+
+\begin{enumerate}
+
+\item[(i)] In a simulation of $N=2$ tagged big particles, measure the
+  form of $g^\prime_2(r)$ at some prescribed $\eta_s^r$. This yields
+  the value of $B_2^{\rm eff}(\eta_s^r)$ via eq.~(\ref{eq:B2}).
+\vspace*{-1mm}
+\item[(ii)] Use the form of $g^\prime_2(r)$ obtained in (i) 
+  to estimate the depletion potential $W(r|\eta_s^r)$ by employing 
+  the procedure detailed by Ashton {\em et al}~\cite{Ashton:2011kx}.
+\vspace*{-1mm}
+\item[(iii)] Next simulate $N=3$ tagged big particles at the same value of
+  $\eta_s^r$ and measure $\tilde{g}_3(r_{\rm min})$. Together
+  with the estimate of $B_2^{\rm eff}(\eta_s^r)$ obtained in (i), this yields
+  an estimate for $B_3^{\rm eff}(\eta_s^r)$ via eq.~(\ref{eq:B3}).
+\vspace*{-1mm}
+\item[(iv)] Finally perform a simple MC simulation of three particles
+  interacting via the depletion potential $W(r|\eta_s^r)$
+  obtained in (ii).  This yields the third virial coefficient $B_3^{\rm
+    dep}(\eta_s^r)$ via eq.~(\ref{eq:B3}).
+
+\end{enumerate}
+
+We have applied this procedure to study two models of colloid-polymer
+mixtures, namely the Asakura-Oosawa (AO) model and a system of
+additive hard spheres.  The AO model describes colloidal hard-spheres
+in a solvent of ideal polymer that have a hard-particle interaction
+with the colloids~\cite{Asakura1954,Asakura:1958uq},
+c.f. Fig.~\ref{fig:illustr}(a). Owing to its extreme non-additivity,
+the exact form of the depletion potential is known analytically~\cite{Asakura:1958uq} which obviates the need to perform steps (i) and
+(ii) above. Furthermore many-body forces are known to vanish for size
+ratios $q<0.1547$~\cite{Brader2003,Dijkstra:1999kl}, a fact that allows us to
+further test our methodology and its sensitivity.
+
+Fig.~\ref{fig:illustr}(a) includes a sample plot of $g_3^\prime(r_{\rm
+  min})$ obtained for the AO model using a box of size
+$V=(3.5\sigma_l)^3$ at $\eta_s^r=0.2,q=0.154$. The data show the
+approach to the asymptote, $f_3(V)$. From plots such as this we have
+obtained estimates of $B_3^{\rm eff}$ and $B_3^{\rm dep}$ for size
+ratios $q=0.5,0.25, 0.154$, as shown in Fig.~\ref{fig:B3ao}. One
+expects that triplet interactions, as quantified by the difference between
+$B_3^{\rm eff}(\eta_s^r)$ and $B_3^{\rm dep}(\eta_s^r)$, should
+increase with $\eta_s^r$ and this is indeed the case. We find that
+$B_3^{\rm eff}>B_3^{\rm dep}$, consistent with the fact that triplet
+interactions weaken the attraction between particles~\cite{Goulding:2001fk}. One further expects $B_3^{\rm eff}-B_3^{\rm
+  dep}$ to diminish with decreasing $q$ and have vanished by
+$q=0.154$, a feature which is confirmed to high precision by our data.
+
+For additive hard spheres, the GCA is considerably less efficient than for the AO
+model being limited to $\eta_s^r\lesssim 0.2$.  Although
+triplet interactions are always present in principle, our
+results (not shown) indicate that within this more limited 
+range of $\eta_s^r$, they are negligibly small for $q=0.2$ and
+$q=0.1$. This finding suggests that for applications at low to
+moderate $\eta_s^r$ and small $q$ it is safe to use depletion potentials for
+additive hard spheres.
+
+\begin{figure}[h]
+\includegraphics[type=pdf,ext=.pdf,read=.pdf,width=0.9\columnwidth,clip=true]{fig2}
+%
+\caption{Comparison of $B_3^{\rm
+    eff}(\eta_s^r)$, and $B_3^{\rm dep}(\eta_s^r)$ for the AO
+  model with size ratios $q=0.5, 0.25, 0.154$. Lines are guides to the eye and statistical uncertainties are
+  smaller than the symbol sizes. To aid visibility, the curves for
+  $q=0.25$ and $q=0.5$ have been shifted vertically by $0.5$ and $1.0$
+  respectively.}
+%
+ \label{fig:B3ao}
+ \end{figure}
+
+As a final illustration of the power and generality of our method, we
+have used it to quantify the role of triplet interactions in a model
+for star polymers in implicit solvent, c.f. Fig.~\ref{fig:illustr}(b). Each star comprises a core particle
+to which are attached a number (called the ``functionality'')
+of linear polymer chains each comprising $n$ monomers. Bonded monomers
+interact via a FENE spring, while non bonded monomers experience a
+Lennard-Jones (LJ) potential. Using MD we have studied various combination
+of functionality and chain length $n$. Our aim was to determine how these
+parameters affect the size of the triplet interactions. In order to effect this comparison in a fair
+manner, we tuned the temperature in each case such that $B_2$ matches a
+prescribed value, thereby providing a ``corresponding state''. The procedure for measuring the size of
+triplet interactions via virial coefficients is similar to that
+outlined for the colloid-polymer mixtures, except that the tagged
+particles are now taken to be the set of core atoms. The pair
+potential is the potential of mean force (pmf) which is obtained in a
+simulation of two stars. We then simulate three particles interacting
+via this potential to obtain $B_3^{\rm pmf}$. This we compare with
+  $B_3^{\rm star}$, measured in a simulation of $N=3$ star polymers (a sample plot of
+$g_3^\prime(r_{\rm min})$ in a box of volume $V=(40\sigma)^3$
+is included in Fig.~\ref{fig:illustr}(b)). 
+
+The results are shown in Fig.~\ref{fig:star_results} and reveal large
+discrepancies between $B_3^{\rm pmf}$ and $B_3^{\rm star}$, which
+decrease in magnitude as both the functionality and the arm length
+increase. Clearly the disparity is such that one should expect a quite
+different equation of state (as well as other thermodynamic
+quantities) to arise from the coarse-grained system described by the
+pmf compared to the full model. We believe that the importance of
+many-body effects in this system arises from the ability of the
+polymers to substantially overlap, which occurs predominantly for
+lower functionality and smaller number of monomers per arm. When two
+polymers overlap, the resulting composite particle is locally much
+denser than for a single polymer. Accordingly a third polymer is much
+less likely to overlap with the first two due to short ranged
+monomeric repulsions. Clearly, however, this effect is completely
+neglected in the pair potential framework. This observation should be
+relevant to CG models for many other types of polymer-based soft
+particles, including cluster forming amphiphilic dendrimers~\cite{Lenz:2012fk}.
+
+\begin{figure}[h]
+%\includegraphics[type=pdf,ext=.pdf,read=.pdf,width=0.7\columnwidth,clip=true]{starsnapshot}
+\includegraphics[type=pdf,ext=.pdf,read=.pdf,width=0.9\columnwidth,clip=true]{fig3}
+%
+\caption{Estimates of the dimensionless third virials $B_3^{\rm pmf}/B_2^2$ and $B_3^{\rm star}/B_2^2$ vs
+  functionality for various chain lengths $n$. Volumes ranged
+from $V=(20\sigma)^3$ to $V=(40\sigma)^3$, large enough to
+  access the limiting behaviour of $g_3^\prime(r_{\rm min})$. Bonded
+  monomers interact via a FENE potential with parameters
+  $K=30.0\epsilon/\sigma^2, R_0=1.5\sigma$~\cite{Kremer:1990rt}. The
+  LJ potential was truncated and shifted at $r=2.5\sigma$. In all cases
+ $T$ is chosen to yield $B_2=-3321\sigma^3$. Errors are comparable with symbol sizes.}
+%
+ \label{fig:star_results}
+ \end{figure}
+
+In summary, we have proposed a general method for calculating low-order
+virial coefficients of complex fluids via a simple-to-measure
+structural property. The method is the only direct approach (of which
+we are aware) for achieving this. We have highlighted its utility in
+quantifying the consequences of neglecting many-body effects in
+coarse-graining schemes. Beyond this it should prove useful as a means
+of testing new and existing molecular models by comparing the extent to which they
+reproduce experimentally determined virial coefficients.
+
+\acknowledgments
+
+This work was supported by EPSRC grants EP/F047800 and
+EP/I036192. We thank Bob Evans, Rob Jack, Andrew
+Masters and Friederike Schmid for helpful discussions.
+
+
+% Bibliography
+%merlin.mbs apsrev4-1.bst 2010-07-25 4.21a (PWD, AO, DPC) hacked
+%Control: key (0)
+%Control: author (8) initials jnrlst
+%Control: editor formatted (1) identically to author
+%Control: production of article title (-1) disabled
+%Control: page (0) single
+%Control: year (1) truncated
+%Control: production of eprint (0) enabled
+\begin{thebibliography}{34}%
+\makeatletter
+\providecommand \@ifxundefined [1]{%
+ \@ifx{#1\undefined}
+}%
+\providecommand \@ifnum [1]{%
+ \ifnum #1\expandafter \@firstoftwo
+ \else \expandafter \@secondoftwo
+ \fi
+}%
+\providecommand \@ifx [1]{%
+ \ifx #1\expandafter \@firstoftwo
+ \else \expandafter \@secondoftwo
+ \fi
+}%
+\providecommand \natexlab [1]{#1}%
+\providecommand \enquote  [1]{``#1''}%
+\providecommand \bibnamefont  [1]{#1}%
+\providecommand \bibfnamefont [1]{#1}%
+\providecommand \citenamefont [1]{#1}%
+\providecommand \href@noop [0]{\@secondoftwo}%
+\providecommand \href [0]{\begingroup \@sanitize@url \@href}%
+\providecommand \@href[1]{\@@startlink{#1}\@@href}%
+\providecommand \@@href[1]{\endgroup#1\@@endlink}%
+\providecommand \@sanitize@url [0]{\catcode `\\12\catcode `\$12\catcode
+  `\&12\catcode `\#12\catcode `\^12\catcode `\_12\catcode `\%12\relax}%
+\providecommand \@@startlink[1]{}%
+\providecommand \@@endlink[0]{}%
+\providecommand \url  [0]{\begingroup\@sanitize@url \@url }%
+\providecommand \@url [1]{\endgroup\@href {#1}{\urlprefix }}%
+\providecommand \urlprefix  [0]{URL }%
+\providecommand \Eprint [0]{\href }%
+\providecommand \doibase [0]{http://dx.doi.org/}%
+\providecommand \selectlanguage [0]{\@gobble}%
+\providecommand \bibinfo  [0]{\@secondoftwo}%
+\providecommand \bibfield  [0]{\@secondoftwo}%
+\providecommand \translation [1]{[#1]}%
+\providecommand \BibitemOpen [0]{}%
+\providecommand \bibitemStop [0]{}%
+\providecommand \bibitemNoStop [0]{.\EOS\space}%
+\providecommand \EOS [0]{\spacefactor3000\relax}%
+\providecommand \BibitemShut  [1]{\csname bibitem#1\endcsname}%
+\let\auto@bib@innerbib\@empty
+%</preamble>
+\bibitem [{\citenamefont {Egelstaff}(1987)}]{Egelstaff:1987kl}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {P.~A.}\ \bibnamefont
+  {Egelstaff}},\ }\href {http://stacks.iop.org/0295-5075/3/i=8/a=001}
+  {\bibfield  {journal} {\bibinfo  {journal} {EPL}\ }\textbf {\bibinfo {volume}
+  {3}},\ \bibinfo {pages} {867} (\bibinfo {year} {1987})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Elrod}\ and\ \citenamefont
+  {Saykally}(1994)}]{Elrod:1994qa}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.~J.}\ \bibnamefont
+  {Elrod}}\ and\ \bibinfo {author} {\bibfnamefont {R.~J.}\ \bibnamefont
+  {Saykally}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {Chem. Rev.}\ }\textbf {\bibinfo {volume} {94}},\ \bibinfo {pages} {1975}
+  (\bibinfo {year} {1994})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Zuo}(2013)}]{Zuo:2013fu}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {W.}~\bibnamefont
+  {Zuo}},\ }\href {http://stacks.iop.org/1742-6596/420/i=1/a=012089} {\bibfield
+   {journal} {\bibinfo  {journal} {J. Phys: Conf. Ser.}\ }\textbf {\bibinfo
+  {volume} {420}},\ \bibinfo {pages} {012089} (\bibinfo {year}
+  {2013})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Carlstr\"om}\ \emph {et~al.}(2011)\citenamefont
+  {Carlstr\"om}, \citenamefont {Garaud},\ and\ \citenamefont
+  {Babaev}}]{Carlstrom:2011dz}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Carlstr\"om}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Garaud}},
+  \ and\ \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont {Babaev}},\ }\href
+  {\doibase 10.1103/PhysRevB.84.134515} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev. B}\ }\textbf {\bibinfo {volume} {84}},\ \bibinfo
+  {pages} {134515} (\bibinfo {year} {2011})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {D{'}Adamo}\ \emph {et~al.}(2012)\citenamefont
+  {D{'}Adamo}, \citenamefont {Pelissetto},\ and\ \citenamefont
+  {Pierleoni}}]{DAdamo:2012sf}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {G.}~\bibnamefont
+  {D{'}Adamo}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Pelissetto}}, \ and\ \bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Pierleoni}},\ }\href {\doibase 10.1039/C2SM07174F} {\bibfield  {journal}
+  {\bibinfo  {journal} {Soft Matter}\ }\textbf {\bibinfo {volume} {8}},\
+  \bibinfo {pages} {5151} (\bibinfo {year} {2012})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Schmid}(2006)}]{Schmid:2006}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {F.}~\bibnamefont
+  {Schmid}},\ }in\ \href {\doibase 10.1007/3-540-35284-8{\_}10} {\emph
+  {\bibinfo {booktitle} {Computer Simulations in Condensed Matter Systems: From
+  Materials to Chemical Biology Volume 2}}},\ Vol.\ \bibinfo {volume} {704}\
+  (\bibinfo  {publisher} {Springer Berlin Heidelberg},\ \bibinfo {year}
+  {2006})\ pp.\ \bibinfo {pages} {211--258}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Lyubartsev}\ and\ \citenamefont
+  {Rabinovich}(2011)}]{Lyubartsev:2011xy}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.~P.}\ \bibnamefont
+  {Lyubartsev}}\ and\ \bibinfo {author} {\bibfnamefont {A.~L.}\ \bibnamefont
+  {Rabinovich}},\ }\href {\doibase 10.1039/C0SM00457J} {\bibfield  {journal}
+  {\bibinfo  {journal} {Soft Matter}\ }\textbf {\bibinfo {volume} {7}},\
+  \bibinfo {pages} {25} (\bibinfo {year} {2011})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Brunner}\ \emph {et~al.}(2004)\citenamefont
+  {Brunner}, \citenamefont {Dobnikar}, \citenamefont {von Gr\"unberg},\ and\
+  \citenamefont {Bechinger}}]{Brunner:2004kx}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Brunner}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Dobnikar}},
+  \bibinfo {author} {\bibfnamefont {H.-H.}\ \bibnamefont {von Gr\"unberg}}, \
+  and\ \bibinfo {author} {\bibfnamefont {C.}~\bibnamefont {Bechinger}},\ }\href
+  {\doibase 10.1103/PhysRevLett.92.078301} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {92}},\ \bibinfo
+  {pages} {078301} (\bibinfo {year} {2004})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Merrill}\ \emph {et~al.}(2010)\citenamefont
+  {Merrill}, \citenamefont {Sainis}, \citenamefont {Blawzdziewicz},\ and\
+  \citenamefont {Dufresne}}]{Merrill:2010vn}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~W.}\ \bibnamefont
+  {Merrill}}, \bibinfo {author} {\bibfnamefont {S.~K.}\ \bibnamefont {Sainis}},
+  \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Blawzdziewicz}}, \ and\
+  \bibinfo {author} {\bibfnamefont {E.~R.}\ \bibnamefont {Dufresne}},\ }\href
+  {\doibase 10.1039/B926845F} {\bibfield  {journal} {\bibinfo  {journal} {Soft
+  Matter}\ }\textbf {\bibinfo {volume} {6}},\ \bibinfo {pages} {2187} (\bibinfo
+  {year} {2010})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Forsman}\ and\ \citenamefont
+  {Woodward}(2012)}]{Forsman:2012uq}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Forsman}}\ and\ \bibinfo {author} {\bibfnamefont {C.~E.}\ \bibnamefont
+  {Woodward}},\ }\href {\doibase 10.1039/C2SM06737D} {\bibfield  {journal}
+  {\bibinfo  {journal} {Soft Matter}\ }\textbf {\bibinfo {volume} {8}},\
+  \bibinfo {pages} {2121} (\bibinfo {year} {2012})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Mattos}\ \emph {et~al.}(2013)\citenamefont {Mattos},
+  \citenamefont {Harnau},\ and\ \citenamefont {Dietrich}}]{Mattos:2013fk}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {T.~G.}\ \bibnamefont
+  {Mattos}}, \bibinfo {author} {\bibfnamefont {L.}~\bibnamefont {Harnau}}, \
+  and\ \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Dietrich}},\ }\href
+  {\doibase 10.1063/1.4791554} {\bibfield  {journal} {\bibinfo  {journal} {J.
+  Chem. Phys.}\ }\textbf {\bibinfo {volume} {138}},\ \bibinfo {eid} {074704}
+  (\bibinfo {year} {2013})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {von Ferber}\ \emph {et~al.}(2000)\citenamefont {von
+  Ferber}, \citenamefont {Jusufi}, \citenamefont {Likos}, \citenamefont
+  {L{\"o}wen},\ and\ \citenamefont {Watzlawek}}]{Ferber:2000fk}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont {von
+  Ferber}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Jusufi}},
+  \bibinfo {author} {\bibfnamefont {C.~N.}\ \bibnamefont {Likos}}, \bibinfo
+  {author} {\bibfnamefont {H.}~\bibnamefont {L{\"o}wen}}, \ and\ \bibinfo
+  {author} {\bibfnamefont {M.}~\bibnamefont {Watzlawek}},\ }\href@noop {}
+  {\bibfield  {journal} {\bibinfo  {journal} {Eur. Phys. J. E}\ }\textbf
+  {\bibinfo {volume} {2}},\ \bibinfo {pages} {311} (\bibinfo {year}
+  {2000})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Noid}\ \emph
+  {et~al.}(2008{\natexlab{a}})\citenamefont {Noid}, \citenamefont {Chu},
+  \citenamefont {Ayton}, \citenamefont {Krishna}, \citenamefont {Izvekov},
+  \citenamefont {Voth}, \citenamefont {Das},\ and\ \citenamefont
+  {Andersen}}]{Noid:2008ai}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {W.~G.}\ \bibnamefont
+  {Noid}}, \bibinfo {author} {\bibfnamefont {J.-W.}\ \bibnamefont {Chu}},
+  \bibinfo {author} {\bibfnamefont {G.~S.}\ \bibnamefont {Ayton}}, \bibinfo
+  {author} {\bibfnamefont {V.}~\bibnamefont {Krishna}}, \bibinfo {author}
+  {\bibfnamefont {S.}~\bibnamefont {Izvekov}}, \bibinfo {author} {\bibfnamefont
+  {G.~A.}\ \bibnamefont {Voth}}, \bibinfo {author} {\bibfnamefont
+  {A.}~\bibnamefont {Das}}, \ and\ \bibinfo {author} {\bibfnamefont {H.~C.}\
+  \bibnamefont {Andersen}},\ }\href {\doibase
+  http://dx.doi.org/10.1063/1.2938860} {\bibfield  {journal} {\bibinfo
+  {journal} {J. Chem. Phys.}\ }\textbf {\bibinfo {volume} {128}},\ \bibinfo
+  {eid} {244114} (\bibinfo {year} {2008}{\natexlab{a}})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Noid}\ \emph
+  {et~al.}(2008{\natexlab{b}})\citenamefont {Noid}, \citenamefont {Liu},
+  \citenamefont {Wang}, \citenamefont {Chu}, \citenamefont {Ayton},
+  \citenamefont {Izvekov}, \citenamefont {Andersen},\ and\ \citenamefont
+  {Voth}}]{Noid:2008hc}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {W.~G.}\ \bibnamefont
+  {Noid}}, \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Liu}}, \bibinfo
+  {author} {\bibfnamefont {Y.}~\bibnamefont {Wang}}, \bibinfo {author}
+  {\bibfnamefont {J.-W.}\ \bibnamefont {Chu}}, \bibinfo {author} {\bibfnamefont
+  {G.~S.}\ \bibnamefont {Ayton}}, \bibinfo {author} {\bibfnamefont
+  {S.}~\bibnamefont {Izvekov}}, \bibinfo {author} {\bibfnamefont {H.~C.}\
+  \bibnamefont {Andersen}}, \ and\ \bibinfo {author} {\bibfnamefont {G.~A.}\
+  \bibnamefont {Voth}},\ }\href {\doibase http://dx.doi.org/10.1063/1.2938857}
+  {\bibfield  {journal} {\bibinfo  {journal} {J. Chem. Phys.}\ }\textbf
+  {\bibinfo {volume} {128}},\ \bibinfo {eid} {244115} (\bibinfo {year}
+  {2008}{\natexlab{b}})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {M{\"u}ller-Plathe}(2002)}]{Muller-Plathe:2002qv}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {F.}~\bibnamefont
+  {M{\"u}ller-Plathe}},\ }\href {\doibase
+  10.1002/1439-7641(20020916)3:9<754::AID-CPHC754>3.0.CO;2-U} {\bibfield
+  {journal} {\bibinfo  {journal} {Chem. Phys. Chem.}\ }\textbf {\bibinfo
+  {volume} {3}},\ \bibinfo {pages} {754} (\bibinfo {year} {2002})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Nielsen}\ \emph {et~al.}(2004)\citenamefont
+  {Nielsen}, \citenamefont {Lopez}, \citenamefont {Srinivas},\ and\
+  \citenamefont {Klein}}]{Nielsen:2004jk}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.~O.}\ \bibnamefont
+  {Nielsen}}, \bibinfo {author} {\bibfnamefont {C.~F.}\ \bibnamefont {Lopez}},
+  \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Srinivas}}, \ and\
+  \bibinfo {author} {\bibfnamefont {M.~L.}\ \bibnamefont {Klein}},\ }\href
+  {http://stacks.iop.org/0953-8984/16/i=15/a=R03} {\bibfield  {journal}
+  {\bibinfo  {journal} {J. Phys: Condens. Matter}\ }\textbf {\bibinfo {volume}
+  {16}},\ \bibinfo {pages} {R481} (\bibinfo {year} {2004})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Voth}(2008)}]{Voth:2008}%
+  \BibitemOpen
+  \bibinfo {editor} {\bibfnamefont {G.}~\bibnamefont {Voth}},\ ed.,\ \href@noop
+  {} {\emph {\bibinfo {title} {Coarse-Graining of Condensed Phase and
+  Biomolecular Systems}}}\ (\bibinfo  {publisher} {CRC Press},\ \bibinfo {year}
+  {2008})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Rudzinski}\ and\ \citenamefont
+  {Noid}(2012)}]{Rudzinski:2012fk}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~F.}\ \bibnamefont
+  {Rudzinski}}\ and\ \bibinfo {author} {\bibfnamefont {W.~G.}\ \bibnamefont
+  {Noid}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {J. Phys.
+  Chem. B}\ }\textbf {\bibinfo {volume} {116}},\ \bibinfo {pages} {8621}
+  (\bibinfo {year} {2012})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Capone}\ \emph {et~al.}(2008)\citenamefont {Capone},
+  \citenamefont {Pierleoni}, \citenamefont {Hansen},\ and\ \citenamefont
+  {Krakoviack}}]{Capone2008}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {B.}~\bibnamefont
+  {Capone}}, \bibinfo {author} {\bibfnamefont {C.}~\bibnamefont {Pierleoni}},
+  \bibinfo {author} {\bibfnamefont {J.-P.}\ \bibnamefont {Hansen}}, \ and\
+  \bibinfo {author} {\bibfnamefont {V.}~\bibnamefont {Krakoviack}},\ }\href
+  {http://dx.doi.org/10.1021/jp805946z} {\bibfield  {journal} {\bibinfo
+  {journal} {J. Phys. Chem B}\ }\textbf {\bibinfo {volume} {113}},\ \bibinfo
+  {pages} {3629} (\bibinfo {year} {2008})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Lekkerkerker}\ and\ \citenamefont
+  {Tuinier}(2011)}]{Lekkerkerker:2011}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.~N.~W.}\
+  \bibnamefont {Lekkerkerker}}\ and\ \bibinfo {author} {\bibfnamefont
+  {R.}~\bibnamefont {Tuinier}},\ }\href@noop {} {\emph {\bibinfo {title}
+  {Colloids and the Depletion Interactions}}},\ \bibinfo {series} {Lecture
+  Notes in Physics}, Vol.\ \bibinfo {volume} {833}\ (\bibinfo  {publisher}
+  {Springer},\ \bibinfo {address} {Berlin / Heidelberg},\ \bibinfo {year}
+  {2011})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Hill}(1988)}]{Hill:1988ye}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {T.}~\bibnamefont
+  {Hill}},\ }\href@noop {} {\emph {\bibinfo {title} {Statistical Mechanics:
+  Principles and Selected Applications Principles and Selected Applications}}}\
+  (\bibinfo  {publisher} {Dover Publications Inc.},\ \bibinfo {year}
+  {1988})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Singh}\ and\ \citenamefont
+  {Kofke}(2004)}]{Singh:2004zr}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~K.}\ \bibnamefont
+  {Singh}}\ and\ \bibinfo {author} {\bibfnamefont {D.~A.}\ \bibnamefont
+  {Kofke}},\ }\href {\doibase 10.1103/PhysRevLett.92.220601} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo
+  {volume} {92}},\ \bibinfo {pages} {220601} (\bibinfo {year}
+  {2004})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Clisby}\ and\ \citenamefont
+  {McCoy}(2004)}]{Clisby:2004lh}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {N.}~\bibnamefont
+  {Clisby}}\ and\ \bibinfo {author} {\bibfnamefont {B.~M.}\ \bibnamefont
+  {McCoy}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {J.
+  Stat. Phys.}\ }\textbf {\bibinfo {volume} {114}},\ \bibinfo {pages} {1343}
+  (\bibinfo {year} {2004})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Dijkstra}\ \emph
+  {et~al.}(1999{\natexlab{a}})\citenamefont {Dijkstra}, \citenamefont {van
+  Roij},\ and\ \citenamefont {Evans}}]{Dijkstra1999}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Dijkstra}}, \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {van Roij}},
+  \ and\ \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Evans}},\ }\href
+  {\doibase 10.1103/PhysRevE.59.5744} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev. E}\ }\textbf {\bibinfo {volume} {59}},\ \bibinfo
+  {pages} {5744} (\bibinfo {year} {1999}{\natexlab{a}})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Dress}\ and\ \citenamefont
+  {Krauth}(1995)}]{Dress1995}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Dress}}\ and\ \bibinfo {author} {\bibfnamefont {W.}~\bibnamefont {Krauth}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {J. Phys. A}\
+  }\textbf {\bibinfo {volume} {28}},\ \bibinfo {pages} {L597} (\bibinfo {year}
+  {1995})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Liu}\ and\ \citenamefont {Luijten}(2004)}]{Liu2004}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Liu}}\ and\ \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont {Luijten}},\
+  }\href {\doibase 10.1103/PhysRevLett.92.035504} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {92}},\
+  \bibinfo {pages} {035504} (\bibinfo {year} {2004})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Ashton}\ \emph {et~al.}(2011)\citenamefont {Ashton},
+  \citenamefont {Wilding}, \citenamefont {Roth},\ and\ \citenamefont
+  {Evans}}]{Ashton:2011kx}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
+  {Ashton}}, \bibinfo {author} {\bibfnamefont {N.}~\bibnamefont {Wilding}},
+  \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Roth}}, \ and\ \bibinfo
+  {author} {\bibfnamefont {R.}~\bibnamefont {Evans}},\ }\href {\doibase
+  10.1103/PhysRevE.84.061136} {\bibfield  {journal} {\bibinfo  {journal} {Phys.
+  Rev. E}\ }\textbf {\bibinfo {volume} {84}},\ \bibinfo {pages} {061136}
+  (\bibinfo {year} {2011})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Asakura}\ and\ \citenamefont
+  {Oosawa}(1954)}]{Asakura1954}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Asakura}}\ and\ \bibinfo {author} {\bibfnamefont {F.}~\bibnamefont
+  {Oosawa}},\ }\href {\doibase 10.1063/1.1740346} {\bibfield  {journal}
+  {\bibinfo  {journal} {J. Chem. Phys.}\ }\textbf {\bibinfo {volume} {22}},\
+  \bibinfo {pages} {1255} (\bibinfo {year} {1954})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Asakura}\ and\ \citenamefont
+  {Oosawa}(1958)}]{Asakura:1958uq}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Asakura}}\ and\ \bibinfo {author} {\bibfnamefont {F.}~\bibnamefont
+  {Oosawa}},\ }\href {\doibase 10.1002/pol.1958.1203312618} {\bibfield
+  {journal} {\bibinfo  {journal} {J. Polym. Sci.}\ }\textbf {\bibinfo {volume}
+  {33}},\ \bibinfo {pages} {183} (\bibinfo {year} {1958})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Brader}\ \emph {et~al.}(2003)\citenamefont {Brader},
+  \citenamefont {Evans},\ and\ \citenamefont {Schmidt}}]{Brader2003}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~M.}\ \bibnamefont
+  {Brader}}, \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Evans}}, \
+  and\ \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Schmidt}},\ }\href
+  {http://www.informaworld.com/10.1080/0026897032000174263} {\bibfield
+  {journal} {\bibinfo  {journal} {Mol. Phys.}\ }\textbf {\bibinfo {volume}
+  {101}},\ \bibinfo {pages} {3349} (\bibinfo {year} {2003})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Dijkstra}\ \emph
+  {et~al.}(1999{\natexlab{b}})\citenamefont {Dijkstra}, \citenamefont
+  {Brader},\ and\ \citenamefont {Evans}}]{Dijkstra:1999kl}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Dijkstra}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Brader}}, \
+  and\ \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Evans}},\ }\href
+  {http://stacks.iop.org/0953-8984/11/i=50/a=304} {\bibfield  {journal}
+  {\bibinfo  {journal} {J. Phys: Condens. Matter}\ }\textbf {\bibinfo {volume}
+  {11}},\ \bibinfo {pages} {10079} (\bibinfo {year}
+  {1999}{\natexlab{b}})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Goulding}\ and\ \citenamefont
+  {Melchionna}(2001)}]{Goulding:2001fk}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
+  {Goulding}}\ and\ \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Melchionna}},\ }\href {\doibase 10.1103/PhysRevE.64.011403} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev. E}\ }\textbf {\bibinfo {volume}
+  {64}},\ \bibinfo {pages} {011403} (\bibinfo {year} {2001})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Lenz}\ \emph {et~al.}(2012)\citenamefont {Lenz},
+  \citenamefont {Blaak}, \citenamefont {Likos},\ and\ \citenamefont
+  {Mladek}}]{Lenz:2012fk}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.~A.}\ \bibnamefont
+  {Lenz}}, \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Blaak}},
+  \bibinfo {author} {\bibfnamefont {C.~N.}\ \bibnamefont {Likos}}, \ and\
+  \bibinfo {author} {\bibfnamefont {B.~M.}\ \bibnamefont {Mladek}},\ }\href
+  {\doibase 10.1103/PhysRevLett.109.228301} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {109}},\ \bibinfo
+  {pages} {228301} (\bibinfo {year} {2012})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Kremer}\ and\ \citenamefont
+  {Grest}(1990)}]{Kremer:1990rt}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {K.}~\bibnamefont
+  {Kremer}}\ and\ \bibinfo {author} {\bibfnamefont {G.~S.}\ \bibnamefont
+  {Grest}},\ }\href {\doibase http://dx.doi.org/10.1063/1.458541} {\bibfield
+  {journal} {\bibinfo  {journal} {J. Chem. Phys.}\ }\textbf {\bibinfo {volume}
+  {92}},\ \bibinfo {pages} {5057} (\bibinfo {year} {1990})}\BibitemShut
+  {NoStop}%
+\end{thebibliography}%
+
+
+
+
+
+\end{document} 

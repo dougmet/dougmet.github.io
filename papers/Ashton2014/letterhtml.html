@@ -1,0 +1,1775 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title></title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="letterhtml.tex"> 
+<meta name="date" content="2014-05-16 16:11:00"> 
+<link rel="stylesheet" type="text/css" href="letterhtml.css"> 
+</head><body 
+>
+<a 
+ id="x1-1doc"></a>
+<!--l. 55--><p class="noindent" ><span 
+class="cmbx-12">Quantifying the effects of neglecting many-body interactions in coarse-grained models</span>
+<span 
+class="cmbx-12">of complex fluids</span><a 
+ id="Q1-1-0"></a>
+<!--l. 55--><p class="noindent" >Douglas  J.  Ashton<sup class="textsuperscript"><span 
+class="cmr-9">1</span></sup>  and  Nigel  B.  Wilding<sup class="textsuperscript"><span 
+class="cmr-9">1</span></sup>
+<!--l. 55--><p class="noindent" ><sup class="textsuperscript"><span 
+class="cmr-9">1</span></sup><span 
+class="cmti-9">Department of Physics, University of Bath, Bath BA2 7AY, United Kingdom</span>
+          <!--l. 40--><p class="noindent" ><a 
+ id="Q1-1-0"></a><span 
+class="cmr-9">We describe a general simulation scheme for assessing the thermodynamic consequences of neglecting</span>
+          <span 
+class="cmr-9">many-body effects in coarse-grained models of complex fluids. The method exploits the fact that the</span>
+          <span 
+class="cmr-9">asymptote of a simple-to-measure structural function provides direct estimates of virial coefficients.</span>
+          <span 
+class="cmr-9">Comparing the virial coefficients of an atomistically detailed system with those of a coarse-grained</span>
+          <span 
+class="cmr-9">version described by pair potentials, permits the role of many-body effects to be quantified. The</span>
+          <span 
+class="cmr-9">approach  is  applied  to  two  models:  (i)  a  size-asymmetrical  colloid-polymer  mixture,  and  (ii)  a</span>
+          <span 
+class="cmr-9">solution of star polymers. In the latter case, coarse-graining to an effective fluid described by pair</span>
+          <span 
+class="cmr-9">potentials is found to neglect important aspects of the true behaviour.</span>
+  Many-body forces occur when the net interaction
+between two particles is not simply pairwise additive, but
+depends on the presence of other particles. They appear
+in a wide range of physical systems including dense
+phases of noble gases&#x00A0;[<a 
+href="#XEgelstaff:1987kl">1</a>], molecular systems&#x00A0;[<a 
+href="#XElrod:1994qa">2</a>], nuclear
+matter&#x00A0;[<a 
+href="#XZuo:2013fu">3</a>], superconductors &#x00A0;[<a 
+href="#XCarlstrom:2011dz">4</a>] and complex fluids such
+as polymers&#x00A0;[<a 
+href="#XDAdamo:2012sf">5</a>], lipid membranes&#x00A0;[<a 
+href="#XSchmid:2006">6</a>,&#x00A0;<a 
+href="#XLyubartsev:2011xy">7</a>] and colloidal
+dispersions&#x00A0;[<a 
+href="#XBrunner:2004kx">8</a>&#8211;<a 
+href="#XMattos:2013fk">11</a>]. In seeking to make theoretical and
+computational progress with such systems one often
+attempts to simplify matters by &#8220;coarse-graining&#8221; ie.
+integrating over the degrees of freedom on small length or
+times scales. This leads to a description of the system in
+term of an effective Hamiltonian describing the interactions
+among the remaining degrees of freedom. These interactions
+are inherently many-body in character, even if the original
+system involves only pairwise interactions.
+<!--l. 76--><p class="indent" >  To appreciate how many-body interactions arise in
+coarse-grained (CG) representations of complex fluids,
+consider the case of colloids dispersed in a sea of much
+smaller polymers. This system is commonly modelled as a
+highly size-asymmetrical mixture of spheres as shown in the
+simulation snapshot of Fig.&#x00A0;<a 
+href="#x1-2r1">1<!--tex4ht:ref: fig:illustr --></a>(a). However, since dealing
+with components of disparate sizes is theoretically and
+computationally problematic, one typically seeks to
+integrate out the polymer degrees of freedom to yield
+an effective one-component model. But the colloidal
+interactions arise from the modulation of the polymer
+density distribution by <span 
+class="cmti-10">all </span>the colloids, and consequently, the
+effective one-component description is many-body in form. A
+second example is shown in Fig.&#x00A0;<a 
+href="#x1-2r1">1<!--tex4ht:ref: fig:illustr --></a>(b) which depicts three
+star polymers in solution. A common CG model replaces
+each star by a single effective particle. However, the net
+interaction between two polymers depends on the proximity
+of a third, and hence the effective Hamiltonian has a
+many-body character&#x00A0;[<a 
+href="#XFerber:2000fk">12</a>].
+<!--l. 94--><p class="indent" >  <hr class="figure"><div class="figure" 
+>
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+<img 
+src="fig1.jpg" alt="PIC" class="graphics" width="50%" ><!--tex4ht:graphics
+name="letterhtml0x.png" src="fig1\Gin@ext "  
+-->
+<a 
+ id="x1-2r1"></a>
+<span 
+class="cmr-9">FIG.</span><span 
+class="cmr-9">&#x00A0;1.       (Color       online).       </span><span 
+class="cmbx-9">(a)      </span><span 
+class="cmr-9">Snapshot       of</span>
+<span 
+class="cmr-9">a highly size-asymmetrical mixture of spheres. The effective</span>
+<span 
+class="cmr-9">one-component model is realized by integrating out the small</span>
+<span 
+class="cmr-9">sphere  degrees  of  freedom.  </span><span 
+class="cmbx-9">(b)  </span><span 
+class="cmr-9">A  snapshot  of  three  star</span>
+<span 
+class="cmr-9">polymers. The big spheres represent a coarse grained model in</span>
+<span 
+class="cmr-9">which each polymer is replaced by a single effective particle.</span>
+<span 
+class="cmr-9">In both (a) and (b) simulation measurements are also shown</span>
+<span 
+class="cmr-9">for the structural quantity </span><span 
+class="cmmi-9">g</span><sub><span 
+class="cmr-6">3</span></sub><sup><span 
+class="cmsy-6">&#x2032;</span></sup><span 
+class="cmr-9">(</span><span 
+class="cmmi-9">r</span><sub>
+<span 
+class="cmmi-6">min</span></sub><span 
+class="cmr-9">) discussed in the text,</span>
+<span 
+class="cmr-9">whose asymptote (dashed) yields information on the third</span>
+<span 
+class="cmr-9">virial coefficient.</span>
+                                                                                                 
+                                                                                                 
+<!--l. 107--><p class="indent" >  </div><hr class="endfigure">
+<!--l. 109--><p class="indent" >  Computer simulation is a powerful route for designing CG
+models for complex fluids, which is currently receiving
+considerable attention. Indeed, in principle it can be
+used to determine a many-body potential for the CG
+coordinates which is consistent with the underlying atomistic
+model&#x00A0;[<a 
+href="#XNoid:2008ai">13</a>,&#x00A0;<a 
+href="#XNoid:2008hc">14</a>]. But implementing such approaches is far
+from trivial and it is still the norm that CG descriptions
+neglect some or all many-body effects&#x00A0;[<a 
+href="#XMuller-Plathe:2002qv">15</a>&#8211;<a 
+href="#XRudzinski:2012fk">18</a>]. Thus for
+polymers one might replace each chain by a set of one or
+more &#8216;blobs&#8217; which interact via a pair potential such as the
+potential of mean force&#x00A0;[<a 
+href="#XCapone2008">19</a>]. Similarly for a colloid-polymer
+mixture one typically describes the colloidal interactions via
+the depletion pair potential&#x00A0;[<a 
+href="#XLekkerkerker:2011">20</a>]. In view of this, it
+is patently important to be able to assess the likely
+implications of the pair potential approximation for the
+thermodynamics of the CG system. To date, though, there
+has been little in the way of systematic methods for doing
+so.
+<!--l. 125--><p class="indent" >  In this Letter we introduce a widely applicable tool for
+comparing some basic thermodynamic properties of
+an atomistically detailed system with those of its CG
+representation. Our approach is based on calculations of the
+virial coefficients <span 
+class="cmmi-10">B</span><sub><span 
+class="cmmi-7">n</span></sub>. These are pertinent because they
+provide a systematic expansion of the properties of a system
+in terms of many-body interactions: <span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">2</span></sub> depends only on pair
+interactions, while <span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">3</span></sub> depends on two- and three-body
+interactions, etc. Comparison of virial coefficients for the
+atomistically detailed and CG models provide a measure of
+the extent to which the thermodynamics of the models
+agree.
+<!--l. 136--><p class="indent" >  Previously there has been no method capable of directly
+determining virial coefficients for complex fluids. The novel
+feature of our approach is that it is based on exploiting
+<span 
+class="cmti-10">finite-size effects</span>. Consider a simulation box of volume <span 
+class="cmmi-10">V</span>
+containing <span 
+class="cmmi-10">N </span>interacting molecules in thermal equilibrium at
+inverse temperature <span 
+class="cmmi-10">&#x03B2; </span>= (<span 
+class="cmmi-10">k</span><sub><span 
+class="cmmi-7">B</span></sub><span 
+class="cmmi-10">T</span>)<sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup>. For each of the <span 
+class="cmmi-10">N</span>
+molecules we tag an arbitrary atomic site and label its
+position vector <span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">i</span></sub>, with <span 
+class="cmmi-10">i </span>= 1<span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">N</span>. The position vectors of
+the remaining <span 
+class="cmmi-10">m </span>atoms in each molecule we write as
+<span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">i,j</span></sub> = <span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">i</span></sub> + <span 
+class="cmmi-10">u</span><sub><span 
+class="cmmi-7">i,j</span></sub><span 
+class="cmmi-10">,j </span>= 1<span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">m</span>, with <span 
+class="cmmi-10">u</span><sub><span 
+class="cmmi-7">i,j</span></sub> the displacement of atom
+<span 
+class="cmmi-10">j </span>on molecule <span 
+class="cmmi-10">i </span>from the tagged atom <span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">i</span></sub>. Accordingly a
+molecular configuration can be specified via a list of the <span 
+class="cmmi-10">N</span>
+tagged and the <span 
+class="cmmi-10">M </span>= <span 
+class="cmmi-10">Nm </span>non-tagged coordinates, <span 
+class="cmmi-10">r</span><sup><span 
+class="cmmi-7">N</span></sup><span 
+class="cmmi-10">,u</span><sup><span 
+class="cmmi-7">M</span></sup>.
+The corresponding Boltzmann probability is
+  <table 
+class="equation"><tr><td><a 
+ id="x1-3r1"></a>
+  <center class="math-display" >
+<img 
+src="letterhtml1x.png" alt="     N  M     e--&#x03B2;U(rN,uM)-
+PN (r ,u  ) =    ZN     ,
+                                                  " class="math-display" ></center></td><td class="equation-label">(1)</td></tr></table>
+                                                  <!--l. 153--><p class="nopar" >
+                                                  where <span 
+class="cmmi-10">U</span>(<span 
+class="cmmi-10">r</span><sup><span 
+class="cmmi-7">N</span></sup><span 
+class="cmmi-10">,u</span><sup><span 
+class="cmmi-7">M</span></sup>) is the full interaction potential containing
+                                                  both intra and intermolecular terms and
+                                                    <table 
+class="equation"><tr><td><a 
+ id="x1-4r2"></a>
+                                                    <center class="math-display" >
+                                                  <img 
+src="letterhtml2x.png" alt="     &#x222B;       N  M
+ZN =    e- &#x03B2;U(r ,u )drNduM
+                                                  " class="math-display" ></center></td><td class="equation-label">(2)</td></tr></table>
+                                                  <!--l. 157--><p class="nopar" >
+                                                  is the <span 
+class="cmmi-10">N</span>-molecule configurational integral.
+                                                  <!--l. 160--><p class="indent" >   Now define
+                                                    <table 
+class="equation"><tr><td><a 
+ id="x1-5r3"></a>
+                                                    <center class="math-display" >
+                                                  <img 
+src="letterhtml3x.png" alt="                 N  M        - &#x03B2;U (rN,uM)
+&#x02DC;gN (rN,uM ) &#x2261; PN-(r-,u-)= V Ne----------,
+              PNig(rN )           ZN
+                                                  " class="math-display" ></center></td><td class="equation-label">(3)</td></tr></table>
+                                                  <!--l. 164--><p class="nopar" >
+                                                  where <span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">N</span></sub><sup><span 
+class="cmmi-7">ig</span></sup>(<span 
+class="cmmi-10">r</span><sup><span 
+class="cmmi-7">N</span></sup>) = <span 
+class="cmmi-10">V</span> <sup><span 
+class="cmsy-7">-</span><span 
+class="cmmi-7">N</span></sup> is the probability of finding (within
+                                                  the same volume) a set of <span 
+class="cmmi-10">N </span>structureless ideal gas particles
+                                                  in the same configuration as the tagged sites. We shall focus
+                                                  on the low density limit of <img 
+src="letterhtml4x.png" alt="&#x02DC;g"  class="tilde" > <sub><span 
+class="cmmi-7">N</span></sub>(<span 
+class="cmmi-10">r</span><sup><span 
+class="cmmi-7">N</span></sup><span 
+class="cmmi-10">,u</span><sup><span 
+class="cmmi-7">N</span></sup>), corresponding to
+                                                  <span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">k</span></sub> <span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">l</span></sub><span 
+class="cmsy-10">|&#x2192;&#x221E;</span><span 
+class="cmmi-10">,</span><span style="margin-left:2.22198pt" class="tmspace"></span><span style="margin-left:2.77695pt" class="tmspace"></span><span 
+class="cmsy-10">&#x2200;</span><span style="margin-left:2.22198pt" class="tmspace"></span><span 
+class="cmmi-10">k,l</span>. In this regime the molecules are
+                                                  non-interacting, so we can integrate out the internal
+                                                  molecular degrees of freedom (associated with the <span 
+class="cmmi-10">u</span><sub><span 
+class="cmmi-7">i,j</span></sub>) to
+                                                  obtain the asymptotic value
+                                                    <table 
+class="equation"><tr><td><a 
+ id="x1-6r4"></a>
+                                                    <center class="math-display" >
+                                                  <img 
+src="letterhtml5x.png" alt="                     N    (&#x03A9;V-)N-  ZN1
+fN (V) &#x2261; |rk-limrl|&#x2192; &#x221E; &#x02DC;gN(r ) = ZN   = ZN ,
+" class="math-display" ></center></td><td class="equation-label">(4)</td></tr></table>
+<!--l. 175--><p class="nopar" >
+where &#x03A9; is the integral over the internal degrees of freedom of a
+single molecule and <span 
+class="cmmi-10">Z</span><sub><span 
+class="cmr-7">1</span></sub> is the corresponding configurational
+integral.
+<!--l. 180--><p class="indent" >  The quantity <span 
+class="cmmi-10">f</span><sub><span 
+class="cmmi-7">N</span></sub>(<span 
+class="cmmi-10">V </span>) = <span 
+class="cmmi-10">Z</span><sub><span 
+class="cmr-7">1</span></sub><sup><span 
+class="cmmi-7">N</span></sup><span 
+class="cmmi-10">&#x2215;Z</span><sub><span 
+class="cmmi-7">N</span></sub> is central because it
+permits a direct calculation of molecular virial coefficients as
+will be shown below. A key feature is its dependence on the
+system volume. Specifically, although it has the limiting
+behaviour lim<sub><span 
+class="cmmi-7">V </span><span 
+class="cmsy-7">&#x2192;&#x221E;</span></sub><span 
+class="cmmi-10">f</span><sub><span 
+class="cmmi-7">N</span></sub>(<span 
+class="cmmi-10">V </span>) = 1,
+for finite system volume <span 
+class="cmmi-10">f</span><sub><span 
+class="cmmi-7">N</span></sub>(<span 
+class="cmmi-10">V </span>) deviates from unity.
+However, on the face of it, determining <span 
+class="cmmi-10">f</span><sub><span 
+class="cmmi-7">N</span></sub>(<span 
+class="cmmi-10">V </span>) by simulation
+via eq.&#x00A0;<a 
+href="#x1-6r4">4<!--tex4ht:ref: eq:limit --></a> is not a feasible proposition since it entails
+populating a 3<span 
+class="cmmi-10">N</span>-dimensional histogram for <span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">N</span></sub>(<span 
+class="cmmi-10">r</span><sup><span 
+class="cmmi-7">N</span></sup>) with
+sufficient statistics to yield precise probabilities. Fortunately,
+though, it turns out to be possible to determine <span 
+class="cmmi-10">f</span><sub><span 
+class="cmmi-7">N</span></sub>(<span 
+class="cmmi-10">V </span>) using
+only one-dimensional histograms. To see this, consider the
+quantity
+  <table 
+class="equation"><tr><td><a 
+ id="x1-7r5"></a>
+  <center class="math-display" >
+<img 
+src="letterhtml6x.png" alt=" &#x2032;        PN-(rmin)
+gN(rmin) &#x2261; Pig(rmin).
+           N
+" class="math-display" ></center></td><td class="equation-label">(5)</td></tr></table>
+<!--l. 198--><p class="nopar" >
+Here <span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">min</span></sub> is, for some configuration, the smallest, ie. the
+<span 
+class="cmti-10">minimum </span>separation among the <span 
+class="cmmi-10">N </span>tagged sites. In the
+course of a simulation, one can accumulate histograms for
+<span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">N</span></sub>(<span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">min</span></sub>) and <span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">N</span></sub><sup><span 
+class="cmmi-7">ig</span></sup>(<span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">min</span></sub>) and thus form <span 
+class="cmmi-10">g</span><sub><span 
+class="cmmi-7">N</span></sub><sup><span 
+class="cmsy-7">&#x2032;</span></sup>(<span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">min</span></sub>). Clearly,
+though, the limit <span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">min</span></sub> <span 
+class="cmsy-10">&#x2192;&#x221E; </span>is none other than the
+limit <span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">k</span></sub> <span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">l</span></sub><span 
+class="cmsy-10">|&#x2192;&#x221E;</span><span 
+class="cmmi-10">,</span><span style="margin-left:2.22198pt" class="tmspace"></span><span style="margin-left:2.77695pt" class="tmspace"></span><span 
+class="cmsy-10">&#x2200;</span><span style="margin-left:2.77695pt" class="tmspace"></span><span 
+class="cmmi-10">k,l</span>. Moreover, since in this limit
+the microstates of the tagged particles are visited with
+constant probability &#x03A9;<sup><span 
+class="cmmi-7">N</span></sup><span 
+class="cmmi-10">Z</span><sub><span 
+class="cmmi-7">N</span></sub><sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup>, while those of the ideal gas
+are visited with probability <span 
+class="cmmi-10">V</span> <sup><span 
+class="cmsy-7">-</span><span 
+class="cmmi-7">N</span></sup>, it follows that the
+limiting value of <span 
+class="cmmi-10">g</span><sub><span 
+class="cmmi-7">N</span></sub><sup><span 
+class="cmsy-7">&#x2032;</span></sup>(<span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">min</span></sub>) is the same as that of <img 
+src="letterhtml7x.png" alt="&#x02DC;g"  class="tilde" > <sub><span 
+class="cmmi-7">N</span></sub>(<span 
+class="cmmi-10">r</span><sup><span 
+class="cmmi-7">N</span></sup>),
+i.e.
+  <table 
+class="equation"><tr><td><a 
+ id="x1-8r6"></a>
+  <center class="math-display" >
+<img 
+src="letterhtml8x.png" alt="  lim   g&#x2032;N(rmin) = fN(V).
+rmin&#x2192; &#x221E;
+                                                  " class="math-display" ></center></td><td class="equation-label">(6)</td></tr></table>
+                                                  <!--l. 214--><p class="nopar" >
+                                                  <!--l. 216--><p class="indent" >   Eq.&#x00A0;<a 
+href="#x1-8r6">6<!--tex4ht:ref: eq:gNrminlim --></a> provides a straightforward computational
+                                                  prescription for determining <span 
+class="cmmi-10">f</span><sub><span 
+class="cmmi-7">N</span></sub>(<span 
+class="cmmi-10">V </span>), which in turn permits
+                                                  the calculation of the virial coefficients for the molecular
+                                                  system. Specifically, from the virial cluster expansion [<a 
+href="#XHill:1988ye">21</a>]
+                                                  one finds that for <span 
+class="cmmi-10">N </span>= 2 particles
+                                                    <table 
+class="equation"><tr><td><a 
+ id="x1-9r7"></a>
+                                                    <center class="math-display" >
+                                                  <img 
+src="letterhtml9x.png" alt="     V (    Z  )   V (      1  )
+B2 = --  1- -22- =  -- 1 - ----- .
+     2      Z1     2      f2(V )
+                                                  " class="math-display" ></center></td><td class="equation-label">(7)</td></tr></table>
+                                                  <!--l. 224--><p class="nopar" >
+                                                  Similarly for three particles one finds <div class="eqnarray">
+                                                    <center class="math-display" >
+                                                  <img 
+src="letterhtml10x.png" alt="     V2(Z4 - 3Z2Z2- Z3Z1 + 3Z2)
+B3 = ----1-------1-4---------2--
+                3Z 1
+   = 4B22 - 2B2V +V 2(f3(V-)--1).     (8)
+                      3f3(V )
+                                                  " class="math-display" ><a 
+ id="x1-10r8"></a></center>
+                                                  </div>More generally, knowledge of <span 
+class="cmmi-10">f</span><sub><span 
+class="cmmi-7">&#x03B3;</span></sub>(<span 
+class="cmmi-10">V </span>)<span 
+class="cmmi-10">,&#x03B3; </span>= 2<span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">,n </span>permits the
+                                                  calculation of the virial coefficient <span 
+class="cmmi-10">B</span><sub><span 
+class="cmmi-7">n</span></sub>.
+                                                  <!--l. 234--><p class="indent" >   Thus measurements (for a small number of molecules) of
+                                                  the asymptotic value of a simple-to-measure structural
+                                                  quantity, <span 
+class="cmmi-10">g</span><sub><span 
+class="cmmi-7">N</span></sub><sup><span 
+class="cmsy-7">&#x2032;</span></sup>(<span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">min</span></sub>), provide direct access to molecular virial
+                                                  coefficients. The utility of the approach is wide because it
+                                                  can be used in conjunction with any simulation method
+                                                  capable of producing equilibrium configurations, for
+                                                  example Molecular Dynamics (MD), Monte Carlo (MC) or
+                                                  Langevin Dynamics. Furthermore it can deal with much
+                                                  more complex systems than is possible with an existing
+                                                  method&#x00A0;[<a 
+href="#XSingh:2004zr">22</a>].
+                                                  <!--l. 243--><p class="indent" >   In general one can estimate <span 
+class="cmmi-10">f </span>visually, or from a fit.
+                                                  However, we have found that a particularly accurate
+                                                  measure results from the ratio of integrals
+                                                    <table 
+class="equation"><tr><td><a 
+ id="x1-11r9"></a>
+                                                                                                 
+                                                                                                 
+  <center class="math-display" >
+<img 
+src="letterhtml11x.png" alt="        &#x222B;ruP  (r  )dr
+fN(V ) = &#x222B;rrlu-Nig--min---min,
+         rl P N(rmin)drmin
+" class="math-display" ></center></td><td class="equation-label">(9)</td></tr></table>
+<!--l. 250--><p class="nopar" >
+where <span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">l</span></sub> is some value of <span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">min</span></sub> for which <span 
+class="cmmi-10">g</span><sup><span 
+class="cmsy-7">&#x2032;</span></sup>(<span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">min</span></sub>) can be
+considered to have first reached its limiting value, and <span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">u</span></sub>
+is the largest value of <span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">min</span></sub> for which data has been
+accumulated, which will typically be half the simulation box
+diagonal length. It should be emphasized that in practice
+eq.&#x00A0;(<a 
+href="#x1-11r9">9<!--tex4ht:ref: eq:findf --></a>) is evaluated simply from a count of entries in the
+respective histograms for <span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">N</span></sub>(<span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">min</span></sub>) and <span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">N</span></sub><sup><span 
+class="cmmi-7">ig</span></sup>(<span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">min</span></sub>)&#8211;no
+numerical quadrature is necessary.
+                                                                                                 
+                                                                                                 
+<!--l. 259--><p class="indent" >  <hr class="float"><div class="float" 
+>
+                                                                                                 
+                                                                                                 
+<div class="tabular"> <span 
+class="cmmi-10">N</span>   <span 
+class="cmmi-10">V</span>       <span 
+class="cmmi-10">B</span><sub><span 
+class="cmmi-7">N</span></sub>     <span 
+class="cmmi-10">B</span><sub><span 
+class="cmmi-7">N</span></sub><sup><span 
+class="cmmi-7">exact</span></sup>[<a 
+href="#XClisby:2004lh">23</a>]_
+ 2  (2<span 
+class="cmmi-10">.</span>5<span 
+class="cmmi-10">&#x03C3;</span>)<sup><span 
+class="cmr-7">3</span></sup> 2<span 
+class="cmmi-10">.</span>09441(6)<span 
+class="cmmi-10">&#x03C3;</span><sup><span 
+class="cmr-7">3</span></sup> 2<span 
+class="cmmi-10">.</span>0943951<span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">&#x03C3;</span><sup><span 
+class="cmr-7">3</span></sup>
+  3  (3<span 
+class="cmmi-10">.</span>5<span 
+class="cmmi-10">&#x03C3;</span>)<sup><span 
+class="cmr-7">3</span></sup>  2<span 
+class="cmmi-10">.</span>7418(4)<span 
+class="cmmi-10">&#x03C3;</span><sup><span 
+class="cmr-7">6</span></sup>  2<span 
+class="cmmi-10">.</span>7415567<span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">&#x03C3;</span><sup><span 
+class="cmr-7">6</span></sup>
+  4  (3<span 
+class="cmmi-10">.</span>5<span 
+class="cmmi-10">&#x03C3;</span>)<sup><span 
+class="cmr-7">3</span></sup>  2<span 
+class="cmmi-10">.</span>629(22)<span 
+class="cmmi-10">&#x03C3;</span><sup><span 
+class="cmr-7">9</span></sup>  2<span 
+class="cmmi-10">.</span>6362180<span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">&#x03C3;</span><sup><span 
+class="cmr-7">9</span></sup>_
+</div>
+<a 
+ id="x1-12r1"></a>
+<span 
+class="cmr-9">TABLE</span><span 
+class="cmr-9">&#x00A0;I. Estimates of the first four virial coefficients of hard</span>
+<span 
+class="cmr-9">spheres, compared with exact values.</span>
+                                                                                                 
+                                                                                                 
+  </div><hr class="endfloat" />
+<!--l. 270--><p class="indent" >  To test the method we have used it to estimate the first
+few virial coefficients of a single component system of hard
+spheres of diameter <span 
+class="cmmi-10">&#x03C3;</span>, finding excellent agreement with
+exact values (see Tab.&#x00A0;<a 
+href="#x1-12r1">I<!--tex4ht:ref: tab:HS --></a>). Having validated the method on a
+simple system, we turn to a more challenging problem,
+namely that of quantifying the scale of many-body effects in
+CG models for colloid-polymer mixtures. In such systems the
+polymers mediate effective colloidal interactions&#x00A0;[<a 
+href="#XLekkerkerker:2011">20</a>]. A
+commonly studied model treats the colloids as big hard
+spheres of diameter <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">b</span></sub>, and the polymers as small hard
+spheres of diameter <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">s</span></sub>, so that the size ratio is <span 
+class="cmmi-10">q </span><span 
+class="cmsy-10">&#x2261; </span><span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">s</span></sub><span 
+class="cmmi-10">&#x2215;&#x03C3;</span><sub><span 
+class="cmmi-7">b</span></sub>.
+The effective Hamiltonian then provides a CG description of
+the colloidal interactions in which the polymer degrees of
+freedom have been integrated out. Quite generally it takes
+the form <span 
+class="cmmi-10">H</span><sup><span 
+class="cmmi-7">eff</span></sup> = <span 
+class="cmmi-10">H</span><sup><span 
+class="cmr-7">0</span></sup> + &#x0398; where <span 
+class="cmmi-10">H</span><sup><span 
+class="cmr-7">0</span></sup> is the bare colloid-colloid
+interaction, while &#x0398; is a many-body contribution arising
+from the polymers, which can in turn be written as a sum
+over <span 
+class="cmmi-10">n</span>-body terms &#x0398; = <span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">n</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmsy-7">&#x221E;</span></sup><span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmmi-7">n</span></sub>&#x00A0;[<a 
+href="#XDijkstra1999">24</a>]. Common practice is
+to approximate this Hamiltonian in terms of a sum over pair
+interactions, i.e. <span 
+class="cmmi-10">H</span><sup><span 
+class="cmmi-7">eff</span></sup> <span 
+class="cmsy-10">&#x2248;</span><span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">i,j</span></sub>[<span 
+class="cmmi-10">&#x03D5;</span>(<span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">ij</span></sub>) + <span 
+class="cmmi-10">W</span>(<span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">ij</span></sub>)] where
+<span 
+class="cmmi-10">&#x03D5;</span>(<span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">ij</span></sub>) is the hard sphere interaction between a pair
+of colloids whose centers are separated by a distance
+<span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">ij</span></sub>, while <span 
+class="cmmi-10">W</span>(<span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">ij</span></sub>) is the depletion pair potential, whose
+form depends on the small particle volume fraction and
+model details such as the degree of additivity of the
+big-small interaction. Usually one assumes that the small
+particles occupy an open ensemble, so that <span 
+class="cmmi-10">W</span>(<span 
+class="cmmi-10">r</span>) is
+parameterized in terms of the reservoir volume fraction
+<span 
+class="cmmi-10">&#x03B7;</span><sub><span 
+class="cmmi-7">s</span></sub><sup><span 
+class="cmmi-7">r</span></sup>.
+<!--l. 299--><p class="indent" >  Since the depletion pair potential plays a central role in
+theories and simulations of colloid-polymer mixtures, it is
+desirable to quantify the effects of neglecting higher order
+terms in <span 
+class="cmmi-10">H</span><sup><span 
+class="cmmi-7">eff</span></sup>, the most prominent of which is triplet
+interactions. Our strategy for doing so estimates the third
+virial coefficient <span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">3</span></sub><sup><span 
+class="cmmi-7">eff</span></sup> for the full effective fluid and
+compares it with the corresponding value <span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">3</span></sub><sup><span 
+class="cmmi-7">dep</span></sup> for three
+particles interacting via the depletion pair potential. This
+comparison directly probes the extent to which the
+interaction between a pair of big particles is influenced by
+the proximity of a third one.
+<!--l. 309--><p class="indent" >  To obtain estimates for <span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">3</span></sub><sup><span 
+class="cmmi-7">eff</span></sup> we deploy the geometrical
+cluster algorithm (GCA)&#x00A0;[<a 
+href="#XDress1995">25</a>,&#x00A0;<a 
+href="#XLiu2004">26</a>]. This efficient rejection-free
+Monte Carlo scheme can generate equilibrium configurations
+at practically any value of <span 
+class="cmmi-10">q</span>. We have used it to study
+systems of <span 
+class="cmmi-10">N </span>= 2 and <span 
+class="cmmi-10">N </span>= 3 big particles in a sea of small
+ones at various <span 
+class="cmmi-10">&#x03B7;</span><sub><span 
+class="cmmi-7">s</span></sub><sup><span 
+class="cmmi-7">r</span></sup>. The procedure is as follows:
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-13x">In  a  simulation  of  <span 
+class="cmmi-10">N  </span>=  2  tagged  big  particles,
+     measure the form of <span 
+class="cmmi-10">g</span><sub><span 
+class="cmr-7">2</span></sub><sup><span 
+class="cmsy-7">&#x2032;</span></sup>(<span 
+class="cmmi-10">r</span>) at some prescribed <span 
+class="cmmi-10">&#x03B7;</span><sub><span 
+class="cmmi-7">s</span></sub><sup><span 
+class="cmmi-7">r</span></sup>.
+     This yields the value of <span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">2</span></sub><sup><span 
+class="cmmi-7">eff</span></sup>(<span 
+class="cmmi-10">&#x03B7;</span><sub><span 
+class="cmmi-7">s</span></sub><sup><span 
+class="cmmi-7">r</span></sup>) via eq.&#x00A0;(<a 
+href="#x1-9r7">7<!--tex4ht:ref: eq:B2 --></a>).
+     </li>
+     <li 
+  class="enumerate" id="x1-14x">Use the form of <span 
+class="cmmi-10">g</span><sub><span 
+class="cmr-7">2</span></sub><sup><span 
+class="cmsy-7">&#x2032;</span></sup>(<span 
+class="cmmi-10">r</span>) obtained in (i) to estimate
+     the depletion potential <span 
+class="cmmi-10">W</span>(<span 
+class="cmmi-10">r</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">&#x03B7;</span><sub><span 
+class="cmmi-7">s</span></sub><sup><span 
+class="cmmi-7">r</span></sup>) by employing the
+     procedure detailed by Ashton <span 
+class="cmti-10">et al</span>&#x00A0;[<a 
+href="#XAshton:2011kx">27</a>].                 </li>
+                                                       <li 
+  class="enumerate" id="x1-15x">Next simulate <span 
+class="cmmi-10">N </span>= 3 tagged big particles at the
+                                                       same value of <span 
+class="cmmi-10">&#x03B7;</span><sub><span 
+class="cmmi-7">s</span></sub><sup><span 
+class="cmmi-7">r</span></sup> and measure <img 
+src="letterhtml12x.png" alt="&#x02DC;g"  class="tilde" > <sub><span 
+class="cmr-7">3</span></sub>(<span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">min</span></sub>). Together
+                                                       with the estimate of <span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">2</span></sub><sup><span 
+class="cmmi-7">eff</span></sup>(<span 
+class="cmmi-10">&#x03B7;</span><sub><span 
+class="cmmi-7">s</span></sub><sup><span 
+class="cmmi-7">r</span></sup>) obtained in (i), this
+                                                       yields an estimate for <span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">3</span></sub><sup><span 
+class="cmmi-7">eff</span></sup>(<span 
+class="cmmi-10">&#x03B7;</span><sub><span 
+class="cmmi-7">s</span></sub><sup><span 
+class="cmmi-7">r</span></sup>) via eq.&#x00A0;(<a 
+href="#x1-10r8">8<!--tex4ht:ref: eq:B3 --></a>).
+                                                       </li>
+                                                       <li 
+  class="enumerate" id="x1-16x">Finally perform a simple MC simulation of three
+                                                       particles  interacting  via  the  depletion  potential
+                                                       <span 
+class="cmmi-10">W</span>(<span 
+class="cmmi-10">r</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">&#x03B7;</span><sub><span 
+class="cmmi-7">s</span></sub><sup><span 
+class="cmmi-7">r</span></sup>)  obtained  in  (ii).  This  yields  the  third
+                                                       virial coefficient <span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">3</span></sub><sup><span 
+class="cmmi-7">dep</span></sup>(<span 
+class="cmmi-10">&#x03B7;</span><sub><span 
+class="cmmi-7">s</span></sub><sup><span 
+class="cmmi-7">r</span></sup>) via eq.&#x00A0;(<a 
+href="#x1-10r8">8<!--tex4ht:ref: eq:B3 --></a>).
+                                                       </li></ol>
+                                                  <!--l. 339--><p class="indent" >   We have applied this procedure to study two models of
+                                                  colloid-polymer mixtures, namely the Asakura-Oosawa (AO)
+                                                  model and a system of additive hard spheres. The AO model
+                                                  describes colloidal hard-spheres in a solvent of ideal
+                                                  polymer that have a hard-particle interaction with the
+                                                  colloids&#x00A0;[<a 
+href="#XAsakura1954">28</a>,&#x00A0;<a 
+href="#XAsakura:1958uq">29</a>], c.f. Fig.&#x00A0;<a 
+href="#x1-2r1">1<!--tex4ht:ref: fig:illustr --></a>(a). Owing to its extreme
+                                                  non-additivity, the exact form of the depletion potential is
+                                                  known analytically&#x00A0;[<a 
+href="#XAsakura:1958uq">29</a>] which obviates the need to perform
+                                                  steps (i) and (ii) above. Furthermore many-body forces are
+                                                  known to vanish for size ratios <span 
+class="cmmi-10">q &#x003C; </span>0<span 
+class="cmmi-10">.</span>1547&#x00A0;[<a 
+href="#XBrader2003">30</a>,&#x00A0;<a 
+href="#XDijkstra:1999kl">31</a>], a fact
+                                                  that allows us to further test our methodology and its
+                                                  sensitivity.
+                                                  <!--l. 350--><p class="indent" >   Fig.&#x00A0;<a 
+href="#x1-2r1">1<!--tex4ht:ref: fig:illustr --></a>(a) includes a sample plot of <span 
+class="cmmi-10">g</span><sub><span 
+class="cmr-7">3</span></sub><sup><span 
+class="cmsy-7">&#x2032;</span></sup>(<span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">min</span></sub>) obtained
+                                                  for the AO model using a box of size <span 
+class="cmmi-10">V </span>= (3<span 
+class="cmmi-10">.</span>5<span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">l</span></sub>)<sup><span 
+class="cmr-7">3</span></sup> at
+                                                  <span 
+class="cmmi-10">&#x03B7;</span><sub><span 
+class="cmmi-7">s</span></sub><sup><span 
+class="cmmi-7">r</span></sup> = 0<span 
+class="cmmi-10">.</span>2<span 
+class="cmmi-10">,q </span>= 0<span 
+class="cmmi-10">.</span>154. The data show the approach to the
+                                                  asymptote, <span 
+class="cmmi-10">f</span><sub><span 
+class="cmr-7">3</span></sub>(<span 
+class="cmmi-10">V </span>). From plots such as this we have
+                                                  obtained estimates of <span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">3</span></sub><sup><span 
+class="cmmi-7">eff</span></sup> and <span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">3</span></sub><sup><span 
+class="cmmi-7">dep</span></sup> for size ratios
+                                                  <span 
+class="cmmi-10">q </span>= 0<span 
+class="cmmi-10">.</span>5<span 
+class="cmmi-10">,</span>0<span 
+class="cmmi-10">.</span>25<span 
+class="cmmi-10">,</span>0<span 
+class="cmmi-10">.</span>154, as shown in Fig.&#x00A0;<a 
+href="#x1-17r2">2<!--tex4ht:ref: fig:B3ao --></a>. One expects that
+                                                  triplet interactions, as quantified by the difference between
+                                                  <span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">3</span></sub><sup><span 
+class="cmmi-7">eff</span></sup>(<span 
+class="cmmi-10">&#x03B7;</span><sub><span 
+class="cmmi-7">s</span></sub><sup><span 
+class="cmmi-7">r</span></sup>) and <span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">3</span></sub><sup><span 
+class="cmmi-7">dep</span></sup>(<span 
+class="cmmi-10">&#x03B7;</span><sub><span 
+class="cmmi-7">s</span></sub><sup><span 
+class="cmmi-7">r</span></sup>), should increase with <span 
+class="cmmi-10">&#x03B7;</span><sub><span 
+class="cmmi-7">s</span></sub><sup><span 
+class="cmmi-7">r</span></sup> and
+                                                  this is indeed the case. We find that <span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">3</span></sub><sup><span 
+class="cmmi-7">eff</span></sup> <span 
+class="cmmi-10">&#x003E; B</span><sub><span 
+class="cmr-7">3</span></sub><sup><span 
+class="cmmi-7">dep</span></sup>,
+                                                  consistent with the fact that triplet interactions weaken the
+                                                  attraction between particles&#x00A0;[<a 
+href="#XGoulding:2001fk">32</a>]. One further expects
+                                                  <span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">3</span></sub><sup><span 
+class="cmmi-7">eff</span></sup> <span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">3</span></sub><sup><span 
+class="cmmi-7">dep</span></sup> to diminish with decreasing <span 
+class="cmmi-10">q </span>and have
+                                                  vanished by <span 
+class="cmmi-10">q </span>= 0<span 
+class="cmmi-10">.</span>154, a feature which is confirmed to high
+                                                  precision by our data.
+                                                  <!--l. 364--><p class="indent" >   For additive hard spheres, the GCA is considerably less
+                                                  efficient than for the AO model being limited to <span 
+class="cmmi-10">&#x03B7;</span><sub><span 
+class="cmmi-7">s</span></sub><sup><span 
+class="cmmi-7">r</span></sup> <span 
+class="msam-10">&#x2272; </span>0<span 
+class="cmmi-10">.</span>2.
+                                                  Although triplet interactions are always present in principle,
+                                                  our results (not shown) indicate that within this more
+                                                  limited range of <span 
+class="cmmi-10">&#x03B7;</span><sub><span 
+class="cmmi-7">s</span></sub><sup><span 
+class="cmmi-7">r</span></sup>, they are negligibly small for <span 
+class="cmmi-10">q </span>= 0<span 
+class="cmmi-10">.</span>2 and
+                                                  <span 
+class="cmmi-10">q </span>= 0<span 
+class="cmmi-10">.</span>1. This finding suggests that for applications at low to
+                                                  moderate <span 
+class="cmmi-10">&#x03B7;</span><sub><span 
+class="cmmi-7">s</span></sub><sup><span 
+class="cmmi-7">r</span></sup> and small <span 
+class="cmmi-10">q </span>it is safe to use depletion
+                                                  potentials for additive hard spheres.
+                                                  <!--l. 373--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+<img 
+src="fig2.jpg" alt="PIC" class="graphics" width="80%"><!--tex4ht:graphics
+name="letterhtml13x.png" src="fig2\Gin@ext "  
+-->
+<a 
+ id="x1-17r2"></a>
+<span 
+class="cmr-9">FIG.</span><span 
+class="cmr-9">&#x00A0;2. Comparison of </span><span 
+class="cmmi-9">B</span><sub><span 
+class="cmr-6">3</span></sub><sup><span 
+class="cmmi-6">eff</span></sup><span 
+class="cmr-9">(</span><span 
+class="cmmi-9">&#x03B7;</span><sub>
+<span 
+class="cmmi-6">s</span></sub><sup><span 
+class="cmmi-6">r</span></sup><span 
+class="cmr-9">), and </span><span 
+class="cmmi-9">B</span><sub>
+<span 
+class="cmr-6">3</span></sub><sup><span 
+class="cmmi-6">dep</span></sup><span 
+class="cmr-9">(</span><span 
+class="cmmi-9">&#x03B7;</span><sub>
+<span 
+class="cmmi-6">s</span></sub><sup><span 
+class="cmmi-6">r</span></sup><span 
+class="cmr-9">) for the</span>
+<span 
+class="cmr-9">AO model with size ratios </span><span 
+class="cmmi-9">q </span><span 
+class="cmr-9">= 0</span><span 
+class="cmmi-9">.</span><span 
+class="cmr-9">5</span><span 
+class="cmmi-9">, </span><span 
+class="cmr-9">0</span><span 
+class="cmmi-9">.</span><span 
+class="cmr-9">25</span><span 
+class="cmmi-9">, </span><span 
+class="cmr-9">0</span><span 
+class="cmmi-9">.</span><span 
+class="cmr-9">154. Lines are guides</span>
+<span 
+class="cmr-9">to the eye and statistical uncertainties are smaller than the</span>
+<span 
+class="cmr-9">symbol sizes. To aid visibility, the curves for </span><span 
+class="cmmi-9">q </span><span 
+class="cmr-9">= 0</span><span 
+class="cmmi-9">.</span><span 
+class="cmr-9">25 and</span>
+<span 
+class="cmmi-9">q </span><span 
+class="cmr-9">= 0</span><span 
+class="cmmi-9">.</span><span 
+class="cmr-9">5 have been shifted vertically by 0</span><span 
+class="cmmi-9">.</span><span 
+class="cmr-9">5 and 1</span><span 
+class="cmmi-9">.</span><span 
+class="cmr-9">0 respectively.</span>
+                                                                                                 
+                                                                                                 
+<!--l. 384--><p class="indent" >  </div><hr class="endfigure">
+<!--l. 386--><p class="indent" >  As a final illustration of the power and generality of our
+method, we have used it to quantify the role of triplet
+interactions in a model for star polymers in implicit solvent,
+c.f. Fig.&#x00A0;<a 
+href="#x1-2r1">1<!--tex4ht:ref: fig:illustr --></a>(b). Each star comprises a core particle to which
+are attached a number (called the &#8220;functionality&#8221;) of linear
+polymer chains each comprising <span 
+class="cmmi-10">n </span>monomers. Bonded
+monomers interact via a FENE spring, while non bonded
+monomers experience a Lennard-Jones (LJ) potential. Using
+MD we have studied various combination of functionality
+and chain length <span 
+class="cmmi-10">n</span>. Our aim was to determine how these
+parameters affect the size of the triplet interactions. In order
+to effect this comparison in a fair manner, we tuned the
+temperature in each case such that <span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">2</span></sub> matches a prescribed
+value, thereby providing a &#8220;corresponding state&#8221;. The
+procedure for measuring the size of triplet interactions
+via virial coefficients is similar to that outlined for the
+colloid-polymer mixtures, except that the tagged particles
+are now taken to be the set of core atoms. The pair
+potential is the potential of mean force (pmf) which is
+obtained in a simulation of two stars. We then simulate
+three particles interacting via this potential to obtain
+<span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">3</span></sub><sup><span 
+class="cmmi-7">pmf</span></sup>. This we compare with <span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">3</span></sub><sup><span 
+class="cmmi-7">star</span></sup>, measured in a
+simulation of <span 
+class="cmmi-10">N </span>= 3 star polymers (a sample plot of
+<span 
+class="cmmi-10">g</span><sub><span 
+class="cmr-7">3</span></sub><sup><span 
+class="cmsy-7">&#x2032;</span></sup>(<span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">min</span></sub>) in a box of volume <span 
+class="cmmi-10">V </span>= (40<span 
+class="cmmi-10">&#x03C3;</span>)<sup><span 
+class="cmr-7">3</span></sup> is included in
+Fig.&#x00A0;<a 
+href="#x1-2r1">1<!--tex4ht:ref: fig:illustr --></a>(b)).
+<!--l. 407--><p class="indent" >  The results are shown in Fig.&#x00A0;<a 
+href="#x1-18r3">3<!--tex4ht:ref: fig:star_results --></a> and reveal large
+discrepancies between <span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">3</span></sub><sup><span 
+class="cmmi-7">pmf</span></sup> and <span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">3</span></sub><sup><span 
+class="cmmi-7">star</span></sup>, which decrease in
+magnitude as both the functionality and the arm length
+increase. Clearly the disparity is such that one should
+expect a quite different equation of state (as well as other
+thermodynamic quantities) to arise from the coarse-grained
+system described by the pmf compared to the full model. We
+believe that the importance of many-body effects in
+this system arises from the ability of the polymers to
+substantially overlap, which occurs predominantly for lower
+functionality and smaller number of monomers per arm.
+When two polymers overlap, the resulting composite particle
+is locally much denser than for a single polymer. Accordingly
+a third polymer is much less likely to overlap with the first
+two due to short ranged monomeric repulsions. Clearly,
+however, this effect is completely neglected in the pair
+potential framework. This observation should be relevant
+to CG models for many other types of polymer-based
+soft particles, including cluster forming amphiphilic
+dendrimers&#x00A0;[<a 
+href="#XLenz:2012fk">33</a>].
+<!--l. 425--><p class="indent" >  <hr class="figure"><div class="figure" 
+>
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+<img 
+src="fig3.jpg" alt="PIC" class="graphics" width="80%" ><!--tex4ht:graphics  
+name="letterhtml14x.png" src="fig3\Gin@ext "  
+-->
+<a 
+ id="x1-18r3"></a>
+<span 
+class="cmr-9">FIG.</span><span 
+class="cmr-9">&#x00A0;3.   Estimates   of   the   dimensionless   third   virials</span>
+<span 
+class="cmmi-9">B</span><sub><span 
+class="cmr-6">3</span></sub><sup><span 
+class="cmmi-6">pmf</span></sup><span 
+class="cmmi-9">&#x2215;B</span><sub>
+<span 
+class="cmr-6">2</span></sub><sup><span 
+class="cmr-6">2</span></sup> <span 
+class="cmr-9">and </span><span 
+class="cmmi-9">B</span><sub>
+<span 
+class="cmr-6">3</span></sub><sup><span 
+class="cmmi-6">star</span></sup><span 
+class="cmmi-9">&#x2215;B</span><sub>
+<span 
+class="cmr-6">2</span></sub><sup><span 
+class="cmr-6">2</span></sup> <span 
+class="cmr-9">vs functionality for various chain</span>
+<span 
+class="cmr-9">lengths  </span><span 
+class="cmmi-9">n</span><span 
+class="cmr-9">.  Volumes  ranged  from  </span><span 
+class="cmmi-9">V   </span><span 
+class="cmr-9">=  (20</span><span 
+class="cmmi-9">&#x03C3;</span><span 
+class="cmr-9">)</span><sup><span 
+class="cmr-6">3</span></sup>  <span 
+class="cmr-9">to  </span><span 
+class="cmmi-9">V   </span><span 
+class="cmr-9">=</span>
+<span 
+class="cmr-9">(40</span><span 
+class="cmmi-9">&#x03C3;</span><span 
+class="cmr-9">)</span><sup><span 
+class="cmr-6">3</span></sup><span 
+class="cmr-9">,  large  enough  to  access  the  limiting  behaviour  of</span>
+<span 
+class="cmmi-9">g</span><sub><span 
+class="cmr-6">3</span></sub><sup><span 
+class="cmsy-6">&#x2032;</span></sup><span 
+class="cmr-9">(</span><span 
+class="cmmi-9">r</span><sub>
+<span 
+class="cmmi-6">min</span></sub><span 
+class="cmr-9">). Bonded monomers interact via a FENE potential</span>
+<span 
+class="cmr-9">with  parameters  </span><span 
+class="cmmi-9">K  </span><span 
+class="cmr-9">=  30</span><span 
+class="cmmi-9">.</span><span 
+class="cmr-9">0</span><span 
+class="cmmi-9">&#x03F5;&#x2215;&#x03C3;</span><sup><span 
+class="cmr-6">2</span></sup><span 
+class="cmmi-9">,R</span><sub>
+<span 
+class="cmr-6">0</span></sub>  <span 
+class="cmr-9">=  1</span><span 
+class="cmmi-9">.</span><span 
+class="cmr-9">5</span><span 
+class="cmmi-9">&#x03C3;</span><span 
+class="cmr-9">&#x00A0;[</span><a 
+href="#XKremer:1990rt"><span 
+class="cmr-9">34</span></a><span 
+class="cmr-9">].  The  LJ</span>
+<span 
+class="cmr-9">potential was truncated and shifted at </span><span 
+class="cmmi-9">r </span><span 
+class="cmr-9">= 2</span><span 
+class="cmmi-9">.</span><span 
+class="cmr-9">5</span><span 
+class="cmmi-9">&#x03C3;</span><span 
+class="cmr-9">. In all cases</span>
+<span 
+class="cmmi-9">T </span><span 
+class="cmr-9">is chosen to yield </span><span 
+class="cmmi-9">B</span><sub><span 
+class="cmr-6">2</span></sub>  <span 
+class="cmr-9">= </span><span 
+class="cmsy-9">-</span><span 
+class="cmr-9">3321</span><span 
+class="cmmi-9">&#x03C3;</span><sup><span 
+class="cmr-6">3</span></sup><span 
+class="cmr-9">. Errors are comparable</span>
+<span 
+class="cmr-9">with symbol sizes.</span>
+                                                                                                 
+                                                                                                 
+<!--l. 439--><p class="indent" >  </div><hr class="endfigure">
+<!--l. 441--><p class="indent" >  In summary, we have proposed a general method for
+calculating low-order virial coefficients of complex fluids via
+a simple-to-measure structural property. The method is
+the only direct approach (of which we are aware) for
+achieving this. We have highlighted its utility in quantifying
+the consequences of neglecting many-body effects in
+coarse-graining schemes. Beyond this it should prove
+useful as a means of testing new and existing molecular
+models by comparing the extent to which they reproduce
+experimentally determined virial coefficients.
+<a 
+ id="Q1-1-4"></a>
+<!--l. 452--><p class="indent" >  This work was supported by EPSRC grants EP/F047800
+and EP/I036192. We thank Bob Evans, Rob Jack, Andrew
+Masters and Friederike Schmid for helpful discussions.
+                <br> <a 
+ id="Q1-1-4"></a>______________
+<br> <a 
+ id="XEgelstaff:1987kl"></a><span 
+class="cmr-9">[1]</span> <span 
+class="cmr-9">P.</span><span 
+class="cmr-9">&#x00A0;A.</span><span 
+class="cmr-9">&#x00A0;Egelstaff,</span><span 
+class="cmr-9">&#x00A0;EPL</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">3</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;867 (1987).</span>
+<br> <a 
+ id="XElrod:1994qa"></a><span 
+class="cmr-9">[2]</span> <span 
+class="cmr-9">M.</span><span 
+class="cmr-9">&#x00A0;J.</span><span 
+class="cmr-9">&#x00A0;Elrod</span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;R.</span><span 
+class="cmr-9">&#x00A0;J.</span><span 
+class="cmr-9">&#x00A0;Saykally,</span><span 
+class="cmr-9">&#x00A0;Chem.</span>
+    <span 
+class="cmr-9">Rev.</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">94</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;1975 (1994).</span>
+<br> <a 
+ id="XZuo:2013fu"></a><span 
+class="cmr-9">[3]</span> <span 
+class="cmr-9">W.</span><span 
+class="cmr-9">&#x00A0;Zuo,</span><span 
+class="cmr-9">&#x00A0;J. Phys: Conf. Ser.</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">420</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;012089 (2013).</span>
+<br> <a 
+ id="XCarlstrom:2011dz"></a><span 
+class="cmr-9">[4]</span> <span 
+class="cmr-9">J.</span><span 
+class="cmr-9">&#x00A0;Carlstr</span><span 
+class="cmr-9">öm, J.</span><span 
+class="cmr-9">&#x00A0;Garaud, </span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;E.</span><span 
+class="cmr-9">&#x00A0;Babaev,</span><span 
+class="cmr-9">&#x00A0;Phys. Rev.</span>
+    <span 
+class="cmr-9">B</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">84</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;134515 (2011).</span>
+<br> <a 
+ id="XDAdamo:2012sf"></a><span 
+class="cmr-9">[5]</span> <span 
+class="cmr-9">G.</span><span 
+class="cmr-9">&#x00A0;D&#8217;Adamo,   A.</span><span 
+class="cmr-9">&#x00A0;Pelissetto,   </span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;C.</span><span 
+class="cmr-9">&#x00A0;Pierleoni,</span><span 
+class="cmr-9">&#x00A0;Soft</span>
+    <span 
+class="cmr-9">Matter</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">8</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;5151 (2012).</span>
+<br> <a 
+ id="XSchmid:2006"></a><span 
+class="cmr-9">[6]</span> <span 
+class="cmr-9">F.</span><span 
+class="cmr-9">&#x00A0;Schmid,</span><span 
+class="cmr-9">&#x00A0;in</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmti-9">Computer                       Simulations</span>
+    <span 
+class="cmti-9">in  Condensed  Matter  Systems:  From  Materials  to</span>
+    <span 
+class="cmti-9">Chemical Biology Volume 2</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;Vol.</span><span 
+class="cmr-9">&#x00A0;704</span><span 
+class="cmr-9">&#x00A0;(Springer Berlin</span>
+    <span 
+class="cmr-9">Heidelberg,</span><span 
+class="cmr-9">&#x00A0;2006)</span><span 
+class="cmr-9">&#x00A0;pp.</span><span 
+class="cmr-9">&#x00A0;211&#8211;258.</span>
+<br> <a 
+ id="XLyubartsev:2011xy"></a><span 
+class="cmr-9">[7]</span> <span 
+class="cmr-9">A.</span><span 
+class="cmr-9">&#x00A0;P.</span><span 
+class="cmr-9">&#x00A0;Lyubartsev</span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;A.</span><span 
+class="cmr-9">&#x00A0;L.</span><span 
+class="cmr-9">&#x00A0;Rabinovich,</span><span 
+class="cmr-9">&#x00A0;Soft</span>
+    <span 
+class="cmr-9">Matter</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">7</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;25 (2011).</span>
+<br> <a 
+ id="XBrunner:2004kx"></a><span 
+class="cmr-9">[8]</span> <span 
+class="cmr-9">M.</span><span 
+class="cmr-9">&#x00A0;Brunner,                                        J.</span><span 
+class="cmr-9">&#x00A0;Dobnikar,</span>
+    <span 
+class="cmr-9">H.-H.</span><span 
+class="cmr-9">&#x00A0;von  Gr</span><span 
+class="cmr-9">ünberg,  </span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;C.</span><span 
+class="cmr-9">&#x00A0;Bechinger,</span><span 
+class="cmr-9">&#x00A0;Phys.  Rev.</span>
+    <span 
+class="cmr-9">Lett.</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">92</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;078301 (2004).</span>
+<br> <a 
+ id="XMerrill:2010vn"></a><span 
+class="cmr-9">[9]</span> <span 
+class="cmr-9">J.</span><span 
+class="cmr-9">&#x00A0;W.</span><span 
+class="cmr-9">&#x00A0;Merrill,       S.</span><span 
+class="cmr-9">&#x00A0;K.</span><span 
+class="cmr-9">&#x00A0;Sainis,       J.</span><span 
+class="cmr-9">&#x00A0;Blawzdziewicz,</span>
+    <span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;E.</span><span 
+class="cmr-9">&#x00A0;R.</span><span 
+class="cmr-9">&#x00A0;Dufresne,</span><span 
+class="cmr-9">&#x00A0;Soft Matter</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">6</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;2187 (2010).</span>
+<a 
+ id="XForsman:2012uq"></a><span 
+class="cmr-9">[10]</span> <span 
+class="cmr-9">J.</span><span 
+class="cmr-9">&#x00A0;Forsman</span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;C.</span><span 
+class="cmr-9">&#x00A0;E.</span><span 
+class="cmr-9">&#x00A0;Woodward,</span><span 
+class="cmr-9">&#x00A0;Soft</span>
+    <span 
+class="cmr-9">Matter</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">8</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;2121 (2012).</span>
+<a 
+ id="XMattos:2013fk"></a><span 
+class="cmr-9">[11]</span> <span 
+class="cmr-9">T.</span><span 
+class="cmr-9">&#x00A0;G.</span><span 
+class="cmr-9">&#x00A0;Mattos, L.</span><span 
+class="cmr-9">&#x00A0;Harnau, </span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;S.</span><span 
+class="cmr-9">&#x00A0;Dietrich,</span><span 
+class="cmr-9">&#x00A0;J. Chem.</span>
+    <span 
+class="cmr-9">Phys.</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">138</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;074704 (2013).</span>
+<a 
+ id="XFerber:2000fk"></a><span 
+class="cmr-9">[12]</span> <span 
+class="cmr-9">C.</span><span 
+class="cmr-9">&#x00A0;von   Ferber,   A.</span><span 
+class="cmr-9">&#x00A0;Jusufi,   C.</span><span 
+class="cmr-9">&#x00A0;N.</span><span 
+class="cmr-9">&#x00A0;Likos,   H.</span><span 
+class="cmr-9">&#x00A0;L</span><span 
+class="cmr-9">öwen,</span>
+    <span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;M.</span><span 
+class="cmr-9">&#x00A0;Watzlawek,</span><span 
+class="cmr-9">&#x00A0;Eur. Phys. J. E</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">2</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;311 (2000).</span>
+<a 
+ id="XNoid:2008ai"></a><span 
+class="cmr-9">[13]</span> <span 
+class="cmr-9">W.</span><span 
+class="cmr-9">&#x00A0;G.</span><span 
+class="cmr-9">&#x00A0;Noid,   J.-W.</span><span 
+class="cmr-9">&#x00A0;Chu,   G.</span><span 
+class="cmr-9">&#x00A0;S.</span><span 
+class="cmr-9">&#x00A0;Ayton,   V.</span><span 
+class="cmr-9">&#x00A0;Krishna,</span>
+    <span 
+class="cmr-9">S.</span><span 
+class="cmr-9">&#x00A0;Izvekov,</span>
+    <span 
+class="cmr-9">G.</span><span 
+class="cmr-9">&#x00A0;A.</span><span 
+class="cmr-9">&#x00A0;Voth, A.</span><span 
+class="cmr-9">&#x00A0;Das, </span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;H.</span><span 
+class="cmr-9">&#x00A0;C.</span><span 
+class="cmr-9">&#x00A0;Andersen,</span><span 
+class="cmr-9">&#x00A0;J. Chem.</span>
+    <span 
+class="cmr-9">Phys.</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">128</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;244114 (2008).</span>                         <br> <a 
+ id="XNoid:2008hc"></a><span 
+class="cmr-9">[14]</span> <span 
+class="cmr-9">W.</span><span 
+class="cmr-9">&#x00A0;G.</span><span 
+class="cmr-9">&#x00A0;Noid,                 P.</span><span 
+class="cmr-9">&#x00A0;Liu,                 Y.</span><span 
+class="cmr-9">&#x00A0;Wang,</span>
+                                                      <span 
+class="cmr-9">J.-W.</span><span 
+class="cmr-9">&#x00A0;Chu, G.</span><span 
+class="cmr-9">&#x00A0;S.</span><span 
+class="cmr-9">&#x00A0;Ayton, S.</span><span 
+class="cmr-9">&#x00A0;Izvekov, H.</span><span 
+class="cmr-9">&#x00A0;C.</span><span 
+class="cmr-9">&#x00A0;Andersen,</span>
+                                                      <span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;G.</span><span 
+class="cmr-9">&#x00A0;A.</span><span 
+class="cmr-9">&#x00A0;Voth,</span><span 
+class="cmr-9">&#x00A0;J. Chem. Phys.</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">128</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;244115 (2008).</span>
+                                                 <br> <a 
+ id="XMuller-Plathe:2002qv"></a><span 
+class="cmr-9">[15]</span> <span 
+class="cmr-9">F.</span><span 
+class="cmr-9">&#x00A0;M</span><span 
+class="cmr-9">üller-Plathe,</span><span 
+class="cmr-9">&#x00A0;Chem. Phys. Chem.</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">3</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;754 (2002).</span>
+                                                 <br> <a 
+ id="XNielsen:2004jk"></a><span 
+class="cmr-9">[16]</span> <span 
+class="cmr-9">S.</span><span 
+class="cmr-9">&#x00A0;O.</span><span 
+class="cmr-9">&#x00A0;Nielsen,</span>
+                                                      <span 
+class="cmr-9">C.</span><span 
+class="cmr-9">&#x00A0;F.</span><span 
+class="cmr-9">&#x00A0;Lopez, G.</span><span 
+class="cmr-9">&#x00A0;Srinivas, </span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;M.</span><span 
+class="cmr-9">&#x00A0;L.</span><span 
+class="cmr-9">&#x00A0;Klein,</span><span 
+class="cmr-9">&#x00A0;J. Phys:</span>
+                                                      <span 
+class="cmr-9">Condens. Matter</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">16</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;R481 (2004).</span>
+                                                 <br> <a 
+ id="XVoth:2008"></a><span 
+class="cmr-9">[17]</span> <span 
+class="cmr-9">G.</span><span 
+class="cmr-9">&#x00A0;Voth,</span><span 
+class="cmr-9">&#x00A0;ed.,</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmti-9">Coarse-Graining of Condensed Phase and</span>
+                                                      <span 
+class="cmti-9">Biomolecular Systems</span><span 
+class="cmr-9">&#x00A0;(CRC Press,</span><span 
+class="cmr-9">&#x00A0;2008).</span>
+                                                 <br> <a 
+ id="XRudzinski:2012fk"></a><span 
+class="cmr-9">[18]</span> <span 
+class="cmr-9">J.</span><span 
+class="cmr-9">&#x00A0;F.</span><span 
+class="cmr-9">&#x00A0;Rudzinski</span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;W.</span><span 
+class="cmr-9">&#x00A0;G.</span><span 
+class="cmr-9">&#x00A0;Noid,</span><span 
+class="cmr-9">&#x00A0;J.    Phys.    Chem.</span>
+                                                      <span 
+class="cmr-9">B</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">116</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;8621 (2012).</span>
+                                                 <br> <a 
+ id="XCapone2008"></a><span 
+class="cmr-9">[19]</span> <span 
+class="cmr-9">B.</span><span 
+class="cmr-9">&#x00A0;Capone,                                          C.</span><span 
+class="cmr-9">&#x00A0;Pierleoni,</span>
+                                                      <span 
+class="cmr-9">J.-P.</span><span 
+class="cmr-9">&#x00A0;Hansen,   </span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;V.</span><span 
+class="cmr-9">&#x00A0;Krakoviack,</span><span 
+class="cmr-9">&#x00A0;J.   Phys.   Chem</span>
+                                                      <span 
+class="cmr-9">B</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">113</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;3629 (2008).</span>
+                                                 <br> <a 
+ id="XLekkerkerker:2011"></a><span 
+class="cmr-9">[20]</span> <span 
+class="cmr-9">H.</span><span 
+class="cmr-9">&#x00A0;N.</span><span 
+class="cmr-9">&#x00A0;W.</span><span 
+class="cmr-9">&#x00A0;Lekkerkerker</span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;R.</span><span 
+class="cmr-9">&#x00A0;Tuinier,</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmti-9">Colloids  and</span>
+                                                      <span 
+class="cmti-9">the  Depletion  Interactions</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;Lecture  Notes  in  Physics,</span>
+                                                      <span 
+class="cmr-9">Vol.</span><span 
+class="cmr-9">&#x00A0;833</span><span 
+class="cmr-9">&#x00A0;(Springer,</span><span 
+class="cmr-9">&#x00A0;Berlin / Heidelberg,</span><span 
+class="cmr-9">&#x00A0;2011).</span>
+                                                 <br> <a 
+ id="XHill:1988ye"></a><span 
+class="cmr-9">[21]</span> <span 
+class="cmr-9">T.</span><span 
+class="cmr-9">&#x00A0;Hill,</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmti-9">Statistical  Mechanics:  Principles  and  Selected</span>
+                                                      <span 
+class="cmti-9">Applications         Principles         and         Selected</span>
+                                                      <span 
+class="cmti-9">Applications</span><span 
+class="cmr-9">&#x00A0;(Dover Publications Inc.,</span><span 
+class="cmr-9">&#x00A0;1988).</span>
+                                                 <br> <a 
+ id="XSingh:2004zr"></a><span 
+class="cmr-9">[22]</span> <span 
+class="cmr-9">J.</span><span 
+class="cmr-9">&#x00A0;K.</span><span 
+class="cmr-9">&#x00A0;Singh</span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;D.</span><span 
+class="cmr-9">&#x00A0;A.</span><span 
+class="cmr-9">&#x00A0;Kofke,</span><span 
+class="cmr-9">&#x00A0;Phys.                 Rev.</span>
+                                                      <span 
+class="cmr-9">Lett.</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">92</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;220601 (2004).</span>
+                                                 <br> <a 
+ id="XClisby:2004lh"></a><span 
+class="cmr-9">[23]</span> <span 
+class="cmr-9">N.</span><span 
+class="cmr-9">&#x00A0;Clisby</span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;B.</span><span 
+class="cmr-9">&#x00A0;M.</span><span 
+class="cmr-9">&#x00A0;McCoy,</span><span 
+class="cmr-9">&#x00A0;J.                       Stat.</span>
+                                                      <span 
+class="cmr-9">Phys.</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">114</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;1343 (2004).</span>
+                                                 <br> <a 
+ id="XDijkstra1999"></a><span 
+class="cmr-9">[24]</span> <span 
+class="cmr-9">M.</span><span 
+class="cmr-9">&#x00A0;Dijkstra, R.</span><span 
+class="cmr-9">&#x00A0;van Roij, </span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;R.</span><span 
+class="cmr-9">&#x00A0;Evans,</span><span 
+class="cmr-9">&#x00A0;Phys. Rev.</span>
+                                                      <span 
+class="cmr-9">E</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">59</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;5744 (1999).</span>
+                                                 <br> <a 
+ id="XDress1995"></a><span 
+class="cmr-9">[25]</span> <span 
+class="cmr-9">C.</span><span 
+class="cmr-9">&#x00A0;Dress</span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;W.</span><span 
+class="cmr-9">&#x00A0;Krauth,</span><span 
+class="cmr-9">&#x00A0;J.     Phys.     A</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">28</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;L597</span>
+                                                      <span 
+class="cmr-9">(1995).</span>
+                                                 <br> <a 
+ id="XLiu2004"></a><span 
+class="cmr-9">[26]</span> <span 
+class="cmr-9">J.</span><span 
+class="cmr-9">&#x00A0;Liu</span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;E.</span><span 
+class="cmr-9">&#x00A0;Luijten,</span><span 
+class="cmr-9">&#x00A0;Phys.   Rev.   Lett.</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">92</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;035504</span>
+                                                      <span 
+class="cmr-9">(2004).</span>
+                                                 <br> <a 
+ id="XAshton:2011kx"></a><span 
+class="cmr-9">[27]</span> <span 
+class="cmr-9">D.</span><span 
+class="cmr-9">&#x00A0;Ashton,                N.</span><span 
+class="cmr-9">&#x00A0;Wilding,                R.</span><span 
+class="cmr-9">&#x00A0;Roth,</span>
+                                                      <span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;R.</span><span 
+class="cmr-9">&#x00A0;Evans,</span><span 
+class="cmr-9">&#x00A0;Phys. Rev. E</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">84</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;061136 (2011).</span>
+                                                 <br> <a 
+ id="XAsakura1954"></a><span 
+class="cmr-9">[28]</span> <span 
+class="cmr-9">S.</span><span 
+class="cmr-9">&#x00A0;Asakura</span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;F.</span><span 
+class="cmr-9">&#x00A0;Oosawa,</span><span 
+class="cmr-9">&#x00A0;J. Chem. Phys.</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">22</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;1255</span>
+                                                      <span 
+class="cmr-9">(1954).</span>
+                                                 <br> <a 
+ id="XAsakura:1958uq"></a><span 
+class="cmr-9">[29]</span> <span 
+class="cmr-9">S.</span><span 
+class="cmr-9">&#x00A0;Asakura</span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;F.</span><span 
+class="cmr-9">&#x00A0;Oosawa,</span><span 
+class="cmr-9">&#x00A0;J.   Polym.   Sci.</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">33</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;183</span>
+                                                      <span 
+class="cmr-9">(1958).</span>
+                                                 <br> <a 
+ id="XBrader2003"></a><span 
+class="cmr-9">[30]</span> <span 
+class="cmr-9">J.</span><span 
+class="cmr-9">&#x00A0;M.</span><span 
+class="cmr-9">&#x00A0;Brader,     R.</span><span 
+class="cmr-9">&#x00A0;Evans,     </span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;M.</span><span 
+class="cmr-9">&#x00A0;Schmidt,</span><span 
+class="cmr-9">&#x00A0;Mol.</span>
+                                                      <span 
+class="cmr-9">Phys.</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">101</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;3349 (2003).</span>
+                                                 <br> <a 
+ id="XDijkstra:1999kl"></a><span 
+class="cmr-9">[31]</span> <span 
+class="cmr-9">M.</span><span 
+class="cmr-9">&#x00A0;Dijkstra,    J.</span><span 
+class="cmr-9">&#x00A0;Brader,    </span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;R.</span><span 
+class="cmr-9">&#x00A0;Evans,</span><span 
+class="cmr-9">&#x00A0;J.    Phys:</span>
+                                                      <span 
+class="cmr-9">Condens. Matter</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">11</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;10079 (1999).</span>
+                                                 <br> <a 
+ id="XGoulding:2001fk"></a><span 
+class="cmr-9">[32]</span> <span 
+class="cmr-9">D.</span><span 
+class="cmr-9">&#x00A0;Goulding</span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;S.</span><span 
+class="cmr-9">&#x00A0;Melchionna,</span><span 
+class="cmr-9">&#x00A0;Phys.              Rev.</span>
+                                                      <span 
+class="cmr-9">E</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">64</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;011403 (2001).</span>
+                                                 <br> <a 
+ id="XLenz:2012fk"></a><span 
+class="cmr-9">[33]</span> <span 
+class="cmr-9">D.</span><span 
+class="cmr-9">&#x00A0;A.</span><span 
+class="cmr-9">&#x00A0;Lenz,              R.</span><span 
+class="cmr-9">&#x00A0;Blaak,              C.</span><span 
+class="cmr-9">&#x00A0;N.</span><span 
+class="cmr-9">&#x00A0;Likos,</span>
+                                                      <span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;B.</span><span 
+class="cmr-9">&#x00A0;M.</span><span 
+class="cmr-9">&#x00A0;Mladek,</span><span 
+class="cmr-9">&#x00A0;Phys.   Rev.   Lett.</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">109</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;228301</span>
+                                                                                                 
+                                                                                                 
+    <span 
+class="cmr-9">(2012).</span>                                        <br> <a 
+ id="XKremer:1990rt"></a><span 
+class="cmr-9">[34]</span> <span 
+class="cmr-9">K.</span><span 
+class="cmr-9">&#x00A0;Kremer</span><span 
+class="cmr-9">&#x00A0;and</span><span 
+class="cmr-9">&#x00A0;G.</span><span 
+class="cmr-9">&#x00A0;S.</span><span 
+class="cmr-9">&#x00A0;Grest,</span><span 
+class="cmr-9">&#x00A0;J.                      Chem.</span>
+                                                      <span 
+class="cmr-9">Phys.</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmbx-9">92</span><span 
+class="cmr-9">,</span><span 
+class="cmr-9">&#x00A0;5057 (1990).</span>
+                                                     
+</body></html> 
+
+                                                                                                 
+
+

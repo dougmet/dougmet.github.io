@@ -1,0 +1,1815 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+0.8 0.4 0.0
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title></title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="paperhtml.tex"> 
+<meta name="date" content="2014-05-16 21:51:00"> 
+<link rel="stylesheet" type="text/css" href="paperhtml.css"> 
+</head><body 
+>
+<!--l. 84--><p class="noindent" ><span 
+class="ptmb7t-x-x-172">Self-assembly of colloidal polymers via depletion-mediated lock and key</span>
+<span 
+class="ptmb7t-x-x-172">binding</span><sup><span 
+class="zptmcm7y-x-x-120">&#8224;</span></sup>
+<!--l. 87--><p class="noindent" ><span 
+class="ptmb7t-x-x-120">Douglas J. Ashton,</span><sup><span 
+class="zptmcm7y-x-x-90">*</span></sup><sup><span 
+class="zptmcm7m-x-x-90">a</span></sup> <span 
+class="ptmb7t-x-x-120">Robert L. Jack,</span><sup><span 
+class="zptmcm7m-x-x-90">a</span></sup> <span 
+class="ptmb7t-x-x-120">and Nigel B. Wilding</span><sup><span 
+class="zptmcm7m-x-x-90">a</span></sup>
+<!--l. 91--><p class="noindent" ><span 
+class="ptmbi7t-x-x-90">Received Xth XXXXXXXXXX 20XX, Accepted Xth XXXXXXXXX 20XX</span><br 
+class="newline" /><span 
+class="ptmbi7t-x-x-90">First published on the web Xth XXXXXXXXXX 200X</span>
+<!--l. 94--><p class="noindent" ><span 
+class="ptmb7t-x-x-90">DOI: 10.1039/b000000x</span>
+<!--l. 98--><p class="noindent" >We study the depletion-induced self-assembly of indented colloids. Using state-of-the-art Monte Carlo simulation techniques that treat the
+depletant particles explicitly, we demonstrate that colloids assemble by a lock-and-key mechanism, leading to colloidal polymerization.
+The morphology of the chains that are formed depends sensitively on the size of the colloidal indentation, with smaller values additionally
+permitting chain branching. In contrast to the case of spheres with attractive patches, Wertheim&#8217;s thermodynamic perturbation theory fails
+to provide a fully quantitative description of the polymerization transition. We trace this failure to a neglect of packing effects
+and we introduce a modified theory that accounts better for the shape of the colloids, yielding improved agreement with
+simulation.
+   <h3 class="sectionHead"><span class="titlemark">1    </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 129--><p class="noindent" >The goal of self-assembly is to tailor the interactions among nano-scale particles so that they spontaneously assemble themselves into
+functional materials or devices&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem1"><span 
+class="ptmr7t-x-x-90">1</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem2"><span 
+class="ptmr7t-x-x-90">2</span></a></sup>. Such processes are widespread in biology, where they have been optimised by evolution so that
+assembly is rapid and reliable. However, mimicking this behaviour in the laboratory involves many challenges, particularly the design and
+synthesis of particles whose interactions can be accurately predicted and controlled. Notable experimental successes have included
+assembly of unusual crystals from either &#8220;patchy&#8221; or DNA-functionalised colloids&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem3"><span 
+class="ptmr7t-x-x-90">3</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem4"><span 
+class="ptmr7t-x-x-90">4</span></a></sup>. More recently, particles have been shown to
+self-assemble into structures that depend strongly on their <span 
+class="ptmri7t-">geometrical shapes</span>&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem5"><span 
+class="ptmr7t-x-x-90">5</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem6"><span 
+class="ptmr7t-x-x-90">6</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem7"><span 
+class="ptmr7t-x-x-90">7</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem8"><span 
+class="ptmr7t-x-x-90">8</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem9"><span 
+class="ptmr7t-x-x-90">9</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem10"><span 
+class="ptmr7t-x-x-90">10</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem11"><span 
+class="ptmr7t-x-x-90">11</span></a></sup>, and the role of shape and packing effects in
+self-assembly has also attracted theoretical and computational interest&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem8"><span 
+class="ptmr7t-x-x-90">8</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem9"><span 
+class="ptmr7t-x-x-90">9</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem10"><span 
+class="ptmr7t-x-x-90">10</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem11"><span 
+class="ptmr7t-x-x-90">11</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem12"><span 
+class="ptmr7t-x-x-90">12</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem13"><span 
+class="ptmr7t-x-x-90">13</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem14"><span 
+class="ptmr7t-x-x-90">14</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem15"><span 
+class="ptmr7t-x-x-90">15</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem16"><span 
+class="ptmr7t-x-x-90">16</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem17"><span 
+class="ptmr7t-x-x-90">17</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem18"><span 
+class="ptmr7t-x-x-90">18</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem19"><span 
+class="ptmr7t-x-x-90">19</span></a></sup>. Here, we use computer simulations
+to show how self-assembly of indented colloidal particles can be tuned by subtly varying their shape and interactions, in a manner that
+should be accessible in experiment&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem6"><span 
+class="ptmr7t-x-x-90">6</span></a></sup>.
+<!--l. 152--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-10011"></a>
+
+<!--l. 153--><p class="noindent" ><img 
+src="Fig1.jpg" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id"><span 
+class="ptmr7t-x-x-90">Fig.</span><span 
+class="ptmr7t-x-x-90">&#x00A0;</span><span 
+class="ptmr7t-x-x-90">&#x00A0;1: </span></span><span  
+class="content">Equilibrium snapshot of self-assembled chains of spherically-indented colloids. The depletant is shown explicitly in the
+left panel but suppressed in the right panel, for clarity. System parameters are <span 
+class="zptmcm7m-">h </span><span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">7 </span>and <span 
+class="zptmcm7m-">&#x03B7;</span><sub><span 
+class="zptmcm7m-x-x-74">s</span></sub><sup><span 
+class="zptmcm7m-x-x-74">r</span></sup> <span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">094</span>: see text for details. </span></div><!--tex4ht:label?: x1-10011 -->
+
+<!--l. 159--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 161--><p class="indent" >   To this end, we exploit <span 
+class="ptmri7t-">depletion forces</span>&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem20"><span 
+class="ptmr7t-x-x-90">20</span></a></sup>, which enable the precise control of particle interactions that is required for
+self-assembly. Depletion is an attractive interaction between colloid particles that arises when they are mixed with much smaller
+&#8216;depletant&#8217; particles, for example polymers or another species of colloid. These forces are particularly strong in colloids with
+complementary geometrical forms, such as buckled spheres&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem6"><span 
+class="ptmr7t-x-x-90">6</span></a></sup> or bowl shapes&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem8"><span 
+class="ptmr7t-x-x-90">8</span></a></sup>. Such systems can assemble via &#8220;lock and key
+binding&#8221; in which the convex part of one particle interlocks with the concave part of another&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem6"><span 
+class="ptmr7t-x-x-90">6</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem13"><span 
+class="ptmr7t-x-x-90">13</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem21"><span 
+class="ptmr7t-x-x-90">21</span></a></sup>. Fig.&#x00A0;<a 
+href="#x1-10011">1<!--tex4ht:ref: fig:snapshot0.3 --></a> shows the
+results of a computer simulation, where colloids with self-complementary shapes&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem6"><span 
+class="ptmr7t-x-x-90">6</span></a></sup> have assembled themselves into
+chains, in the presence of depletant particles. We show in the following that the properties of these &#8220;colloidal polymers&#8221;
+can be controlled through the colloidal shape and the depletant number density. The persistence length of the polymer
+depends on the colloidal shape, and for some shapes, the chains can also branch, leading to interconnected networks of
+particles.
+<!--l. 182--><p class="indent" >   We emphasize that the complementary shapes of colloidal particles&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem6"><span 
+class="ptmr7t-x-x-90">6</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem23"><span 
+class="ptmr7t-x-x-90">23</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem24"><span 
+class="ptmr7t-x-x-90">24</span></a></sup> and properties of the depletion interaction can both be
+measured and controlled in experiments. Indeed, some depletants even allow colloid interactions to be tuned <span 
+class="ptmri7t-">in situ</span>&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem5"><span 
+class="ptmr7t-x-x-90">5</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem25"><span 
+class="ptmr7t-x-x-90">25</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem26"><span 
+class="ptmr7t-x-x-90">26</span></a></sup>,
+potentially leading to real-time adaptive control of interaction parameters&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem27"><span 
+class="ptmr7t-x-x-90">27</span></a></sup>. However, the experimental parameter space
+associated with mixtures of colloid and depletant particles is very large, depending on the size, shape and concentration of
+both species. Theory and computer simulation can therefore offer guidance for experiment, by predicting the parameters
+for which robust assembly occurs, and the likely nature of the self-assembled products. We argue that such simulations
+should deal explicitly with the depletant particles, both in the interests of reproducing the experimental reality and for
+avoiding the need to develop effective (&#8220;depletion&#8221;) potentials, which for irregularly shaped particles represents a formidable
+task.
+<!--l. 200--><p class="indent" >   We give details of our model and simulation techniques in Sec.&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:simdetails --></a>, with numerical results in Sec.&#x00A0;<a 
+href="#x1-30003">3<!--tex4ht:ref: sec:results --></a>. In Sec.&#x00A0;<a 
+href="#x1-40004">4<!--tex4ht:ref: sec:theory --></a> we discuss how
+Wertheim&#8217;s theory of associating fluids can be applied to this system. Our conclusions are summarised in Sec.&#x00A0;<a 
+href="#x1-50005">5<!--tex4ht:ref: sec:conclusions --></a>. In addition, some further
+details of our theoretical calculations are presented in electronic supplementary information.
+   <h3 class="sectionHead"><span class="titlemark">2    </span> <a 
+ id="x1-20002"></a>Model and simulation methods</h3>
+<!--l. 208--><p class="noindent" >We used state-of-the-art Monte Carlo (MC) simulation techniques to study spherically-indented colloids, together with smaller hard sphere
+particles which act as a depletant. The shape of each indented colloid begins as a hard sphere of diameter <span 
+class="zptmcm7m-">&#x03C3;</span><sub><span 
+class="zptmcm7m-x-x-74">l</span></sub> <span 
+class="zptmcm7t-">= 1</span>, from which an
+indentation is formed by cutting away a sphere of the same diameter, whose center is a distance <span 
+class="zptmcm7m-">d</span><sub><span 
+class="zptmcm7m-x-x-74">c</span></sub> from the center of the original sphere.
+Thus, the dimensionless depth of the indentation is <span 
+class="zptmcm7m-">h </span><span 
+class="zptmcm7y-">&#x2261; </span><span 
+class="zptmcm7t-">1</span><span 
+class="zptmcm7y-">-</span><span 
+class="zptmcm7m-">d</span><sub><span 
+class="zptmcm7m-x-x-74">c</span></sub><span 
+class="zptmcm7m-">&#x2215;&#x03C3;</span><sub><span 
+class="zptmcm7m-x-x-74">l</span></sub>. Our systems contain <span 
+class="zptmcm7m-">N </span><span 
+class="zptmcm7t-">= 60 </span>colloid particles in a box of size <span 
+class="zptmcm7m-">V </span>, with a
+number density <span 
+class="zptmcm7m-">&#x03C1; </span><span 
+class="zptmcm7t-">= </span><span 
+class="zptmcm7m-">N&#x2215;V </span><span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">2</span><span 
+class="zptmcm7m-">&#x03C3;</span><sub><span 
+class="zptmcm7m-x-x-74">l</span></sub><sup><span 
+class="zptmcm7y-x-x-74">-</span><span 
+class="zptmcm7t-x-x-74">3</span></sup>, and we consider values of <span 
+class="zptmcm7m-">h </span>between <span 
+class="zptmcm7t-">0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">3 </span>and <span 
+class="zptmcm7t-">0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">7</span>. The hard spheres comprising the depletant fluid
+have diameter <span 
+class="zptmcm7m-">&#x03C3;</span><sub><span 
+class="zptmcm7m-x-x-74">s</span></sub> <span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">1</span><span 
+class="zptmcm7m-">&#x03C3;</span><sub><span 
+class="zptmcm7m-x-x-74">l</span></sub>. The colloid shape and the size ratio between colloids and depletant are consistent with experimental
+studies&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem6"><span 
+class="ptmr7t-x-x-90">6</span></a></sup>.
+<!--l. 223--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-20012"></a>
+
+<!--l. 224--><p class="noindent" ><img 
+src="Fig2.jpg" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id"><span 
+class="ptmr7t-x-x-90">Fig.</span><span 
+class="ptmr7t-x-x-90">&#x00A0;</span><span 
+class="ptmr7t-x-x-90">&#x00A0;2: </span></span><span  
+class="content">GCA move set for indented particles. <span 
+class="ptmb7t-">(a)</span>&#x00A0;A colloid reflects through a point pivot to a new position (outlined). Any
+particles that overlap in the new position reflect through the same pivot to occupy the space vacated by the colloid. <span 
+class="ptmb7t-">(b) </span>Constrained
+plane reflections (see text) allow for small scale vibrations of colloids within a chain. <span 
+class="ptmb7t-">(c)</span>&#x00A0;Reflecting a colloid in a plane passing
+through its center moves it to a new position (outlined). When overlapping particles are similarly reflected, the chain &#8216;flexes&#8217;.</span></div><!--tex4ht:label?: x1-20012 -->
+
+<!--l. 235--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 239--><p class="indent" >   To obtain accurate computational results for this system, we use a variant of the geometrical cluster algorithm (GCA)<sup class="textsuperscript"><a 
+href="#bibitem28"><span 
+class="ptmr7t-x-x-90">28</span></a></sup>.
+This is a sophisticated Monte Carlo scheme that updates large groups (&#8220;clusters&#8221;) of particles, with both colloids and
+depletants moving together. The scheme respects detailed balance, ensuring that it samples the Boltzmann distribution of the
+system. Use of such a specialized technique is essential for coping with the disparity in size between colloids and depletant.
+Standard Monte Carlo and Molecular Dynamics techniques are unequal to the task of relaxing such systems because the
+depletant acts to frustrate colloidal motion except on very small length scales. This problem can be readily appreciated from
+Fig.&#x00A0;<a 
+href="#x1-10011">1<!--tex4ht:ref: fig:snapshot0.3 --></a>.
+<!--l. 255--><p class="indent" >   The GCA is based on self-inverse geometric operations that can be tailored to effectively sample the system of interest. In the case of
+self-assembled structures it is essential that relaxation occurs on all length scales to ensure ergodicity. To this end we use the combination
+of updates described in Fig.&#x00A0;<a 
+href="#x1-20012">2<!--tex4ht:ref: fig:GCA --></a>: A &#8220;pivot&#8221; (point reflection) operation (see Fig.&#x00A0;<a 
+href="#x1-20012">2<!--tex4ht:ref: fig:GCA --></a>(a)) is employed to relax particle positions, while a plane
+reflection operation&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem29"><span 
+class="ptmr7t-x-x-90">29</span></a></sup> allows colloids to sample different orientations. We combine these two kinds of move to sample the equilibrium
+state of the system.
+<!--l. 266--><p class="indent" >   Pivot moves are effective in moving clusters of colloids that have started to assemble. These moves are rejection-free by
+construction, and the pivot point is chosen at random. For reflection moves, we choose the reflection planes to aid relaxation of
+single monomers within their binding pockets, and to promote flexing of the colloidal chains. For the former case, we use
+moves where the reflection plane is constrained to lie close to the orientation vector of a monomer in the chain (Fig.&#x00A0;<a 
+href="#x1-20012">2<!--tex4ht:ref: fig:GCA --></a>(b)).
+In the latter case, the plane is placed through the center of the monomer, at an arbitrary angle to the orientation vector
+(Fig.&#x00A0;<a 
+href="#x1-20012">2<!--tex4ht:ref: fig:GCA --></a>(c)). Since the reflection plane is not typically placed along one of the box axes, care must be taken as the cluster move
+may conflict with the periodic boundary conditions. We avoid this problem by rejecting moves in which any particle in a
+cluster is interacting with a particle from another periodic image of the system&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem29"><span 
+class="ptmr7t-x-x-90">29</span></a></sup>. All updates exploit a highly efficient
+hierarchical overlap search algorithm that allows us to determine whether a proposed move leads to overlaps of our anisotropic
+particles<sup class="textsuperscript"><a 
+href="#bibitem30"><span 
+class="ptmr7t-x-x-90">30</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem31"><span 
+class="ptmr7t-x-x-90">31</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem32"><span 
+class="ptmr7t-x-x-90">32</span></a></sup>.
+<!--l. 290--><p class="indent" >   The depletant particles are treated grand-canonically in our simulations. That is, their number is free to fluctuate, corresponding to the
+common experimental situation of a depletant that is in equilibrium with a bulk reservoir. We therefore quote the depletant reservoir
+volume fraction <span 
+class="zptmcm7m-">&#x03B7;</span><sub><span 
+class="zptmcm7m-x-x-74">s</span></sub><sup><span 
+class="zptmcm7m-x-x-74">r</span></sup> <span 
+class="zptmcm7t-">= </span><span 
+class="zptmcm7m-">N</span><sub><span 
+class="zptmcm7m-x-x-74">s</span></sub><span 
+class="zptmcm7m-">&#x03C0;&#x03C3;</span><sub><span 
+class="zptmcm7m-x-x-74">s</span></sub><sup><span 
+class="zptmcm7t-x-x-74">3</span></sup><span 
+class="zptmcm7m-">&#x2215;</span><span 
+class="zptmcm7t-">(6</span><span 
+class="zptmcm7m-">V </span><span 
+class="zptmcm7t-">) </span>as a measure of the driving force for depletion induced assembly, where <span 
+class="zptmcm7m-">N</span><sub><span 
+class="zptmcm7m-x-x-74">s</span></sub> is the average number of
+depletant particles.
+   <h3 class="sectionHead"><span class="titlemark">3    </span> <a 
+ id="x1-30003"></a>Results</h3>
+<!--l. 301--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-30013"></a>
+
+<!--l. 302--><p class="noindent" ><img 
+src="Fig3.jpg" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id"><span 
+class="ptmr7t-x-x-90">Fig.</span><span 
+class="ptmr7t-x-x-90">&#x00A0;</span><span 
+class="ptmr7t-x-x-90">&#x00A0;3: </span></span><span  
+class="content"><span 
+class="ptmb7t-">(a) </span>Simulation estimates of <span 
+class="zptmcm7m-">X</span><span 
+class="zptmcm7t-">(</span><span 
+class="zptmcm7m-">&#x03B7;</span><sub><span 
+class="zptmcm7m-x-x-74">s</span></sub><sup><span 
+class="zptmcm7m-x-x-74">r</span></sup><span 
+class="zptmcm7t-">) </span>for <span 
+class="zptmcm7m-">h </span><span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">3</span><span 
+class="zptmcm7m-">,</span><span 
+class="zptmcm7t-">0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">5</span><span 
+class="zptmcm7m-">,</span><span 
+class="zptmcm7t-">0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">7</span>; lines are guides to the eye and uncertainties are comparable to
+the symbol sizes. Comparison of the simulation data (Sim) with the predictions of TPT and SCW (see text) in the non-branching
+regime <span 
+class="ptmb7t-">(b) </span><span 
+class="zptmcm7m-">h </span><span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">7</span>, and <span 
+class="ptmb7t-">(c) </span><span 
+class="zptmcm7m-">h </span><span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">5</span>. There are numerical uncertainties in the TPT/SCW predictions which are comparable with
+those in the simulation data: these arise from the numerical estimation of <span 
+class="zptmcm7m-">f</span><sub><span 
+class="zptmcm7m-x-x-74">A</span></sub> from simulations containing two colloids with
+depletant.</span></div><!--tex4ht:label?: x1-30013 -->
+
+<!--l. 312--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 315--><p class="indent" >   We now present our simulation results. We first assess how the degree of polymerization depends on the depletant volume fraction <span 
+class="zptmcm7m-">&#x03B7;</span><sub><span 
+class="zptmcm7m-x-x-74">s</span></sub><sup><span 
+class="zptmcm7m-x-x-74">r</span></sup>.
+To this end, we label the indentation on each colloidal particle as its &#8220;lock site&#8221;. The concave part of the surface acts as the &#8220;key&#8221;, which
+fits snugly in the lock. Let <span 
+class="zptmcm7m-">N</span><span 
+class="zptmcm7t-x-x-74">L</span> be the average number of lock sites that are available for binding (where no other colloidal particle is already
+bound), and let <span 
+class="zptmcm7m-">N</span><span 
+class="zptmcm7t-x-x-74">K</span> be the average number of colloidal particles that are not currently occupying any lock site. (Occupation of a lock site is
+decided on the basis of a radial cutoff criterion; results are insensitive to the choice of this cutoff). The number densities of such particles
+are then <span 
+class="zptmcm7m-">&#x03C1;</span><span 
+class="zptmcm7t-x-x-74">L</span> <span 
+class="zptmcm7t-">= </span><span 
+class="zptmcm7m-">N</span><span 
+class="zptmcm7t-x-x-74">L</span><span 
+class="zptmcm7m-">&#x2215;V </span>and <span 
+class="zptmcm7m-">&#x03C1;</span><span 
+class="zptmcm7t-x-x-74">K</span> <span 
+class="zptmcm7t-">= </span><span 
+class="zptmcm7m-">N</span><span 
+class="zptmcm7t-x-x-74">K</span><span 
+class="zptmcm7m-">&#x2215;V </span>. We also define <span 
+class="zptmcm7m-">X </span><span 
+class="zptmcm7t-">= </span><span 
+class="zptmcm7m-">&#x03C1;</span><span 
+class="zptmcm7t-x-x-74">L</span><span 
+class="zptmcm7m-">&#x2215;&#x03C1;</span>. For an unassociated fluid, <span 
+class="zptmcm7m-">X </span><span 
+class="zptmcm7y-">&#x2248; </span><span 
+class="zptmcm7t-">1</span>; for a system consisting of long colloidal
+polymers then <span 
+class="zptmcm7m-">X </span><span 
+class="zptmcm7y-">&#x2248; </span><span 
+class="zptmcm7t-">0</span>. If the polymers are &#8216;tree-like&#8217; (without closed loops), then the average degree of polymerization is
+<span 
+class="zptmcm7t-">1</span><span 
+class="zptmcm7m-">&#x2215;X</span>.
+<!--l. 338--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-30024"></a>
+
+<!--l. 339--><p class="noindent" ><img 
+src="Fig4.jpg" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id"><span 
+class="ptmr7t-x-x-90">Fig.</span><span 
+class="ptmr7t-x-x-90">&#x00A0;</span><span 
+class="ptmr7t-x-x-90">&#x00A0;4: </span></span><span  
+class="content">Snapshots for <span 
+class="zptmcm7m-">X &#x003C; </span><span 
+class="zptmcm7t-">0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">1 </span>(depletant not shown) and varying indentation depth. <span 
+class="ptmb7t-">(a) </span>At <span 
+class="zptmcm7m-">h </span><span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">5</span>, <span 
+class="zptmcm7m-">&#x03B7;</span><sub><span 
+class="zptmcm7m-x-x-74">s</span></sub><sup><span 
+class="zptmcm7m-x-x-74">r</span></sup> <span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">105</span>, this system
+consists of just two large chains. A single branch point is also indicated. <span 
+class="ptmb7t-">(b) </span>At <span 
+class="zptmcm7m-">h </span><span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">3</span>, <span 
+class="zptmcm7m-">&#x03B7;</span><sub><span 
+class="zptmcm7m-x-x-74">s</span></sub><sup><span 
+class="zptmcm7m-x-x-74">r</span></sup> <span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">14</span>, the polymers form an
+interconnected network of chains&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem22"><span 
+class="ptmr7t-x-x-90">22</span></a></sup>.</span></div><!--tex4ht:label?: x1-30024 -->
+
+<!--l. 350--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 352--><p class="indent" >   Fig.&#x00A0;<a 
+href="#x1-30013">3<!--tex4ht:ref: fig:X --></a>(a) depicts our measurements of <span 
+class="zptmcm7m-">X </span>(black circles) for various <span 
+class="zptmcm7m-">h</span>, as the depletant volume fraction <span 
+class="zptmcm7m-">&#x03B7;</span><sub><span 
+class="zptmcm7m-x-x-74">s</span></sub><sup><span 
+class="zptmcm7m-x-x-74">r</span></sup> is increased. The range of
+<span 
+class="zptmcm7m-">&#x03B7;</span><sub><span 
+class="zptmcm7m-x-x-74">s</span></sub><sup><span 
+class="zptmcm7m-x-x-74">r</span></sup> over which polymerization occurs is quite narrow in each case (particularly for deep indentations), and this range is shifted to smaller
+<span 
+class="zptmcm7m-">&#x03B7;</span><sub><span 
+class="zptmcm7m-x-x-74">s</span></sub><sup><span 
+class="zptmcm7m-x-x-74">r</span></sup> as <span 
+class="zptmcm7m-">h </span>increases. Physically, the lock-and-key binding is strongest when the colloid indentations are deep, and the shape complementarity
+is most pronounced. At the largest values of <span 
+class="zptmcm7m-">&#x03B7;</span><sub><span 
+class="zptmcm7m-x-x-74">s</span></sub>, almost all the colloids are members of chains, <span 
+class="zptmcm7m-">X </span><span 
+class="zptmcm7y-">&#x2248; </span><span 
+class="zptmcm7t-">0</span>. As well as the results shown here for
+<span 
+class="zptmcm7m-">N </span><span 
+class="zptmcm7t-">= 60 </span>colloidal particles, we have also performed a limited set of simulations for <span 
+class="zptmcm7m-">N </span><span 
+class="zptmcm7t-">= 120</span>, under the same conditions. We find fully
+quantitative agreement between results for these two system sizes, indicating that finite-size effects are relatively small, at least for the
+quantities measured here
+<!--l. 362--><p class="indent" >   Fig.&#x00A0;<a 
+href="#x1-30024">4<!--tex4ht:ref: fig:other-snaps --></a> shows snapshots of the equilibrated polymer configurations that form for <span 
+class="zptmcm7m-">h </span><span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">5 </span>and <span 
+class="zptmcm7m-">h </span><span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">3</span>, at values of <span 
+class="zptmcm7m-">&#x03B7;</span><sub><span 
+class="zptmcm7m-x-x-74">s</span></sub><sup><span 
+class="zptmcm7m-x-x-74">r</span></sup> corresponding to
+<span 
+class="zptmcm7m-">X </span><span 
+class="zptmcm7y-">&#x2248; </span><span 
+class="zptmcm7t-">0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">1</span>. Compared with the results for <span 
+class="zptmcm7m-">h </span><span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">7 </span>(Fig.&#x00A0;<a 
+href="#x1-10011">1<!--tex4ht:ref: fig:snapshot0.3 --></a>) one observes that deeper indentations result in stiffer chain conformations. To
+quantify these differences, we have measured the persistence length <span 
+class="zptmcm7m-">b</span>, defined through <span 
+class="zptmcm7y-">&#x27E8;</span><span 
+class="zptmcm7t-">cos</span><span 
+class="zptmcm7t-">(</span><span 
+class="zptmcm7m-">&#x03B8;</span><sub><span 
+class="zptmcm7m-x-x-74">k</span></sub><span 
+class="zptmcm7t-">)</span><span 
+class="zptmcm7y-">&#x27E9; </span><span 
+class="zptmcm7t-">= </span><span 
+class="zptmcm7m-">e</span><sup><span 
+class="zptmcm7y-x-x-74">-</span><span 
+class="zptmcm7m-x-x-74">k&#x03C3;</span><sub><span 
+class="zptmcm7m-x-x-60">l</span></sub><span 
+class="zptmcm7m-x-x-74">&#x2215;b</span></sup>, where <span 
+class="zptmcm7m-">&#x03B8;</span><sub><span 
+class="zptmcm7m-x-x-74">k</span></sub> is the angle between
+orientation vectors of colloid particles that are <span 
+class="zptmcm7m-">k</span>th neighbours in the chain. Thus, large values of <span 
+class="zptmcm7m-">b </span>correspond to stiff chains: for
+<span 
+class="zptmcm7m-">h </span><span 
+class="zptmcm7t-">= (0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">3</span><span 
+class="zptmcm7m-">,</span><span 
+class="zptmcm7t-">0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">5</span><span 
+class="zptmcm7m-">,</span><span 
+class="zptmcm7t-">0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">7)</span>, we find <span 
+class="zptmcm7m-">b </span><span 
+class="zptmcm7t-">= (1</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">0</span><span 
+class="zptmcm7m-">,</span><span 
+class="zptmcm7t-">3</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">3</span><span 
+class="zptmcm7m-">,</span><span 
+class="zptmcm7t-">9</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">1)</span><span 
+class="zptmcm7m-">&#x03C3;</span><sub><span 
+class="zptmcm7m-x-x-74">l</span></sub>.
+<!--l. 375--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-30035"></a>
+
+<!--l. 376--><p class="noindent" ><img 
+src="Fig5.jpg" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id"><span 
+class="ptmr7t-x-x-90">Fig.</span><span 
+class="ptmr7t-x-x-90">&#x00A0;</span><span 
+class="ptmr7t-x-x-90">&#x00A0;5: </span></span><span  
+class="content">Two indented particles (labelled 1 and 2) that form part of a colloidal polymer. The condition that the concave surface
+of particle <span 
+class="zptmcm7t-">2 </span>is entirely in contact with the surface of particle <span 
+class="zptmcm7t-">1 </span>is <span 
+class="zptmcm7m-">&#x03B8; &#x003C; &#x03C0; </span><span 
+class="zptmcm7y-">-</span><span 
+class="zptmcm7t-">2</span><span 
+class="zptmcm7m-">&#x03B1;</span>. From the definition of <span 
+class="zptmcm7m-">h</span>, we have <span 
+class="zptmcm7t-">cos</span><span 
+class="zptmcm7m-">&#x03B1; </span><span 
+class="zptmcm7t-">= 1</span><span 
+class="zptmcm7y-">-</span><span 
+class="zptmcm7m-">h</span>.
+</span></div><!--tex4ht:label?: x1-30035 -->
+
+<!--l. 383--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 387--><p class="indent" >   These values can be explained by a simple geometrical argument, illustrated by the two particles shown in in Fig.&#x00A0;<a 
+href="#x1-30035">5<!--tex4ht:ref: fig:persist --></a>. The angle <span 
+class="zptmcm7m-">&#x03B1;</span>
+depends on the colloidal shape, as <span 
+class="zptmcm7t-">cos</span><span 
+class="zptmcm7m-">&#x03B1; </span><span 
+class="zptmcm7t-">= (1</span><span 
+class="zptmcm7y-">-</span><span 
+class="zptmcm7m-">h</span><span 
+class="zptmcm7t-">)</span>. We suppose that particle <span 
+class="zptmcm7t-">2 </span>can bind on any part of the surface of lock <span 
+class="zptmcm7t-">1</span>, as long as
+<span 
+class="zptmcm7m-">&#x03B8; &#x003C; &#x03C0; </span><span 
+class="zptmcm7y-">-</span><span 
+class="zptmcm7t-">2</span><span 
+class="zptmcm7m-">&#x03B1;</span>, where <span 
+class="zptmcm7m-">&#x03B8; </span>is the angle between the orientation vectors of the colloids as shown. For particles in contact, this is the condition that
+all of the concave surface of particle <span 
+class="zptmcm7t-">2 </span>is in contact with the convex surface of particle <span 
+class="zptmcm7t-">1</span>. For bonded particles, we recognise <span 
+class="zptmcm7m-">&#x03B8; </span>as the usual
+polar angle in spherical co-ordinates. To calculate the average of this quantity subject to the constraint <span 
+class="zptmcm7m-">&#x03B8; &#x003C; &#x03C0; </span><span 
+class="zptmcm7y-">-</span><span 
+class="zptmcm7t-">2</span><span 
+class="zptmcm7m-">&#x03B1;</span>, we write
+<span 
+class="zptmcm7y-">&#x27E8;</span><span 
+class="zptmcm7t-">cos</span><span 
+class="zptmcm7m-">&#x03B8;</span><span 
+class="zptmcm7y-">&#x27E9; </span><span 
+class="zptmcm7t-">= (1</span><span 
+class="zptmcm7m-">&#x2215;Z</span><span 
+class="zptmcm7t-">)</span><span 
+class="zptmcm7v-">&#x222B;</span>
+ <sub><span 
+class="zptmcm7t-x-x-74">0</span></sub><sup><span 
+class="zptmcm7m-x-x-74">&#x03C0;</span><span 
+class="zptmcm7y-x-x-74">-</span><span 
+class="zptmcm7t-x-x-74">2</span><span 
+class="zptmcm7m-x-x-74">&#x03B1;</span></sup><span 
+class="zptmcm7t-">cos</span><span 
+class="zptmcm7m-">&#x03B8;</span> <span 
+class="zptmcm7t-">sin</span><span 
+class="zptmcm7m-">&#x03B8;d&#x03B8; </span>where <span 
+class="zptmcm7m-">Z </span><span 
+class="zptmcm7t-">=</span> <span 
+class="zptmcm7v-">&#x222B;</span>
+ <sub><span 
+class="zptmcm7t-x-x-74">0</span></sub><sup><span 
+class="zptmcm7m-x-x-74">&#x03C0;</span><span 
+class="zptmcm7y-x-x-74">-</span><span 
+class="zptmcm7t-x-x-74">2</span><span 
+class="zptmcm7m-x-x-74">&#x03B1;</span></sup><span 
+class="zptmcm7t-">sin</span><span 
+class="zptmcm7m-">&#x03B8;d&#x03B8; </span>is a normalisation constant (the volume element <span 
+class="zptmcm7t-">sin</span><span 
+class="zptmcm7m-">&#x03B8;d&#x03B8; </span>arises from the
+spherical geometry, as usual). Evaluating the integrals yields <span 
+class="zptmcm7y-">&#x27E8;</span><span 
+class="zptmcm7t-">cos</span><span 
+class="zptmcm7m-">&#x03B8;</span><span 
+class="zptmcm7y-">&#x27E9; </span><span 
+class="zptmcm7t-">=</span> <img 
+src="paperhtml0x.png" alt="12"  class="frac" align="middle"><span 
+class="zptmcm7t-">[1+</span><span 
+class="zptmcm7t-">cos</span><span 
+class="zptmcm7t-">(</span><span 
+class="zptmcm7m-">&#x03C0; </span><span 
+class="zptmcm7y-">-</span><span 
+class="zptmcm7t-">2</span><span 
+class="zptmcm7m-">&#x03B1;</span><span 
+class="zptmcm7t-">)]</span>. From the definition of <span 
+class="zptmcm7m-">&#x03B1; </span>one has
+<span 
+class="zptmcm7t-">cos</span><span 
+class="zptmcm7t-">(</span><span 
+class="zptmcm7m-">&#x03C0; </span><span 
+class="zptmcm7y-">-</span><span 
+class="zptmcm7t-">2</span><span 
+class="zptmcm7m-">&#x03B1;</span><span 
+class="zptmcm7t-">) = 1</span><span 
+class="zptmcm7y-">-</span><span 
+class="zptmcm7t-">2(1</span><span 
+class="zptmcm7y-">-</span><span 
+class="zptmcm7m-">h</span><span 
+class="zptmcm7t-">)</span><sup><span 
+class="zptmcm7t-x-x-74">2</span></sup>, and assuming that angles along a chain are independently distributed in this way, one has
+<span 
+class="zptmcm7m-">e</span><sup><span 
+class="zptmcm7y-x-x-74">-</span><span 
+class="zptmcm7m-x-x-74">&#x03C3;</span><sub><span 
+class="zptmcm7m-x-x-60">l</span></sub><span 
+class="zptmcm7m-x-x-74">&#x2215;b</span></sup> <span 
+class="zptmcm7t-">= </span><span 
+class="zptmcm7y-">&#x27E8;</span><span 
+class="zptmcm7t-">cos</span><span 
+class="zptmcm7m-">&#x03B8;</span><span 
+class="zptmcm7y-">&#x27E9;</span>, yielding the relation <span 
+class="zptmcm7m-">&#x03C3;</span><sub><span 
+class="zptmcm7m-x-x-74">l</span></sub><span 
+class="zptmcm7m-">&#x2215;b </span><span 
+class="zptmcm7t-">= </span><span 
+class="zptmcm7y-">-</span><span 
+class="zptmcm7t-">log</span><span 
+class="zptmcm7t-">[</span><span 
+class="zptmcm7m-">h</span><span 
+class="zptmcm7t-">(2</span><span 
+class="zptmcm7y-">-</span><span 
+class="zptmcm7m-">h</span><span 
+class="zptmcm7t-">)] </span>For the colloids with <span 
+class="zptmcm7m-">h </span><span 
+class="zptmcm7t-">= (0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">3</span><span 
+class="zptmcm7m-">,</span><span 
+class="zptmcm7t-">0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">5</span><span 
+class="zptmcm7m-">,</span><span 
+class="zptmcm7t-">0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">7) </span>considered here, this
+argument predicts <span 
+class="zptmcm7m-">b </span><span 
+class="zptmcm7y-">&#x2248; </span><span 
+class="zptmcm7t-">(1</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">5</span><span 
+class="zptmcm7m-">,</span><span 
+class="zptmcm7t-">3</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">5</span><span 
+class="zptmcm7m-">,</span><span 
+class="zptmcm7t-">10</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">6)</span><span 
+class="zptmcm7m-">&#x03C3;</span><sub><span 
+class="zptmcm7m-x-x-74">l</span></sub>, in reasonable agreement with the simulation result given above. These results
+illustrate how the properties of self-assembled colloidal polymers may be controlled through the geometrical shape of the
+colloids.
+<!--l. 416--><p class="indent" >   For shallower indentations the assembled polymers may support branching. This is only possible when the indentation is small enough
+for two colloid particles to &#8220;lock onto&#8221; the convex part of a third one. The marginal case is <span 
+class="zptmcm7m-">h </span><span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">5</span>, for which a single key surface can just
+accommodate two locks. As <span 
+class="zptmcm7m-">h </span>decreases, the branching probability increases rapidly. When bonds are strong (<span 
+class="zptmcm7m-">X &#x003C; </span><span 
+class="zptmcm7t-">0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">1 </span>as in
+Fig.&#x00A0;<a 
+href="#x1-30024">4<!--tex4ht:ref: fig:other-snaps --></a>), we find that the fractions of particles involved in branching for <span 
+class="zptmcm7m-">h </span><span 
+class="zptmcm7t-">= (0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">5</span><span 
+class="zptmcm7m-">,</span><span 
+class="zptmcm7t-">0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">4</span><span 
+class="zptmcm7m-">,</span><span 
+class="zptmcm7t-">0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">3) </span>are <span 
+class="zptmcm7t-">(1%</span><span 
+class="zptmcm7m-">,</span><span 
+class="zptmcm7t-">9%</span><span 
+class="zptmcm7m-">,</span><span 
+class="zptmcm7t-">15%)</span>. Again,
+by changing the colloid shape, the self-assembled chains can be varied from linear polymers (<span 
+class="zptmcm7m-">h </span><span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">7</span>) to chains with
+a few branches (<span 
+class="zptmcm7m-">h </span><span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">5</span>), and finally (<span 
+class="zptmcm7m-">h </span><span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">3</span>) to strongly branched structures. In the strongly-branched case, we also
+sometimes find a cluster of bound particles that percolates (spans the simulation box). More detailed characterisation of both
+percolation transitions and liquid-vapour phase transitions in this system would be useful avenues for future study, but they are
+beyond the scope of this work, due to the computational difficulty associated with our exact treatment of the depletant
+fluid.
+   <h3 class="sectionHead"><span class="titlemark">4    </span> <a 
+ id="x1-40004"></a>Theory</h3>
+<!--l. 438--><p class="noindent" >Given the range of chain lengths, persistence lengths and branch-point densities that are possible on varying just the depletant density <span 
+class="zptmcm7m-">&#x03B7;</span><sub><span 
+class="zptmcm7m-x-x-74">s</span></sub><sup><span 
+class="zptmcm7m-x-x-74">r</span></sup>
+and the indentation depth <span 
+class="zptmcm7m-">h</span>, theoretical insight is very valuable in guiding choices of colloidal geometry and depletant parameters, both in
+simulation and, potentially, in experiment. We have applied Wertheim&#8217;s theory of associating fluids&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem33"><span 
+class="ptmr7t-x-x-90">33</span></a></sup> to these indented colloids,
+following the work of Sciortino and co-workers&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem22"><span 
+class="ptmr7t-x-x-90">22</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem34"><span 
+class="ptmr7t-x-x-90">34</span></a></sup> on &#8216;patchy&#8217; colloids. This theory generalizes liquid state theory, incorporating steric
+constraints. For example, at most one particle may occupy any lock site; we also assume that chain branching may not occur, which is valid
+for <span 
+class="zptmcm7m-">h </span><span 
+class="msam-10">&#x2273; </span><span 
+class="zptmcm7t-">0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">5</span>. Within the theory, depletion interactions appear as two-body effective interactions between the colloidal particles, obtained
+formally by integrating out the depletant fluid. Based on these assumptions, Wertheim&#8217;s theory gives a diagrammatic series for the density
+functional of the system, from which the number densities <span 
+class="zptmcm7m-">&#x03C1;</span><span 
+class="zptmcm7t-x-x-74">L</span> and <span 
+class="zptmcm7m-">&#x03C1;</span><span 
+class="zptmcm7t-x-x-74">K</span> may be derived. This section contains a summary of this
+theoretical analysis, concentrating on the physical insight it provides. In the supplementary information&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem35"><span 
+class="ptmr7t-x-x-90">35</span></a></sup>, we provide
+the formulae that we use to obtain the predictions in Fig.&#x00A0;<a 
+href="#x1-30013">3<!--tex4ht:ref: fig:X --></a>, although we defer the proofs of these formulae to a later
+publication.
+<!--l. 461--><p class="indent" >   At leading order, Wertheim&#8217;s theory reduces to the familiar law of mass action: <span 
+class="zptmcm7m-">&#x03C1;</span><span 
+class="zptmcm7t-x-x-74">LK</span> <span 
+class="zptmcm7t-">= </span><span 
+class="zptmcm7m-">&#x03C1;</span><span 
+class="zptmcm7t-x-x-74">L</span><span 
+class="zptmcm7m-">&#x03C1;</span><span 
+class="zptmcm7t-x-x-74">K</span><span 
+class="zptmcm7m-">K</span><sub><span 
+class="zptmcm7t-x-x-74">0</span></sub> where <span 
+class="zptmcm7m-">&#x03C1;</span><span 
+class="zptmcm7t-x-x-74">LK</span> <span 
+class="zptmcm7t-">= </span><span 
+class="zptmcm7m-">&#x03C1; </span><span 
+class="zptmcm7y-">-</span><span 
+class="zptmcm7m-">&#x03C1;</span><span 
+class="zptmcm7t-x-x-74">L</span> is the number
+density of bonds (i.e. the number density of occupied lock sites), and <span 
+class="zptmcm7m-">K</span><sub><span 
+class="zptmcm7t-x-x-74">0</span></sub> is the bare equilibrium constant, which depends on the attractive
+forces between particles. The law of mass action applies quite accurately in the dilute limit <span 
+class="zptmcm7m-">&#x03C1;&#x03C3;</span><sub><span 
+class="zptmcm7m-x-x-74">l</span></sub><sup><span 
+class="zptmcm7t-x-x-74">3</span></sup> <span 
+class="zptmcm7y-">&#x226A; </span><span 
+class="zptmcm7t-">1</span>, but to go beyond this limit, one must
+also take account of repulsive forces between particles, and the resulting packing effects. The second part of Wertheim&#8217;s theory achieves
+this by a perturbative expansion about a reference system without any attractive interactions (<span 
+class="zptmcm7m-">&#x03B7;</span><sub><span 
+class="zptmcm7m-x-x-74">s</span></sub><sup><span 
+class="zptmcm7m-x-x-74">r</span></sup> <span 
+class="zptmcm7t-">= 0</span>). The theory is therefore accurate if
+the packing of particles in the presence of attractive forces is very similar to their packing in the reference system. Formally, the
+thermodynamic perturbation theory (TPT) of Wertheim approximates the density functional of the system by an infinite subset of terms
+in its diagrammatic expansion. The result is that the bare equilibrium constant <span 
+class="zptmcm7m-">K</span><sub><span 
+class="zptmcm7t-x-x-74">0</span></sub> in the law of mass action is replaced
+by&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem34"><span 
+class="ptmr7t-x-x-90">34</span></a></sup>
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4001r1"></a>
+
+   <center class="math-display" >
+<img 
+src="paperhtml1x.png" alt="    1 &#x222B;
+K = &#x03A9;-  dr12d&#x03C9;2gR(r12,&#x03C9;1,&#x03C9;2 )fA(r12,&#x03C9;1,&#x03C9;2).
+" class="math-display" ></center></td><td class="equation-label">(1)</td></tr></table>
+<!--l. 489--><p class="nopar" >
+Here <span 
+class="zptmcm7m-">&#x03C9;</span><sub><span 
+class="zptmcm7t-x-x-74">1</span></sub><span 
+class="zptmcm7m-">,&#x03C9;</span><sub><span 
+class="zptmcm7t-x-x-74">2</span></sub> represent the orientations of two particles, with <span 
+class="zptmcm7m-">r</span><sub><span 
+class="zptmcm7t-x-x-74">12</span></sub> the vector between them, and <span 
+class="zptmcm7t-">&#x03A9; </span>is the phase space volume associated with
+one particle&#8217;s orientation. Also, <span 
+class="zptmcm7m-">g</span><sub><span 
+class="zptmcm7m-x-x-74">R</span></sub><span 
+class="zptmcm7t-">(</span><span 
+class="zptmcm7m-">r,&#x03C9;</span><sub><span 
+class="zptmcm7t-x-x-74">1</span></sub><span 
+class="zptmcm7m-">,&#x03C9;</span><sub><span 
+class="zptmcm7t-x-x-74">2</span></sub><span 
+class="zptmcm7t-">) </span>is the two-particle distribution function in the reference system (without
+attractions), while <span 
+class="zptmcm7m-">f</span><sub><span 
+class="zptmcm7m-x-x-74">A</span></sub><span 
+class="zptmcm7t-">(</span><span 
+class="zptmcm7m-">r,&#x03C9;</span><sub><span 
+class="zptmcm7t-x-x-74">1</span></sub><span 
+class="zptmcm7m-">,&#x03C9;</span><sub><span 
+class="zptmcm7t-x-x-74">2</span></sub><span 
+class="zptmcm7t-">) </span>is a Mayer-<span 
+class="zptmcm7m-">f </span>function associated with the attractive part of the effective interactions between
+particles. In the dilute limit, <span 
+class="zptmcm7m-">g</span><sub><span 
+class="zptmcm7m-x-x-74">R</span></sub> <span 
+class="zptmcm7t-">= 1 </span>except when the two particles overlap, and one recovers the standard formula for
+the bare equilibrium constant <span 
+class="zptmcm7m-">K </span><span 
+class="zptmcm7t-">= </span><span 
+class="zptmcm7m-">K</span><sub><span 
+class="zptmcm7t-x-x-74">0</span></sub>. Outside the dilute regime, particle packing effects are taken account of through
+<span 
+class="zptmcm7m-">g</span><sub><span 
+class="zptmcm7m-x-x-74">R</span></sub>.
+<!--l. 502--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-40026"></a>
+
+<!--l. 503--><p class="noindent" ><img 
+src="Fig6.jpg" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id"><span 
+class="ptmr7t-x-x-90">Fig.</span><span 
+class="ptmr7t-x-x-90">&#x00A0;</span><span 
+class="ptmr7t-x-x-90">&#x00A0;6: </span></span><span  
+class="content">Comparison between simulation results and TPT predictions for the fraction, <span 
+class="zptmcm7m-">X</span>, of unbonded <span 
+class="zptmcm7m-">A</span>-patches in &#8220;patchy&#8221;
+models. (a)&#x00A0;Hard sphere model similar to that of Ref.&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem34"><span 
+class="ptmr7t-x-x-90">34</span></a></sup>. Each particle has an A patch and a B patch on opposite sides of the
+sphere, the only interaction is between A and B and is a square well of range <span 
+class="zptmcm7m-">&#x03C3;</span><sub><span 
+class="zptmcm7m-x-x-74">AB</span></sub> <span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">119</span><span 
+class="zptmcm7m-">&#x03C3;</span><sub><span 
+class="zptmcm7m-x-x-74">l</span></sub> and strength (well-depth) <span 
+class="zptmcm7m-">&#x03B5;</span>. The
+agreement between theory and simulation is almost perfect. (b)&#x00A0;Indented colloids (<span 
+class="zptmcm7m-">h </span><span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">5</span>) with patches. This model system
+differs from the patchy spheres only in the particle shape and the patch location (there are no depletant particles). The A and
+B patches are located on the lock and key surfaces as shown, leading to lock-and-key binding. In this case, the non-spherical
+particle shape leads to significant deviations between simulation results and TPT predictions. Both panels show results at density
+<span 
+class="zptmcm7m-">&#x03C1; </span><span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">2</span><span 
+class="zptmcm7m-">&#x03C3;</span><sub><span 
+class="zptmcm7m-x-x-74">l</span></sub><sup><span 
+class="zptmcm7y-x-x-74">-</span><span 
+class="zptmcm7t-x-x-74">3</span></sup>. The TPT results were obtained by numerical integration of (<a 
+href="#x1-4001r1">1<!--tex4ht:ref: eq:TPT_K --></a>), as in Fig.&#x00A0;<a 
+href="#x1-30013">3<!--tex4ht:ref: fig:X --></a>. </span></div><!--tex4ht:label?: x1-40026 -->
+
+<!--l. 521--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 523--><p class="indent" >   For the spherical patchy particles considered by Sciortino and co-workers<sup class="textsuperscript"><a 
+href="#bibitem34"><span 
+class="ptmr7t-x-x-90">34</span></a></sup>, <span 
+class="zptmcm7m-">g</span><sub><span 
+class="zptmcm7m-x-x-74">R</span></sub> can be approximated from Percus-Yevick theory, and
+<span 
+class="zptmcm7m-">f</span><sub><span 
+class="zptmcm7m-x-x-74">A</span></sub> is known exactly. Thus, the TPT calculation can be performed analytically, and it describes simulation data very accurately (see
+Fig.&#x00A0;<a 
+href="#x1-40026">6<!--tex4ht:ref: fig:patchyspheres --></a>a). For indented colloids, neither <span 
+class="zptmcm7m-">g</span><sub><span 
+class="zptmcm7m-x-x-74">R</span></sub> nor <span 
+class="zptmcm7m-">f</span><sub><span 
+class="zptmcm7m-x-x-74">A</span></sub> is known exactly, but <span 
+class="zptmcm7m-">g</span><sub><span 
+class="zptmcm7m-x-x-74">R</span></sub> may be obtained from a simulation of the reference system of
+indented colloids in the absence of depletant, and <span 
+class="zptmcm7m-">f</span><sub><span 
+class="zptmcm7m-x-x-74">A</span></sub> from a simulation of two particles in the presence of depletant. The integral in (<a 
+href="#x1-4001r1">1<!--tex4ht:ref: eq:TPT_K --></a>) can
+then be calculated. We emphasise that the function <span 
+class="zptmcm7m-">g</span><sub><span 
+class="zptmcm7m-x-x-74">R</span></sub> is evaluated in a system with no depletion interactions, so a single measurement of
+this function can be used (in conjunction with <span 
+class="zptmcm7m-">f</span><sub><span 
+class="zptmcm7m-x-x-74">A</span></sub>) to predict the behaviour for a wide range of <span 
+class="zptmcm7m-">&#x03B7;</span>. The resulting TPT
+predictions are shown in Fig.&#x00A0;<a 
+href="#x1-30013">3<!--tex4ht:ref: fig:X --></a>(b) and (c) for <span 
+class="zptmcm7m-">h </span><span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">7 </span>and <span 
+class="zptmcm7m-">h </span><span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">5 </span>respectively: the agreement is reasonable but there are
+deviations of up to <span 
+class="zptmcm7t-">20% </span>between theoretical and simulation values for <span 
+class="zptmcm7m-">X</span>. We attribute these deviations primarily to the
+differences in the packing properties of colloidal polymers, compared to isolated monomers. As evidence for this, Fig.&#x00A0;<a 
+href="#x1-40026">6<!--tex4ht:ref: fig:patchyspheres --></a>b
+shows results for indented colloids with &#8220;patchy&#8221; interactions. This model system differs from the patchy spheres only in
+the colloid shape and the patch location (there are no depletant particles) &#8211; it is clear that the TPT is less effective when
+colloids have non-spherical shapes. In the following paragraphs, we discuss how these shape (or packing) effects can be
+analysed within Wertheim&#8217;s theory. Another possible origin for deviations between theory and simulation in Fig.&#x00A0;<a 
+href="#x1-30013">3<!--tex4ht:ref: fig:X --></a> is
+that the TPT does not fully describe the attractive forces between colloids &#8211; we discuss this further at the end of this
+section.
+<!--l. 565--><p class="indent" >   To explore shape effects, we return to the diagrammatic analysis of Wertheim, but instead of following the TPT, we consider just
+a few simple terms in the density functional: see Fig.&#x00A0;<a 
+href="#x1-40047">7<!--tex4ht:ref: fig:diagrams --></a>. Under this approximation, the law of mass action is replaced
+by
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4003r2"></a>
+   <center class="math-display" >
+<img 
+src="paperhtml2x.png" alt="&#x03C1;LK = &#x03C1;L&#x03C1;KK0[1+ &#x03C1;v1+ &#x03C1;LKv2].
+" class="math-display" ></center></td><td class="equation-label">(2)</td></tr></table>
+<!--l. 577--><p class="nopar" >
+Here, <span 
+class="zptmcm7m-">v</span><sub><span 
+class="zptmcm7t-x-x-74">1</span></sub> and <span 
+class="zptmcm7m-">v</span><sub><span 
+class="zptmcm7t-x-x-74">2</span></sub> are geometrical factors (independent of <span 
+class="zptmcm7m-">&#x03B7;</span><sub><span 
+class="zptmcm7m-x-x-74">s</span></sub><sup><span 
+class="zptmcm7m-x-x-74">r</span></sup>) that account for packing of free particles and short chains: the relevant
+liquid-state diagrams are shown in Fig.&#x00A0;<a 
+href="#x1-40047">7<!--tex4ht:ref: fig:diagrams --></a> while formulae for these quantities are given as supporting information&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem35"><span 
+class="ptmr7t-x-x-90">35</span></a></sup>. Within Wertheim&#8217;s
+TPT, the <span 
+class="zptmcm7m-">v</span><sub><span 
+class="zptmcm7t-x-x-74">1</span></sub>-term is included, but the <span 
+class="zptmcm7m-">v</span><sub><span 
+class="zptmcm7t-x-x-74">2</span></sub>-term is absent. Further, comparison between (<a 
+href="#x1-4003r2">2<!--tex4ht:ref: eq:rob_K --></a>) and the law of mass action shows that the effective
+equilibrium constant <span 
+class="zptmcm7m-">&#x03C1;</span><span 
+class="zptmcm7t-x-x-74">LK</span><span 
+class="zptmcm7m-">&#x2215;</span><span 
+class="zptmcm7t-">(</span><span 
+class="zptmcm7m-">&#x03C1;</span><span 
+class="zptmcm7t-x-x-74">L</span><span 
+class="zptmcm7m-">&#x03C1;</span><span 
+class="zptmcm7t-x-x-74">K</span><span 
+class="zptmcm7t-">) </span>now depends on the degree of polymerization of the system, via the <span 
+class="zptmcm7m-">v</span><sub><span 
+class="zptmcm7t-x-x-74">2</span></sub>-term. This constant (and hence
+the quantity <span 
+class="zptmcm7m-">X</span>) must therefore be determined self-consistently by solving (<a 
+href="#x1-4003r2">2<!--tex4ht:ref: eq:rob_K --></a>), so we refer to the analysis in the presence of the <span 
+class="zptmcm7m-">v</span><sub><span 
+class="zptmcm7t-x-x-74">2</span></sub>-term as
+self-consistent Wertheim (SCW) theory.
+<!--l. 587--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-40047"></a>
+
+<!--l. 588--><p class="noindent" ><img 
+src="Fig7.jpg" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id"><span 
+class="ptmr7t-x-x-90">Fig.</span><span 
+class="ptmr7t-x-x-90">&#x00A0;</span><span 
+class="ptmr7t-x-x-90">&#x00A0;7: </span></span><span  
+class="content">Liquid state theory diagrams showing contributions to the density functional that are relevant for calculating <span 
+class="zptmcm7m-">&#x03C1;</span><span 
+class="zptmcm7t-x-x-74">LK</span> within
+Wertheim theory. Directed heavy lines correspond to attractive lock-and-key binding while thin lines correspond to repulsive
+interactions. Where diagrams include dashed lines, this indicates a sum over diagrams both with and without these repulsive
+interactions.  Vertices  have  weights  corresponding  to  various  combinations  of  <span 
+class="zptmcm7m-">&#x03C1;,&#x03C1;</span><span 
+class="zptmcm7t-x-x-74">L</span><span 
+class="zptmcm7m-">,&#x03C1;</span><span 
+class="zptmcm7t-x-x-74">K</span>,  as  prescribed  by  Wertheim&#8217;s  theory.
+(a)&#x00A0;Diagram for <span 
+class="zptmcm7m-">K</span><sub><span 
+class="zptmcm7t-x-x-74">0</span></sub>; (b)&#x00A0;Diagram for the <span 
+class="zptmcm7m-">v</span><sub><span 
+class="zptmcm7t-x-x-74">1</span></sub>-term in (<a 
+href="#x1-4003r2">2<!--tex4ht:ref: eq:rob_K --></a>); (c)&#x00A0;A diagram included in the TPT but not in SCW; (d) Diagrams for
+the <span 
+class="zptmcm7m-">v</span><sub><span 
+class="zptmcm7t-x-x-74">2</span></sub>-term in Eq.&#x00A0;(<a 
+href="#x1-4003r2">2<!--tex4ht:ref: eq:rob_K --></a>), included in SCW theory but not in TPT. The terms in (a,b,d) are those considered in the SCW theory.
+(e)&#x00A0;Table showing values of <span 
+class="zptmcm7m-">v</span><sub><span 
+class="zptmcm7t-x-x-74">1</span></sub> and <span 
+class="zptmcm7m-">v</span><sub><span 
+class="zptmcm7t-x-x-74">2</span></sub> for various <span 
+class="zptmcm7m-">h</span>, in units having <span 
+class="zptmcm7m-">&#x03C3;</span><sub><span 
+class="zptmcm7m-x-x-74">l</span></sub> <span 
+class="zptmcm7t-">= 1</span>.</span></div><!--tex4ht:label?: x1-40047 -->
+
+<!--l. 603--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 606--><p class="indent" >   We have obtained values for <span 
+class="zptmcm7m-">v</span><sub><span 
+class="zptmcm7t-x-x-74">1</span></sub> and <span 
+class="zptmcm7m-">v</span><sub><span 
+class="zptmcm7t-x-x-74">2</span></sub> by simulating very small systems (up to <span 
+class="zptmcm7t-">4 </span>indented particles, without depletant). Results are
+shown in Fig.&#x00A0;<a 
+href="#x1-40047">7<!--tex4ht:ref: fig:diagrams --></a>(e). Using these values in (<a 
+href="#x1-4003r2">2<!--tex4ht:ref: eq:rob_K --></a>) leads to the SCW predictions shown in Fig.&#x00A0;<a 
+href="#x1-30013">3<!--tex4ht:ref: fig:X --></a>. In terms of the density functional, SCW
+theory is a much cruder approximation than TPT. However, the SCW theory performs significantly better than TPT: for <span 
+class="zptmcm7m-">h </span><span 
+class="zptmcm7t-">= 0</span><span 
+class="zptmcm7m-">.</span><span 
+class="zptmcm7t-">5</span>, it accounts
+for around half of the deviation between theory and simulation.
+<!--l. 615--><p class="indent" >   The origin of this effect is the <span 
+class="zptmcm7m-">v</span><sub><span 
+class="zptmcm7t-x-x-74">2</span></sub>-term in (<a 
+href="#x1-4003r2">2<!--tex4ht:ref: eq:rob_K --></a>). Physically, the <span 
+class="zptmcm7m-">v</span><sub><span 
+class="zptmcm7t-x-x-74">1</span></sub>-term in that equation (included in both TPT and SCW theories) reflects
+the increased virial pressure in the system as the colloid number density increases, and enhances polymerization. The <span 
+class="zptmcm7m-">v</span><sub><span 
+class="zptmcm7t-x-x-74">2</span></sub>-term reflects
+differences in packing properties between free particles and assembled chains. We find <span 
+class="zptmcm7m-">v</span><sub><span 
+class="zptmcm7t-x-x-74">2</span></sub> <span 
+class="zptmcm7m-">&#x003C; </span><span 
+class="zptmcm7t-">0</span>, indicating that as polymerization
+occurs, the virial pressure is reduced (compared with TPT), suppressing further chain formation. For spherical patchy
+particles (<span 
+class="zptmcm7m-">h </span><span 
+class="zptmcm7t-">= 0</span>), Fig.&#x00A0;<a 
+href="#x1-40047">7<!--tex4ht:ref: fig:diagrams --></a>(e) shows that the magnitude of <span 
+class="zptmcm7m-">v</span><sub><span 
+class="zptmcm7t-x-x-74">2</span></sub> is small, consistent with the success of TPT in that case (Fig.&#x00A0;<a 
+href="#x1-40026">6<!--tex4ht:ref: fig:patchyspheres --></a>).
+However, the size of <span 
+class="zptmcm7m-">v</span><sub><span 
+class="zptmcm7t-x-x-74">2</span></sub> grows as <span 
+class="zptmcm7m-">h </span>is increased, leading to the deviations from TPT shown in Fig.&#x00A0;<a 
+href="#x1-30013">3<!--tex4ht:ref: fig:X --></a>. The SCW theory
+accounts for some of these deviations, although agreement is still not perfect. Unlike the TPT, the SCW theory could be
+improved systematically, by including further terms in the density functional. However, the theory presented here shows
+that packing effects of non-spherical particles can significantly affect self-assembly, and are required for quantitative
+predictions.
+<!--l. 630--><p class="indent" >   Finally, we analyse one other possible origin for the deviations between TPT and simulation results in Fig.&#x00A0;<a 
+href="#x1-30013">3<!--tex4ht:ref: fig:X --></a>. As well as lock-and-key
+binding, the depletant particles also lead to an attractive interaction between the concave (key) surfaces of the indented colloids. This effect
+is not accounted for in the TPT and SCW theories: we therefore considered a refined TPT in which such &#8220;key-key&#8221; binding is
+included. Let <span 
+class="zptmcm7m-">&#x03C1;</span><sub><span 
+class="zptmcm7m-x-x-74">KK</span></sub> be the number density of key-key bonds (defined through a radial cutoff by analogy with <span 
+class="zptmcm7m-">&#x03C1;</span><sub><span 
+class="zptmcm7m-x-x-74">LK</span></sub>). Then
+the law of mass action predicts <span 
+class="zptmcm7m-">&#x03C1;</span><sub><span 
+class="zptmcm7m-x-x-74">KK</span></sub> <span 
+class="zptmcm7t-">= </span><span 
+class="zptmcm7m-">K</span><sub><span 
+class="zptmcm7m-x-x-74">bb</span></sub><span 
+class="zptmcm7m-">&#x03C1;</span><sub><span 
+class="zptmcm7m-x-x-74">K</span></sub><sup><span 
+class="zptmcm7t-x-x-74">2</span></sup> where <span 
+class="zptmcm7m-">K</span><sub><span 
+class="zptmcm7m-x-x-74">bb</span></sub> is an equilibrium constant. This key-key binding reduces the
+availability of particles for lock-and-key binding, increasing the values of <span 
+class="zptmcm7m-">X </span>observed in simulation. The TPT can be
+straightforwardly generalised to include an estimate for <span 
+class="zptmcm7m-">K</span><sub><span 
+class="zptmcm7m-x-x-74">bb</span></sub>. For those state points in Fig.&#x00A0;<a 
+href="#x1-30013">3<!--tex4ht:ref: fig:X --></a>(b,c) where the depletion
+interaction is strong, we find <span 
+class="zptmcm7m-">K</span><sub><span 
+class="zptmcm7m-x-x-74">bb</span></sub> <span 
+class="zptmcm7y-">&#x226A; </span><span 
+class="zptmcm7m-">K</span>, so lock-and-key binding is dominant; when the interaction is relatively weak we find
+<span 
+class="zptmcm7m-">&#x03C1;K</span><sub><span 
+class="zptmcm7m-x-x-74">bb</span></sub> <span 
+class="zptmcm7y-">&#x226A; </span><span 
+class="zptmcm7t-">1</span>, so bonds are rare. Together, these results indicate that key-key binding is a weak effect. To verify this, we used
+<span 
+class="zptmcm7m-">K </span>and <span 
+class="zptmcm7m-">K</span><sub><span 
+class="zptmcm7m-x-x-74">bb</span></sub> to calculate predictions for <span 
+class="zptmcm7m-">X</span>, noting that the number density of key surfaces that are available for binding
+is <span 
+class="zptmcm7m-">&#x03C1;</span><span 
+class="zptmcm7t-x-x-74">K</span> <span 
+class="zptmcm7t-">= </span><span 
+class="zptmcm7m-">&#x03C1; </span><span 
+class="zptmcm7y-">-</span><span 
+class="zptmcm7m-">&#x03C1;</span><span 
+class="zptmcm7t-x-x-74">LK</span> <span 
+class="zptmcm7y-">-</span><span 
+class="zptmcm7t-">2</span><span 
+class="zptmcm7m-">&#x03C1;</span><sub><span 
+class="zptmcm7m-x-x-74">KK</span></sub><span 
+class="zptmcm7m-">. </span>As expected, the inclusion of the <span 
+class="zptmcm7m-">&#x03C1;</span><sub><span 
+class="zptmcm7m-x-x-74">KK</span></sub> term in this equation reduces the TPT prediction for
+<span 
+class="zptmcm7m-">&#x03C1;</span><span 
+class="zptmcm7t-x-x-74">LK</span>. However, the small value of <span 
+class="zptmcm7m-">K</span><sub><span 
+class="zptmcm7m-x-x-74">bb</span></sub> means that this leads to a barely-discernible change in the TPT results of Fig.&#x00A0;<a 
+href="#x1-30013">3<!--tex4ht:ref: fig:X --></a>
+(the differences between modified and unmodified TPT results are comparable with the line widths). This reinforces our
+conclusion that it is primarily the shape and packing properties of the indented colloids that lead to deviations from TPT
+predictions.
+   <h3 class="sectionHead"><span class="titlemark">5    </span> <a 
+ id="x1-50005"></a>Conclusions</h3>
+<!--l. 668--><p class="noindent" >The sophisticated Monte Carlo techniques that we have applied here show that indented colloids can assemble into chains, with persistence
+lengths and branching properties controlled by the colloid shape and depletant density. Two variants of Wertheim&#8217;s theory
+have been analysed, showing how particle shapes can influence their self-assembly. In addition to the colloidal polymers
+shown here, we also emphasize that the combination of depletion interactions and colloidal shape has potential application
+for many other self-assembled structures too, and that the simulation and theoretical methods used here can be readily
+applied in those cases. Given that depletant parameters and the shapes of indented colloids can both be controlled in
+experiments&#x00A0;<sup class="textsuperscript"><a 
+href="#bibitem5"><span 
+class="ptmr7t-x-x-90">5</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem6"><span 
+class="ptmr7t-x-x-90">6</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem7"><span 
+class="ptmr7t-x-x-90">7</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem23"><span 
+class="ptmr7t-x-x-90">23</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem24"><span 
+class="ptmr7t-x-x-90">24</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem25"><span 
+class="ptmr7t-x-x-90">25</span></a><span 
+class="ptmr7t-x-x-90">,</span><a 
+href="#bibitem26"><span 
+class="ptmr7t-x-x-90">26</span></a></sup>, we hope that these results will stimulate further experimental studies of self-assembly in these
+systems.
+<!--l. 682--><p class="indent" >   <a 
+ id="x1-5001f0"></a><span class="footnote-mark"><a 
+ id="fn0x0"></a></span><span 
+class="cmsy-8">&#8224;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Electronic Supplementary Information (ESI) available: [details of any supplementary information available should be included here]. See DOI:</span>
+   <span 
+class="ptmr7t-x-x-80">10.1039/b000000x/</span>
+<!--l. 688--><p class="indent" >   <a 
+ id="x1-5002f0"></a><span class="footnote-mark"><a 
+ id="fn0x0"></a></span><sup><span 
+class="zptmcm7m-x-x-60">a</span></sup><span 
+class="ptmri7t-x-x-80">Department of Physics, University of Bath, Bath BA2 7AY, United Kingdom; Fax XX XXXX XXXX; Tel: XX XXXX XXXX; E-mail: d.ashton@bath.ac.uk</span>
+<!--l. 692--><p class="indent" >   <a 
+ id="x1-5003f0"></a><span class="footnote-mark"><a 
+ id="fn0x0"></a></span><span 
+class="cmsy-8">&#8225;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Additional footnotes to the title and authors can be included </span><span 
+class="ptmri7t-x-x-80">e.g.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;&#8216;Present address:&#8217; or &#8216;These authors contributed equally to this work&#8217; as above using the</span>
+   <span 
+class="ptmr7t-x-x-80">symbols: </span><span 
+class="cmsy-8">&#8225;</span><span 
+class="ptmr7t-x-x-80">, </span><span 
+class="cmsy-8">§</span><span 
+class="ptmr7t-x-x-80">, and </span><span 
+class="cmsy-8">¶</span><span 
+class="ptmr7t-x-x-80">. Please place the appropriate symbol next to the author&#8217;s name and include a </span><span 
+class="cmsy-8">\</span><span 
+class="pcrr7t-x-x-80">footnotetext</span><span 
+class="ptmr7t-x-x-80">entry in the the correct place in the</span>
+   <span 
+class="ptmr7t-x-x-80">list.</span>
+<!--l. 732--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-60005"></a><span 
+class="ptmr7t-x-x-80">References</span></h3>
+<!--l. 732--><p class="noindent" >
+  <div class="thebibliography">
+
+  <p class="bibitem" ><span class="biblabel">
+ <a 
+ id="bibitem1"></a><span 
+class="ptmr7t-x-x-80">1</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">G.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;M.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Whitesides and B.</span><span 
+class="ptmr7t-x-x-80">&#x00A0; Grzybowski, Science </span><span 
+class="ptmb7t-x-x-80">295</span><span 
+class="ptmr7t-x-x-80">, 2418 (2002).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ <a 
+ id="bibitem2"></a><span 
+class="ptmr7t-x-x-80">2</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">S.C.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Glotzer and M.J.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Solomon, Nature Mat. </span><span 
+class="ptmb7t-x-x-80">6</span><span 
+class="ptmr7t-x-x-80">, 557 (2007).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ <a 
+ id="bibitem3"></a><span 
+class="ptmr7t-x-x-80">3</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">D. Nykypanchuk, M.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;M.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Maye, D.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;van der Lelie and O.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Gang, Nature </span><span 
+class="ptmb7t-x-x-80">451</span><span 
+class="ptmr7t-x-x-80">, 459 (2008).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ <a 
+ id="bibitem4"></a><span 
+class="ptmr7t-x-x-80">4</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">Q.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Chen, S.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;C.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Bae and S.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Granick, Nature </span><span 
+class="ptmb7t-x-x-80">469</span><span 
+class="ptmr7t-x-x-80">, 381 (2011)</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ <a 
+ id="bibitem5"></a><span 
+class="ptmr7t-x-x-80">5</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">L.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Rossi, S.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Sacanna, W.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;T.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;M.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Irvine, </span><span 
+class="ptmri7t-x-x-80">et al.</span><span 
+class="ptmr7t-x-x-80">, Soft Matter, 7, 4139 (2011).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ <a 
+ id="bibitem6"></a><span 
+class="ptmr7t-x-x-80">6</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">S. Sacanna, W. T. M. Irvine, P. M. Chaikin, and D. J. Pine, Nature </span><span 
+class="ptmb7t-x-x-80">464</span><span 
+class="ptmr7t-x-x-80">, 575 (2010).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ <a 
+ id="bibitem7"></a><span 
+class="ptmr7t-x-x-80">7</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">S.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Sacanna, M.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Korpics, K.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Rodriguez, L.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Colon-Melendez, S.-H.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Kim, D.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;J.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Pine and G.-R.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Yi, Nat. Comm. </span><span 
+class="ptmb7t-x-x-80">4</span><span 
+class="ptmr7t-x-x-80">, 1688 (2013).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ <a 
+ id="bibitem8"></a><span 
+class="ptmr7t-x-x-80">8</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">M.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Marechal, R. J. Kortschot, A.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;H.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Demir</span><span 
+class="ptmr7t-x-x-80">ös, A. Imhof and M. Dijkstra, Nano Lett. </span><span 
+class="ptmb7t-x-x-80">10</span><span 
+class="ptmr7t-x-x-80">, 1907 (2010)</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ <a 
+ id="bibitem9"></a><span 
+class="ptmr7t-x-x-80">9</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">J.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Henzie, M. Gr</span><span 
+class="ptmr7t-x-x-80">ünewald, A. Widmer-Cooper, P.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;L.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Geissler and P.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Yang, Nature Mat. </span><span 
+class="ptmb7t-x-x-80">11</span><span 
+class="ptmr7t-x-x-80">, 131 (2012).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem10"></a><span 
+class="ptmr7t-x-x-80">10</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">W.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Qi, J.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;de Graaf, F. Qiao, S. Marras, L. Manna and M.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Dijkstra, Nano Lett. </span><span 
+class="ptmb7t-x-x-80">12</span><span 
+class="ptmr7t-x-x-80">, 5299 (2012).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem11"></a><span 
+class="ptmr7t-x-x-80">11</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">D.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;J.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Kraft, R.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Ni, F.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Smallenburg, M.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Hermes, K.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Yoon, D.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;A.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Weitz, A.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;van</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Blaaderen, J.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Groenewold, M.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Dijkstra, and W.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;K.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Kegel, Proc.</span>
+  <span 
+class="ptmr7t-x-x-80">Natl. Acad. Sci. U.S.A. </span><span 
+class="ptmb7t-x-x-80">109</span><span 
+class="ptmr7t-x-x-80">, 10787 (2012).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem12"></a><span 
+class="ptmr7t-x-x-80">12</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">P.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;F.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Damasceno, M.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Engel and S.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;C.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Glotzer, Science, </span><span 
+class="ptmb7t-x-x-80">337</span><span 
+class="ptmr7t-x-x-80">, 453 (2012)</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem13"></a><span 
+class="ptmr7t-x-x-80">13</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">G. Odriozola, F. Jimenez-Angeles, and M. Lozada- Cassou, J. Chem. Phys. </span><span 
+class="ptmb7t-x-x-80">129</span><span 
+class="ptmr7t-x-x-80">, 111101 (2008); Phys. Rev. Lett. </span><span 
+class="ptmb7t-x-x-80">110</span><span 
+class="ptmr7t-x-x-80">, 105701 (2013).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem14"></a><span 
+class="ptmr7t-x-x-80">14</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">S. Torquato and Y. Jiao, Nature </span><span 
+class="ptmb7t-x-x-80">460</span><span 
+class="ptmr7t-x-x-80">, 876 (2009)</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem15"></a><span 
+class="ptmr7t-x-x-80">15</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">R.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Ni, A.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;P.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Gantara, J.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;de</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Graaf, R.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;van</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Roij and M.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Dijkstra, Soft Matter </span><span 
+class="ptmb7t-x-x-80">8</span><span 
+class="ptmr7t-x-x-80">, 8826 (2012)</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem16"></a><span 
+class="ptmr7t-x-x-80">16</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">P.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Damasceno, M.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Engel, and S.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;C.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Glotzer, ACS Nano </span><span 
+class="ptmb7t-x-x-80">6</span><span 
+class="ptmr7t-x-x-80">, 609 (2012).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem17"></a><span 
+class="ptmr7t-x-x-80">17</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">A.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Haji-Akbari, E.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;R.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Chen, M.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Engel and S.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;C.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Glotzer, Phys. Rev. E </span><span 
+class="ptmb7t-x-x-80">88</span><span 
+class="ptmr7t-x-x-80">, 012127 (2013).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem18"></a><span 
+class="ptmr7t-x-x-80">18</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">A.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;P.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Gantapara, J.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;de</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Graaf, R.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;van</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Roij and M.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Dijkstra, Phys. Rev. Lett. </span><span 
+class="ptmb7t-x-x-80">111</span><span 
+class="ptmr7t-x-x-80">, 015501 (2013).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem19"></a><span 
+class="ptmr7t-x-x-80">19</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">G.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Anders, N.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;K.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Ahmed, R.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Smith, M.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Engel, and S.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;C.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Glotzer, arXiv:1304.7545</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem20"></a><span 
+class="ptmr7t-x-x-80">20</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">H. N. W. Lekkerkerker and R. Tuinier, </span><span 
+class="ptmri7t-x-x-80">Colloids and the Depletion Interactions</span><span 
+class="ptmr7t-x-x-80">, Vol. 833 of Lecture Notes in Physics (Springer, Berlin / Heidelberg,</span>
+  <span 
+class="ptmr7t-x-x-80">2011).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+
+<a 
+ id="bibitem21"></a><span 
+class="ptmr7t-x-x-80">21</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">P.-M. K</span><span 
+class="ptmr7t-x-x-80">önig, R. Roth, and S. Dietrich, EPL </span><span 
+class="ptmb7t-x-x-80">84</span><span 
+class="ptmr7t-x-x-80">, 68006 (2008).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem22"></a><span 
+class="ptmr7t-x-x-80">22</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">E. Bianchi, J. Largo, P. Tartaglia, E. Zaccarelli and F. Sciortino, Phys. Rev. Lett. </span><span 
+class="ptmb7t-x-x-80">97</span><span 
+class="ptmr7t-x-x-80">, 168301 (2006).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem23"></a><span 
+class="ptmr7t-x-x-80">23</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">S.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Sacanna, W.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;T.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;M.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Irvine, L. Rossi and D.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;J.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Pine, Soft Matter, </span><span 
+class="ptmb7t-x-x-80">7</span><span 
+class="ptmr7t-x-x-80">, 1631 (2011)</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem24"></a><span 
+class="ptmr7t-x-x-80">24</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">J. Bahadur</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmri7t-x-x-80">et al.</span><span 
+class="ptmr7t-x-x-80">, Langmuir </span><span 
+class="ptmb7t-x-x-80">28</span><span 
+class="ptmr7t-x-x-80">, 1914 (2012).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem25"></a><span 
+class="ptmr7t-x-x-80">25</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">A.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;M.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Alsayed, Z.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Dogic and A.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;G.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Yodh, Phys. Rev. Lett. </span><span 
+class="ptmb7t-x-x-80">93</span><span 
+class="ptmr7t-x-x-80">, 057801 (2004)</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem26"></a><span 
+class="ptmr7t-x-x-80">26</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">J. R. Savage and A. D. Dinsmore, Phys. Rev. Lett. </span><span 
+class="ptmb7t-x-x-80">102</span><span 
+class="ptmr7t-x-x-80">, 198302 (2009).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem27"></a><span 
+class="ptmr7t-x-x-80">27</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">D.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Klotsa and R.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;L.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Jack, J. Chem. Phys. </span><span 
+class="ptmb7t-x-x-80">138</span><span 
+class="ptmr7t-x-x-80">, 094502 (2013).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem28"></a><span 
+class="ptmr7t-x-x-80">28</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">J. Liu and E. Luijten, Phys. Rev. Lett. </span><span 
+class="ptmb7t-x-x-80">92</span><span 
+class="ptmr7t-x-x-80">, 035504 (2004).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem29"></a><span 
+class="ptmr7t-x-x-80">29</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">D. W. Sinkovits, S. A. Barr, and E. Luijten, J. Chem. Phys. </span><span 
+class="ptmb7t-x-x-80">136</span><span 
+class="ptmr7t-x-x-80">, 144111 (2012).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem30"></a><span 
+class="ptmr7t-x-x-80">30</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">M. Marechal and M. Dijkstra, Phys. Rev. E </span><span 
+class="ptmb7t-x-x-80">82</span><span 
+class="ptmr7t-x-x-80">, 031405 (2010).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem31"></a><span 
+class="ptmr7t-x-x-80">31</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">M. He and P. Siders, J. Phys. Chem. </span><span 
+class="ptmb7t-x-x-80">94</span><span 
+class="ptmr7t-x-x-80">, 7280 (1990).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem32"></a><span 
+class="ptmr7t-x-x-80">32</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">G. Cinacchi and J. S. van Duijneveldt, J. Phys. Chem. Lett. 1, </span><span 
+class="ptmb7t-x-x-80">787 </span><span 
+class="ptmr7t-x-x-80">(2010).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem33"></a><span 
+class="ptmr7t-x-x-80">33</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">M.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;S.</span><span 
+class="ptmr7t-x-x-80">&#x00A0;Wertheim, J. Stat. Phys. </span><span 
+class="ptmb7t-x-x-80">35</span><span 
+class="ptmr7t-x-x-80">, 19 (1984); </span><span 
+class="ptmb7t-x-x-80">35</span><span 
+class="ptmr7t-x-x-80">, 35 (1984); </span><span 
+class="ptmb7t-x-x-80">42</span><span 
+class="ptmr7t-x-x-80">, 459 (1986); </span><span 
+class="ptmb7t-x-x-80">42</span><span 
+class="ptmr7t-x-x-80">, 477 (1986).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem34"></a><span 
+class="ptmr7t-x-x-80">34</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">F. Sciortino, E. Bianchi, J. F. Douglas, and P. Tartaglia, J. Chem. Phys. </span><span 
+class="ptmb7t-x-x-80">126</span><span 
+class="ptmr7t-x-x-80">, 194903 (2007).</span>
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="bibitem35"></a><span 
+class="ptmr7t-x-x-80">35</span> <span class="bibsp"><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span><span 
+class="ptmr7t-x-x-80">&#x00A0;</span></span></span><span 
+class="ptmr7t-x-x-80">See supplementary information.</span>
+</p>
+  </div>
+
+    
+</body></html> 
+
+
+
