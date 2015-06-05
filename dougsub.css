@@ -1,0 +1,10 @@
+.hero-unit {
+        background-image: url(pics/lockheadop.jpg);    
+  	max-height: 80px;
+	min-height: 50px;
+	vertical-align: middle;
+}
+
+.special-link, .special-link:visited, .special-link:hover, .special-link:active {
+  color: inherit;
+}
