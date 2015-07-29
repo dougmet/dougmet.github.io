@@ -1,2 +1,3 @@
 # website
-My Personal Website
+
+Go to http://dougmet.github.io/website
