@@ -1,0 +1,55 @@
+==================================================================
+https://keybase.io/dougashton
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://www.dougashton.net
+  * I am dougashton (https://keybase.io/dougashton) on keybase.
+  * I have a public key ASB2ZWwETS3xZCCTPApnGY1itqx2ZYXcLltIV05aX3LGSwo
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "0120fd5a11b628f5bd70c11e1230727910d7f8a1833b03538a42dd9c9fda2de3061a0a",
+            "host": "keybase.io",
+            "kid": "012076656c044d2df16420933c0a67198d62b6ac766585dc2e5b48574e5a5f72c64b0a",
+            "uid": "db8f72f38738e95ad1a79f8bc7a93919",
+            "username": "dougashton"
+        },
+        "service": {
+            "hostname": "www.dougashton.net",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "client": {
+        "name": "keybase.io go client",
+        "version": "1.0.21"
+    },
+    "ctime": 1493545341,
+    "expire_in": 504576000,
+    "merkle_root": {
+        "ctime": 1493545295,
+        "hash": "e45125a86c7239aa2bb859178f65b5b9b31750098955a909a83cab5e04a77633b4bf1a34d296489cb7e558f17fe22bcebe878ba5583daf42211a026d5681ac6f",
+        "seqno": 1045710
+    },
+    "prev": "82b43996e0b4c5f9b90c3a533a7caa6cf932f2c367113db830858bf1581ea6b6",
+    "seqno": 13,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgdmVsBE0t8WQgkzwKZxmNYrasdmWF3C5bSFdOWl9yxksKp3BheWxvYWTFAv17ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTIwZmQ1YTExYjYyOGY1YmQ3MGMxMWUxMjMwNzI3OTEwZDdmOGExODMzYjAzNTM4YTQyZGQ5YzlmZGEyZGUzMDYxYTBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwNzY2NTZjMDQ0ZDJkZjE2NDIwOTMzYzBhNjcxOThkNjJiNmFjNzY2NTg1ZGMyZTViNDg1NzRlNWE1ZjcyYzY0YjBhIiwidWlkIjoiZGI4ZjcyZjM4NzM4ZTk1YWQxYTc5ZjhiYzdhOTM5MTkiLCJ1c2VybmFtZSI6ImRvdWdhc2h0b24ifSwic2VydmljZSI6eyJob3N0bmFtZSI6Ind3dy5kb3VnYXNodG9uLm5ldCIsInByb3RvY29sIjoiaHR0cDoifSwidHlwZSI6IndlYl9zZXJ2aWNlX2JpbmRpbmciLCJ2ZXJzaW9uIjoxfSwiY2xpZW50Ijp7Im5hbWUiOiJrZXliYXNlLmlvIGdvIGNsaWVudCIsInZlcnNpb24iOiIxLjAuMjEifSwiY3RpbWUiOjE0OTM1NDUzNDEsImV4cGlyZV9pbiI6NTA0NTc2MDAwLCJtZXJrbGVfcm9vdCI6eyJjdGltZSI6MTQ5MzU0NTI5NSwiaGFzaCI6ImU0NTEyNWE4NmM3MjM5YWEyYmI4NTkxNzhmNjViNWI5YjMxNzUwMDk4OTU1YTkwOWE4M2NhYjVlMDRhNzc2MzNiNGJmMWEzNGQyOTY0ODljYjdlNTU4ZjE3ZmUyMmJjZWJlODc4YmE1NTgzZGFmNDIyMTFhMDI2ZDU2ODFhYzZmIiwic2Vxbm8iOjEwNDU3MTB9LCJwcmV2IjoiODJiNDM5OTZlMGI0YzVmOWI5MGMzYTUzM2E3Y2FhNmNmOTMyZjJjMzY3MTEzZGI4MzA4NThiZjE1ODFlYTZiNiIsInNlcW5vIjoxMywidGFnIjoic2lnbmF0dXJlIn2jc2lnxEBBsfTuRafXDDecynohvJ0HkZewEe0cOISpUaHpRPGbVBuZ0xCMDApwLX46dUrNKAEYeFwtalRnjPtz3ZQDAeIGqHNpZ190eXBlIKRoYXNogqR0eXBlCKV2YWx1ZcQgpyBsoDs+tauvDMOF/apAf0T6WiMoGnWuPBBs55oYtzajdGFnzQICp3ZlcnNpb24B
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/dougashton
+
+==================================================================
+
